@@ -4,20 +4,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5" />
   <meta name="theme-color" content="#81251d" />
-  <meta name="description" content="霞客 — AI 徒步路线助手。按地区、季节、难度筛选中国 52 条经典徒步路线，查看实时天气、分段攻略、装备清单与风险提示。" />
+  <meta name="description" content="霞客 — AI 徒步路线助手。按地区、季节、难度筛选中国 64 条经典徒步路线，查看实时天气、分段攻略、装备清单与风险提示。" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="霞客" />
   <meta name="format-detection" content="telephone=no" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="霞客 · AI 徒步路线助手" />
-  <meta property="og:description" content="把想去的地方，变成能走的路。52 条中国经典徒步路线，实时天气、分段攻略、装备清单与风险提示。" />
+  <meta property="og:description" content="把想去的地方，变成能走的路。64 条中国经典徒步路线，实时天气、分段攻略、装备清单与风险提示。" />
   <meta property="og:locale" content="zh_CN" />
   <title>霞客 · AI 徒步路线助手</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
   <link rel="dns-prefetch" href="https://geo.datav.aliyun.com" />
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="apple-touch-icon" href="./images/icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="./images/icons/icon.svg" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
@@ -302,10 +305,38 @@
   </div>
 
   
+  <div class="offline-indicator" id="offlineIndicator">📡 当前离线，已缓存路线可浏览</div>
+
+  <div class="pwa-install-banner" id="pwaInstallBanner">
+    <p>📲 把「霞客」添加到手机桌面，离线也能用</p>
+    <button class="pwa-btn" id="pwaInstallBtn" type="button">安装</button>
+    <button class="pwa-dismiss" id="pwaDismissBtn" type="button" aria-label="关闭">×</button>
+  </div>
+
   <script src="./data/routes.js" defer></script>
   <script src="./data/routebooks/yubeng.js" defer></script>
   <script src="./data/routebooks/core.js" defer></script>
   <script src="./data/routebooks/generated.js" defer></script>
   <script src="./app.js" defer></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js', { scope: './' })
+          .then((reg) => {
+            reg.addEventListener('updatefound', () => {
+              const newWorker = reg.installing;
+              if (newWorker) {
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    console.log('[霞客] 新版本已就绪，刷新后生效。');
+                  }
+                });
+              }
+            });
+          })
+          .catch((err) => console.warn('[霞客] SW 注册失败:', err));
+      });
+    }
+  </script>
 </body>
 </html>

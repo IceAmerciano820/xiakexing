@@ -130,7 +130,8 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
     function imageWithFallback(route, index = 0, alt = "") {
       const local = localRouteImage(route, index);
       const remote = route.images?.[index] || route.images?.[0] || FALLBACK_IMG;
-      return `<img src="${local}" alt="${escapeHtml(alt || route.name)}" loading="lazy" onerror="this.onerror=null;this.src='${remote}';" />`;
+      const altText = escapeHtml(alt || route.name);
+      return `<img src="${local}" alt="${altText}" loading="lazy" decoding="async" width="400" height="300" onerror="this.onerror=null;this.src='${remote}';" />`;
     }
 
     function cardImage(route) {
@@ -925,7 +926,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
           <div class="routebook-media">
             ${(book.media || []).map((item) => `
               <figure>
-                <img src="${escapeHtml(item.url)}" alt="${escapeHtml(item.caption)}" loading="lazy" onerror="this.onerror=null;this.src=FALLBACK_IMG;" />
+                <img src="${escapeHtml(item.url)}" alt="${escapeHtml(item.caption)}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=FALLBACK_IMG;" />
                 <figcaption>${escapeHtml(item.caption)} · ${escapeHtml(item.location)}</figcaption>
               </figure>
             `).join("")}
@@ -1019,7 +1020,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
           <div class="gallery">
             ${route.images.map((src, index) => {
               const local = localRouteImage(route, index);
-              return `<img src="${local}" alt="${escapeHtml(route.name)} ${index + 1}" loading="lazy" onerror="this.onerror=null;this.src='${src}';" data-full="${src}" />`;
+              return `<img src="${local}" alt="${escapeHtml(route.name)} ${index + 1}" loading="lazy" decoding="async" width="400" height="300" onerror="this.onerror=null;this.src='${src}';" data-full="${src}" />`;
             }).join("")}
           </div>
         </section>
@@ -1191,8 +1192,9 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
     }
 
     function defaultAIServerUrl() {
+      // On deployed site, use Netlify Function at /api/ai
       if (location.protocol === "http:" || location.protocol === "https:") return `${location.origin}/api/ai`;
-      return "http://localhost:8787/api/ai";
+      return "/api/ai";
     }
 
     function getAISettings() {
@@ -1503,6 +1505,49 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       }, { rootMargin });
       observer.observe(element);
     }
+
+    // ===== PWA Install & Online/Offline =====
+    let deferredPrompt = null;
+    const pwaBanner = document.getElementById("pwaInstallBanner");
+    const offlineIndicator = document.getElementById("offlineIndicator");
+
+    function isStandalone() {
+      return window.matchMedia("(display-mode: standalone)").matches ||
+        window.navigator.standalone === true;
+    }
+
+    // Show offline indicator if needed
+    function updateOnlineStatus() {
+      if (!navigator.onLine) {
+        offlineIndicator?.classList.add("show");
+      } else {
+        offlineIndicator?.classList.remove("show");
+      }
+    }
+    window.addEventListener("online", updateOnlineStatus);
+    window.addEventListener("offline", updateOnlineStatus);
+    updateOnlineStatus();
+
+    // PWA install prompt
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      if (isStandalone() || localStorage.getItem("xiake_pwa_dismissed")) return;
+      pwaBanner?.classList.add("show");
+    });
+
+    document.getElementById("pwaInstallBtn")?.addEventListener("click", async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      pwaBanner?.classList.remove("show");
+    });
+
+    document.getElementById("pwaDismissBtn")?.addEventListener("click", () => {
+      pwaBanner?.classList.remove("show");
+      localStorage.setItem("xiake_pwa_dismissed", "1");
+    });
 
     function init() {
       initSelectors();
