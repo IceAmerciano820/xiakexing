@@ -242,6 +242,18 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
             </div>
           `;
         }).join("");
+
+        // Update weather-aware gear recommendations if modal is open for this route
+        const weatherData = {
+          tempMax: daily.temperature_2m_max?.[0],
+          tempMin: daily.temperature_2m_min?.[0],
+          precip: daily.precipitation_sum?.[0],
+          wind: current.wind_speed_10m
+        };
+        const gearSlot = document.getElementById("weatherGearSlot");
+        if (gearSlot && state.weatherRouteId === activeWeatherRoute?.id) {
+          gearSlot.innerHTML = renderWeatherGear(activeWeatherRoute, weatherData);
+        }
       } catch (error) {
         if (error.name === "AbortError") return;
         console.warn(error);
@@ -345,6 +357,220 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       return loadScript(jsCDNs).then(() => window.L);
     }
 
+    // ---------- Elevation Profile Generator ----------
+    // Inspired by TrailScope & leaflet-elevation: generate synthetic elevation
+    // profile from route data when no GPX track is available.
+    function generateElevationProfile(route) {
+      const dist = route.distance || 10;
+      const gain = route.elevationGain || 500;
+      const highest = route.highest || 2000;
+      const lowest = Math.max(0, highest - gain * 1.2);
+      const points = Math.max(20, Math.min(80, Math.round(dist * 2)));
+      const profile = [];
+      // Deterministic pseudo-random based on route id so profile is stable
+      let seed = 0;
+      for (let i = 0; i < route.id.length; i++) seed += route.id.charCodeAt(i);
+      const rand = (i) => {
+        const x = Math.sin(seed + i * 12.9898) * 43758.5453;
+        return x - Math.floor(x);
+      };
+      // Build a realistic profile: start low, climb to highest near 60-75%, then descend
+      const peakPos = 0.6 + rand(0) * 0.15;
+      for (let i = 0; i <= points; i++) {
+        const t = i / points;
+        const distKm = +(t * dist).toFixed(1);
+        let elev;
+        if (t < peakPos) {
+          const p = t / peakPos;
+          elev = lowest + (highest - lowest) * Math.pow(p, 0.85);
+        } else {
+          const p = (t - peakPos) / (1 - peakPos);
+          elev = highest - (highest - lowest * 0.9) * Math.pow(p, 0.75);
+        }
+        // Add terrain noise
+        elev += (rand(i + 1) - 0.5) * gain * 0.06;
+        elev = Math.round(Math.max(lowest * 0.8, elev));
+        profile.push({ distance: distKm, elevation: elev });
+      }
+      return profile;
+    }
+
+    function renderElevationProfileForRoute(route) {
+      const profile = generateElevationProfile(route);
+      const width = 800;
+      const height = 200;
+      const pad = 36;
+      const maxDist = profile[profile.length - 1].distance;
+      const minEl = Math.min(...profile.map((p) => p.elevation));
+      const maxEl = Math.max(...profile.map((p) => p.elevation));
+      const range = Math.max(1, maxEl - minEl);
+      const x = (d) => pad + (d / maxDist) * (width - pad * 2);
+      const y = (e) => height - pad - ((e - minEl) / range) * (height - pad * 2);
+      const pts = profile.map((p) => `${x(p.distance).toFixed(1)},${y(p.elevation).toFixed(1)}`).join(" ");
+      const areaPath = `M${x(0).toFixed(1)},${height - pad} L${pts.split(" ").join(" L")} L${x(maxDist).toFixed(1)},${height - pad} Z`;
+      // Find peak and label it
+      const peak = profile.reduce((a, b) => (b.elevation > a.elevation ? b : a));
+      // Grid lines
+      const gridLines = [0.25, 0.5, 0.75].map((f) => {
+        const ey = y(minEl + range * f);
+        const ev = Math.round(minEl + range * f);
+        return `<line x1="${pad}" y1="${ey}" x2="${width - pad}" y2="${ey}" stroke="#d4c2a2" stroke-width="0.5" stroke-dasharray="4,3"/>
+                <text x="${pad - 6}" y="${ey + 4}" text-anchor="end" font-size="11" fill="#776b59">${ev}m</text>`;
+      }).join("");
+      return `
+        <div class="elevation-profile">
+          <div class="profile-header">
+            <span>⛰️ 海拔剖面</span>
+            <small>最高 ${maxEl}m · 累计爬升 ~${route.elevationGain}m · 全程 ${route.distance}km</small>
+          </div>
+          <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeHtml(route.name)}海拔剖面图" preserveAspectRatio="xMidYMid meet">
+            ${gridLines}
+            <path d="${areaPath}" fill="rgba(129,37,29,0.10)" stroke="none"/>
+            <polyline points="${pts}" fill="none" stroke="#81251d" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+            <circle cx="${x(peak.distance)}" cy="${y(peak.elevation)}" r="4" fill="#81251d"/>
+            <text x="${x(peak.distance)}" y="${y(peak.elevation) - 10}" text-anchor="middle" font-size="12" font-weight="bold" fill="#81251d">▲ ${peak.elevation}m</text>
+            <line x1="${pad}" y1="${height - pad}" x2="${width - pad}" y2="${height - pad}" stroke="#7a6b55" stroke-width="1"/>
+            <text x="${pad}" y="${height - 10}" font-size="11" fill="#776b59">0km</text>
+            <text x="${width - pad}" y="${height - 10}" text-anchor="end" font-size="11" fill="#776b59">${maxDist}km</text>
+          </svg>
+          <p class="profile-note">海拔剖面基于路线距离、累计爬升和最高海拔生成，实际地形可能有差异。</p>
+        </div>
+      `;
+    }
+
+    // ---------- Naismith's Rule Hiking Time Estimator ----------
+    // Adapted from TrailScope: Naismith's Rule with steep terrain correction
+    function estimateHikingTime(route) {
+      const distKm = route.distance || 0;
+      const gainM = route.elevationGain || 0;
+      // Naismith: 5km/h base + 1 hour per 600m ascent
+      const baseHours = distKm / 5;
+      const climbHours = gainM / 600;
+      // Difficulty modifier
+      const diffMod = [1.0, 1.15, 1.3, 1.5, 1.8, 2.2][route.difficulty] || 1.3;
+      const totalHours = (baseHours + climbHours) * diffMod;
+      const hours = Math.floor(totalHours);
+      const mins = Math.round((totalHours - hours) * 60);
+      // Fitness level (1=easy 5=strenuous)
+      const fitness = Math.min(5, Math.ceil(totalHours / 2.5));
+      // Calorie estimate (kcal): ~0.6 kcal per kg per km hiking + ascent factor
+      const weight = 70; // default hiker weight
+      const kcal = Math.round((distKm * 0.6 * weight) + (gainM * 0.01 * weight));
+      // Water estimate
+      const water = Math.max(1.5, (totalHours / 2) * 0.75).toFixed(1);
+      return {
+        hours,
+        mins,
+        totalHours: totalHours.toFixed(1),
+        fitness,
+        kcal,
+        water: `${water}L`,
+        fitnessLabel: ["很轻松", "轻松", "适中", "较累", "很累", "极限"][fitness - 1] || "适中"
+      };
+    }
+
+    function renderTimeEstimate(route) {
+      const est = estimateHikingTime(route);
+      const stars = "⚡".repeat(est.fitness) + "⚪".repeat(5 - est.fitness);
+      return `
+        <div class="time-estimate">
+          <h4>⏱️ 徒步时间估算</h4>
+          <div class="estimate-grid">
+            <div class="estimate-box">
+              <b>${est.hours}h${est.mins > 0 ? ` ${est.mins}min` : ""}</b>
+              <span>预计总时长</span>
+            </div>
+            <div class="estimate-box">
+              <b>${est.kcal}</b>
+              <span>消耗热量(kcal)</span>
+            </div>
+            <div class="estimate-box">
+              <b>${est.water}</b>
+              <span>建议饮水量</span>
+            </div>
+          </div>
+          <div class="fitness-bar">
+            <span class="fitness-label">体能强度：${est.fitnessLabel}</span>
+            <span class="fitness-stars">${stars}</span>
+          </div>
+          <p class="estimate-note">基于 Naismith 规则 + 难度系数估算（按70kg体重），实际时间受天气、负重、体能影响。</p>
+        </div>
+      `;
+    }
+
+    // ---------- Weather-Aware Gear Recommendations ----------
+    // Adapted from TrailScope: adjust gear list based on route + weather
+    function getWeatherAwareGear(route, weatherData) {
+      const gear = buildDetailedGear(route).flatMap((g) => g.items || []);
+      const extras = [];
+      const temp = weatherData?.tempMax;
+      const precip = weatherData?.precip;
+      const wind = weatherData?.wind;
+
+      if (route.highest >= 3500) {
+        extras.push({ item: "羽绒服/厚抓绒", reason: "高海拔保暖", priority: "essential" });
+        extras.push({ item: "高反药物（红景天/葡萄糖）", reason: "海拔3500m+", priority: "essential" });
+        extras.push({ item: "防晒霜 SPF50+", reason: "高海拔紫外线强", priority: "recommended" });
+      }
+      if (route.highest >= 4500) {
+        extras.push({ item: "备用氧气", reason: "极高海拔", priority: "essential" });
+      }
+      if (temp !== undefined) {
+        if (temp >= 30) {
+          extras.push({ item: "电解质泡腾片", reason: `高温${temp}°C防中暑`, priority: "essential" });
+          extras.push({ item: "遮阳帽/冰袖", reason: "防暑防晒", priority: "recommended" });
+        }
+        if (temp <= 5) {
+          extras.push({ item: "保暖帽+手套", reason: `低温${temp}°C`, priority: "essential" });
+          extras.push({ item: "暖宝宝", reason: "低温保暖", priority: "recommended" });
+        }
+      }
+      if (precip !== undefined && precip > 2) {
+        extras.push({ item: "防水袋/背包防雨罩", reason: `预报降水${precip}mm`, priority: "essential" });
+        extras.push({ item: "速干替换衣物", reason: "雨天保持干燥", priority: "recommended" });
+      }
+      if (wind !== undefined && wind >= 30) {
+        extras.push({ item: "防风外套", reason: `风速${wind}km/h`, priority: "essential" });
+      }
+      if (route.difficulty >= 4) {
+        extras.push({ item: "卫星通信设备/GPS", reason: "高难度路线安全保障", priority: "essential" });
+        extras.push({ item: "急救包（含绷带/保温毯）", reason: "长距离荒野急救", priority: "essential" });
+      }
+      // Deduplicate
+      const seen = new Set(gear.map((g) => g.item || g));
+      const unique = extras.filter((e) => !seen.has(e.item));
+      return { base: gear, extras: unique };
+    }
+
+    function renderWeatherGear(route, weatherData) {
+      const { extras } = getWeatherAwareGear(route, weatherData);
+      if (!extras.length) return "";
+      const essential = extras.filter((e) => e.priority === "essential");
+      const recommended = extras.filter((e) => e.priority === "recommended");
+      return `
+        <div class="weather-gear-alert">
+          <h4>🌡️ 根据天气推荐额外装备</h4>
+          ${essential.length ? `<div class="gear-alert-group essential">
+            <b>必备：</b>
+            <ul>${essential.map((e) => `<li><b>${escapeHtml(e.item)}</b> — ${escapeHtml(e.reason)}</li>`).join("")}</ul>
+          </div>` : ""}
+          ${recommended.length ? `<div class="gear-alert-group recommended">
+            <b>建议：</b>
+            <ul>${recommended.map((e) => `<li><b>${escapeHtml(e.item)}</b> — ${escapeHtml(e.reason)}</li>`).join("")}</ul>
+          </div>` : ""}
+        </div>
+      `;
+    }
+
+    // ---------- Difficulty Color Coding for Tracks ----------
+    const DIFFICULTY_COLORS = {
+      1: "#22c55e", // easy - green
+      2: "#84cc16", // casual - lime
+      3: "#f59e0b", // moderate - amber
+      4: "#f97316", // hard - orange
+      5: "#ef4444"  // extreme - red
+    };
+
     async function initTrackMap(geojsonPath, book) {
       const container = document.querySelector("#modalMain .track-map");
       if (!container || !geojsonPath) return;
@@ -356,12 +582,33 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
         const data = await response.json();
         container.innerHTML = "";
         const map = L.map(container, { zoomControl: true, attributionControl: true }).setView([35, 105], 5);
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+
+        // Hiking-friendly tile layers with fallback (inspired by webmap.dev)
+        const topoLayer = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+          maxZoom: 17,
+          attribution: "&copy; OpenTopoMap (CC-BY-SA)"
+        });
+        const osmLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
           maxZoom: 18,
           attribution: "&copy; OpenStreetMap contributors"
-        }).addTo(map);
+        });
+        topoLayer.addTo(map);
+        topoLayer.on("tileerror", () => {
+          if (map.hasLayer(topoLayer)) {
+            map.removeLayer(topoLayer);
+            osmLayer.addTo(map);
+          }
+        });
+
+        // Layer switcher for terrain / standard
+        L.control.layers({
+          "地形图": topoLayer,
+          "标准地图": osmLayer
+        }, null, { position: "topright", collapsed: true }).addTo(map);
+
+        const trackColor = DIFFICULTY_COLORS[book?.difficulty] || "#81251d";
         const layer = L.geoJSON(data, {
-          style: { color: "#81251d", weight: 4, opacity: 0.9 }
+          style: { color: trackColor, weight: 4, opacity: 0.9 }
         }).addTo(map);
         map.fitBounds(layer.getBounds(), { padding: [26, 26] });
 
@@ -372,7 +619,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
                 radius: point.emergencyExit ? 6 : 5,
                 color: "#2a2118",
                 weight: 1,
-                fillColor: point.emergencyExit ? "#c5962e" : "#81251d",
+                fillColor: point.emergencyExit ? "#c5962e" : trackColor,
                 fillOpacity: 0.9
               }).addTo(map).bindPopup(`<b>${point.name}</b><br/>${point.elevation}m · ${point.distance}km`);
             }
@@ -942,6 +1189,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       if (routebook) tabs.push({ id: "section-routebook", label: "完整路书" });
       tabs.push(
         { id: "section-itinerary", label: "分段攻略" },
+        { id: "section-elevation", label: "海拔剖面" },
         { id: "section-gear", label: "装备清单" },
         { id: "section-transport", label: "交通方案" },
         { id: "section-gallery", label: "沿途影像" }
@@ -979,6 +1227,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
           <h3>📍 路线概览</h3>
           <p>${escapeHtml(route.summary)}</p>
           <ul>${route.highlights.map((h) => `<li>${escapeHtml(h)}</li>`).join("")}</ul>
+          ${renderTimeEstimate(route)}
         </section>
         <div id="section-routebook">${routebookHTML}</div>
         <section class="guide-section" id="section-itinerary">
@@ -992,6 +1241,9 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
             `).join("")}
           </div>
         </section>
+        <section class="guide-section" id="section-elevation">
+          ${renderElevationProfileForRoute(route)}
+        </section>
         <section class="guide-section" id="section-gear">
           <h3>🎒 完整装备清单</h3>
           <div class="gear-grid">
@@ -1002,6 +1254,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
               </div>
             `).join("")}
           </div>
+          <div id="weatherGearSlot"></div>
         </section>
         <section class="guide-section" id="section-transport">
           <h3>🚌 详细交通方案</h3>

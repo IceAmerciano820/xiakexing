@@ -1285,3 +1285,136 @@
       }
       .pwa-install-banner p { font-size: 13px; }
     }
+
+    /* ===== Elevation Profile ===== */
+    .elevation-profile {
+      background: var(--paper);
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid var(--line);
+    }
+    .profile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .profile-header span {
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--ink);
+    }
+    .profile-header small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .elevation-profile svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .profile-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin: 8px 0 0;
+      text-align: right;
+    }
+
+    /* ===== Time Estimate ===== */
+    .time-estimate {
+      background: linear-gradient(135deg, rgba(129,37,29,0.06), rgba(168,69,47,0.04));
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 14px;
+      border: 1px solid rgba(129,37,29,0.15);
+    }
+    .time-estimate h4 {
+      margin: 0 0 12px;
+      font-size: 15px;
+      color: var(--brand);
+    }
+    .estimate-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .estimate-box {
+      text-align: center;
+      background: rgba(255,255,255,0.6);
+      border-radius: 8px;
+      padding: 10px 6px;
+    }
+    .estimate-box b {
+      display: block;
+      font-size: 20px;
+      color: var(--brand);
+      line-height: 1.2;
+    }
+    .estimate-box span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .fitness-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-top: 1px solid rgba(129,37,29,0.1);
+    }
+    .fitness-label { font-size: 13px; color: var(--ink); }
+    .fitness-stars { font-size: 14px; letter-spacing: 2px; }
+    .estimate-note {
+      font-size: 11px;
+      color: var(--muted);
+      margin: 8px 0 0;
+      line-height: 1.5;
+    }
+
+    /* ===== Weather Gear Alert ===== */
+    .weather-gear-alert {
+      margin-top: 16px;
+      padding: 14px;
+      background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(239,68,68,0.06));
+      border-radius: 10px;
+      border: 1px solid rgba(245,158,11,0.25);
+    }
+    .weather-gear-alert h4 {
+      margin: 0 0 10px;
+      font-size: 14px;
+      color: #92400e;
+    }
+    .gear-alert-group {
+      margin-bottom: 8px;
+    }
+    .gear-alert-group:last-child { margin-bottom: 0; }
+    .gear-alert-group b {
+      font-size: 13px;
+      color: var(--ink);
+    }
+    .gear-alert-group.essential b { color: #dc2626; }
+    .gear-alert-group.recommended b { color: #d97706; }
+    .gear-alert-group ul {
+      margin: 4px 0 0;
+      padding-left: 18px;
+    }
+    .gear-alert-group li {
+      font-size: 13px;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 700px) {
+      .estimate-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+      }
+      .estimate-box { padding: 8px 4px; }
+      .estimate-box b { font-size: 17px; }
+      .estimate-box span { font-size: 11px; }
+      .time-estimate { padding: 12px; }
+      .elevation-profile { padding: 10px; }
+      .profile-header small { font-size: 11px; }
+    }
