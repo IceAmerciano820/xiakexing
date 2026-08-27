@@ -283,26 +283,65 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       }
     }
 
-    function loadScript(src) {
+    function loadScript(srcs) {
+      // srcs can be a string or an array of URLs (tried in order for CDN fallback)
+      const list = Array.isArray(srcs) ? srcs : [srcs];
       return new Promise((resolve, reject) => {
-        const script = document.createElement("script");
-        script.src = src;
-        script.async = true;
-        script.onload = resolve;
-        script.onerror = () => reject(new Error(`Failed to load ${src}`));
-        document.head.appendChild(script);
+        let idx = 0;
+        const tryNext = () => {
+          if (idx >= list.length) {
+            reject(new Error(`Failed to load script from all sources: ${list.join(", ")}`));
+            return;
+          }
+          const src = list[idx++];
+          // Skip if already loaded
+          if (document.querySelector(`script[src="${src}"]`)) {
+            resolve();
+            return;
+          }
+          const script = document.createElement("script");
+          script.src = src;
+          script.async = true;
+          script.onload = resolve;
+          script.onerror = tryNext;
+          document.head.appendChild(script);
+        };
+        tryNext();
+      });
+    }
+
+    function loadStylesheet(href) {
+      return new Promise((resolve) => {
+        if (document.querySelector(`link[href="${href}"]`)) {
+          resolve();
+          return;
+        }
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = href;
+        link.onload = resolve;
+        link.onerror = resolve; // Don't block on CSS failure
+        document.head.appendChild(link);
       });
     }
 
     function loadLeaflet() {
+      const leafletVersion = "1.9.4";
+      const cssCDNs = [
+        `https://cdn.jsdelivr.net/npm/leaflet@${leafletVersion}/dist/leaflet.css`,
+        `https://unpkg.com/leaflet@${leafletVersion}/dist/leaflet.css`,
+        `https://cdnjs.cloudflare.com/ajax/libs/leaflet/${leafletVersion}/leaflet.min.css`
+      ];
+      const jsCDNs = [
+        `https://cdn.jsdelivr.net/npm/leaflet@${leafletVersion}/dist/leaflet.js`,
+        `https://unpkg.com/leaflet@${leafletVersion}/dist/leaflet.js`,
+        `https://cdnjs.cloudflare.com/ajax/libs/leaflet/${leafletVersion}/leaflet.min.js`
+      ];
       if (!document.querySelector('link[href*="leaflet.css"]')) {
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css";
-        document.head.appendChild(link);
+        loadStylesheet(cssCDNs[0]);
       }
       if (window.L) return Promise.resolve(window.L);
-      return loadScript("https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js").then(() => window.L);
+      return loadScript(jsCDNs).then(() => window.L);
     }
 
     async function initTrackMap(geojsonPath, book) {
@@ -344,38 +383,135 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       }
     }
 
+    // ---------- Map resilience helpers ----------
+    const ECHARTS_CDNS = [
+      "https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js",
+      "https://unpkg.com/echarts@5.5.0/dist/echarts.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js",
+      "https://cdn.bootcdn.net/ajax/libs/echarts/5.5.0/echarts.min.js"
+    ];
+
+    const GEO_JSON_SOURCES = [
+      "https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json",
+      "https://geojson.cn/api/data/china.json",
+      "https://raw.githubusercontent.com/nicehorse06/china-geojson/master/china.json"
+    ];
+
+    async function fetchWithTimeout(url, timeoutMs = 8000) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeoutMs);
+      try {
+        const res = await fetch(url, { signal: controller.signal });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return await res.json();
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+
+    async function loadChinaGeoJSON() {
+      let lastErr;
+      for (const url of GEO_JSON_SOURCES) {
+        try {
+          const data = await fetchWithTimeout(url, 8000);
+          if (data && (data.features || data.type === "FeatureCollection")) return data;
+        } catch (e) {
+          lastErr = e;
+          console.warn(`地图数据源 ${url} 加载失败:`, e.message);
+        }
+      }
+      throw lastErr || new Error("所有地图数据源均不可用");
+    }
+
+    function ensureContainerSize(container) {
+      // ECharts requires non-zero container dimensions at init time.
+      // On mobile, IntersectionObserver may fire before layout settles.
+      const rect = container.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) {
+        // Force a reflow-friendly minimum
+        container.style.minHeight = container.style.minHeight || "320px";
+      }
+      return container.clientWidth > 0 && container.clientHeight > 0;
+    }
+
     async function initChinaMap() {
       const container = $("#chinaMap");
       if (!container || chinaMapStarted) return;
       chinaMapStarted = true;
+
+      // Show loading state
+      container.innerHTML = `
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px;color:var(--muted);">
+          <div style="font-size:36px;animation:livePulse 1.5s ease-in-out infinite;">🗺️</div>
+          <span style="font-size:13px;">正在加载地图…</span>
+        </div>`;
+
+      // Ensure container has dimensions before ECharts init
+      await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      if (!ensureContainerSize(container)) {
+        await new Promise((resolve) => setTimeout(resolve, 300));
+      }
+
+      // Load ECharts with CDN fallback
       try {
         if (!window.echarts) {
-          await loadScript("https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js");
+          await loadScript(ECHARTS_CDNS);
         }
       } catch (error) {
-        console.warn(error);
-        container.innerHTML = '<div class="empty-state visible"><span class="big">🗺️</span>地图组件加载失败，请检查网络后刷新页面。</div>';
-        return;
-      }
-      chinaMapInstance = echarts.init(container);
-      try {
-        const geoRes = await fetch("https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json");
-        if (!geoRes.ok) throw new Error("地图数据请求失败");
-        const chinaGeo = await geoRes.json();
-        echarts.registerMap("china", chinaGeo);
-      } catch (error) {
-        console.warn(error);
-        container.innerHTML = '<div class="empty-state visible"><span class="big">🗺️</span>中国地图数据加载失败，请检查网络后刷新页面。</div>';
+        console.warn("ECharts 加载失败:", error);
+        container.innerHTML = `
+          <div class="empty-state visible" style="margin:0;border-radius:0;">
+            <span class="big">🗺️</span>
+            地图组件加载失败，可能是网络问题。
+            <button class="btn" style="margin-top:12px;" onclick="window.location.reload()">刷新重试</button>
+          </div>`;
+        chinaMapStarted = false;
         return;
       }
 
+      try {
+        chinaMapInstance = echarts.init(container, null, { renderer: "canvas" });
+      } catch (e) {
+        console.warn("ECharts 初始化失败:", e);
+        container.innerHTML = '<div class="empty-state visible"><span class="big">🗺️</span>地图初始化失败，请刷新重试。</div>';
+        chinaMapStarted = false;
+        return;
+      }
+
+      // Load China geo JSON with multi-source fallback
+      let chinaGeo;
+      try {
+        chinaGeo = await loadChinaGeoJSON();
+        echarts.registerMap("china", chinaGeo);
+      } catch (error) {
+        console.warn("中国地图数据加载失败:", error);
+        // Fall back to a province list (no map) so the section isn't blank
+        container.innerHTML = `
+          <div style="padding:20px;display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;height:100%;text-align:center;">
+            <div style="font-size:40px;">🏔️</div>
+            <p style="color:var(--muted);font-size:14px;max-width:340px;margin:0;">
+              地图数据暂时无法加载，你仍然可以通过下方筛选栏浏览全部 <b>${ROUTES.length}</b> 条路线。
+            </p>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:400px;">
+              ${Array.from(new Set(ROUTES.map(r => r.region))).map(r =>
+                `<button class="chip" onclick="document.querySelector('#regionFilter').value='${r}';document.querySelector('#regionFilter').dispatchEvent(new Event('change'));document.querySelector('#routeGrid').scrollIntoView({behavior:'smooth'});">${r}</button>`
+              ).join("")}
+            </div>
+          </div>`;
+        chinaMapInstance = null;
+        chinaMapStarted = false;
+        return;
+      }
+
+      const isMobile = window.innerWidth <= 700;
       const option = {
         backgroundColor: "transparent",
         tooltip: {
           trigger: "item",
           backgroundColor: "rgba(54, 40, 24, 0.94)",
           borderWidth: 0,
-          textStyle: { color: "#f8f5ed", fontSize: 12 },
+          textStyle: { color: "#f8f5ed", fontSize: isMobile ? 13 : 12 },
+          confine: true,
           formatter(params) {
             if (params.componentType === "effectScatter") {
               const data = params.data || {};
@@ -387,8 +523,8 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
         geo: {
           map: "china",
           roam: true,
-          scaleLimit: { min: 0.7, max: 12 },
-          zoom: 1.05,
+          scaleLimit: { min: 0.7, max: isMobile ? 6 : 12 },
+          zoom: isMobile ? 1.15 : 1.05,
           center: [104.5, 36.5],
           label: { show: false },
           itemStyle: {
@@ -408,9 +544,9 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
           type: "effectScatter",
           coordinateSystem: "geo",
           zlevel: 2,
-          rippleEffect: { period: 3.6, scale: 3, brushType: "stroke" },
+          rippleEffect: { period: 3.6, scale: isMobile ? 2.5 : 3, brushType: "stroke" },
           label: {
-            show: true,
+            show: !isMobile,
             position: "right",
             formatter: "{b}",
             color: "#4a3525",
@@ -419,7 +555,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
             distance: 4
           },
           labelLayout: { hideOverlap: true },
-          symbolSize: (val) => 7 + Math.max(0, Number(val?.[2] || 0)) * 1.5,
+          symbolSize: (val) => (isMobile ? 6 : 7) + Math.max(0, Number(val?.[2] || 0)) * (isMobile ? 1.2 : 1.5),
           itemStyle: {
             color: (params) => Number(params.data?.difficulty) >= 4 ? "#a83d28" : "#8a6a2b",
             shadowBlur: 8,
@@ -445,7 +581,22 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
           handleProvinceMapClick(params.name);
         }
       });
-      window.addEventListener("resize", () => chinaMapInstance && chinaMapInstance.resize());
+
+      // Robust resize: window resize, orientation change, visual viewport (mobile address bar)
+      let resizeTimer;
+      const doResize = () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          if (chinaMapInstance) {
+            chinaMapInstance.resize();
+          }
+        }, 150);
+      };
+      window.addEventListener("resize", doResize, { passive: true });
+      window.addEventListener("orientationchange", doResize, { passive: true });
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener("resize", doResize, { passive: true });
+      }
     }
 
     function normalizeProvinceName(name) {
@@ -935,12 +1086,22 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
 
       $("#modalBackdrop").classList.add("open");
       document.body.style.overflow = "hidden";
+      // Lock body scroll on iOS (position: fixed trick)
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+      document.body.style.top = `-${window.scrollY}px`;
       renderWeather(route);
     }
 
     function closeModal() {
       $("#modalBackdrop").classList.remove("open");
+      // Restore scroll position (iOS fix)
+      const scrollY = document.body.style.top;
       document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+      document.body.style.top = "";
+      if (scrollY) window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
     }
 
     function parsePrompt(text) {
@@ -1050,11 +1211,19 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       $("#aiSettingsStatus").textContent = "";
       $("#settingsBackdrop").classList.add("open");
       document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+      document.body.style.top = `-${window.scrollY}px`;
     }
 
     function closeAISettings() {
       $("#settingsBackdrop").classList.remove("open");
+      const scrollY = document.body.style.top;
       document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+      document.body.style.top = "";
+      if (scrollY) window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
     }
 
     function saveAISettings() {

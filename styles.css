@@ -36,7 +36,11 @@
     button { cursor: pointer; }
     a { color: inherit; }
 
-    .wrap { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+        .wrap { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+    /* Safe area for notch devices */
+    .app-header { padding-top: env(safe-area-inset-top, 0); }
+    .footer { padding-bottom: calc(36px + env(safe-area-inset-bottom, 0)); }
+    .modal-backdrop { padding-top: env(safe-area-inset-top, 0); padding-bottom: env(safe-area-inset-bottom, 0); }
 
     .public-notice {
       margin: 12px auto 0;
@@ -949,4 +953,263 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.001ms !important;
       }
+    }
+
+    /* ============================================================
+       Mobile UX Optimizations
+       ============================================================ */
+
+    /* Ensure touch targets are at least 44×44px (Apple HIG) on mobile */
+    @media (max-width: 700px) {
+      /* Header: keep compact, allow wrap */
+      .app-header { position: sticky; top: 0; }
+      .header-inner {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 8px 0;
+        min-height: 54px;
+      }
+      .brand { font-size: 15px; }
+      .brand-mark { width: 34px; height: 34px; font-size: 16px; }
+      .brand small { display: none; }
+      .header-actions { gap: 6px; }
+      .header-actions .btn {
+        padding: 7px 10px;
+        font-size: 13px;
+        min-height: 38px;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 28px 18px 24px;
+        border-radius: 20px;
+        gap: 18px;
+      }
+      .hero-poster { opacity: 0.55; }
+      .hero h1 { font-size: 32px; line-height: 1.15; }
+      .hero p.lead { font-size: 14px; max-width: 100%; }
+      .vertical-title { display: none; }
+      .eyebrow { font-size: 11px; }
+      .search-row { flex-direction: column; gap: 8px; }
+      .search-box input { height: 46px; font-size: 16px; /* prevent iOS zoom */ }
+      .search-row .btn-primary { width: 100%; height: 46px; }
+      .quick-tags { gap: 6px; }
+      .quick-tag {
+        padding: 7px 10px;
+        font-size: 12px;
+        min-height: 34px;
+      }
+
+      /* Stats card */
+      .hero-stats {
+        padding: 16px;
+        border-radius: 16px;
+      }
+      .hero-stats h2 { font-size: 18px; }
+      .stat { padding: 8px 0; }
+      .stat b { font-size: 17px; }
+
+      /* Public notice */
+      .public-notice {
+        font-size: 12px;
+        padding: 9px 12px;
+        line-height: 1.5;
+      }
+
+      /* Filter bar */
+      .filter-bar {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .filter-bar .field:nth-child(3) {
+        grid-column: 1 / -1;
+      }
+      .filter-bar .reset-btn {
+        grid-column: 1 / -1;
+        height: 42px;
+      }
+      .field select, .field input {
+        height: 42px;
+        font-size: 15px; /* prevent iOS zoom */
+      }
+      .chip {
+        padding: 9px 13px;
+        font-size: 13px;
+        min-height: 38px;
+      }
+      .chips { gap: 6px; }
+
+      /* Route grid - single column on mobile */
+      .route-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .card-img { height: 180px; }
+      .card-body { padding: 14px 15px 15px; }
+      .card-title h3 { font-size: 20px; }
+      .card-stats { gap: 4px; }
+      .card-stats b { font-size: 13px; }
+      .card-stats span { font-size: 10px; }
+
+      /* China map */
+      .map-section { margin: 4px 0 20px; }
+      .china-map {
+        height: 300px;
+        border-radius: 16px;
+        touch-action: pan-x pan-y;
+      }
+      .map-legend { font-size: 11px; gap: 6px; }
+
+      /* Weather */
+      .weather-card {
+        padding: 16px;
+        border-radius: 18px;
+        gap: 14px;
+      }
+      .weather-now { flex-direction: row; align-items: center; gap: 12px; }
+      .weather-emoji { font-size: 48px; }
+      .weather-temp { font-size: 34px; }
+      .weather-forecast { grid-template-columns: repeat(4, 1fr); gap: 5px; }
+      .day { padding: 8px 3px; }
+      .day .day-emoji { font-size: 20px; margin: 4px 0 2px; }
+      .day b { font-size: 11px; }
+      .day span { font-size: 10px; }
+
+      /* AI assistant panel */
+      .assistant-panel { padding: 16px; border-radius: 18px; }
+      .panel-head h2 { font-size: 20px; }
+      .ai-prompt { min-height: 80px; font-size: 15px; }
+      .ai-actions { flex-direction: column; align-items: stretch; gap: 8px; }
+      .ai-actions .btn { width: 100%; min-height: 42px; }
+      .ai-note { margin-left: 0; text-align: center; }
+      .ai-results { grid-template-columns: 1fr; gap: 10px; }
+
+      /* Modal */
+      .modal-backdrop {
+        padding: 0;
+        align-items: stretch;
+      }
+      .modal {
+        width: 100%;
+        min-height: 100%;
+        border-radius: 0;
+        max-height: none;
+      }
+      .modal-hero { height: 200px; }
+      .modal-title h2 { font-size: 28px; }
+      .modal-content { padding: 16px; }
+      .modal-grid { grid-template-columns: 1fr; gap: 16px; }
+      .stat-list { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .stat-box { padding: 10px; }
+      .stat-box b { font-size: 16px; }
+
+      /* Route tabs - horizontally scrollable */
+      .route-tabs {
+        padding: 7px 8px;
+        gap: 6px;
+        margin-bottom: 16px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .route-tabs button {
+        padding: 9px 14px;
+        font-size: 13px;
+        min-height: 38px;
+        white-space: nowrap;
+        flex: 0 0 auto;
+      }
+
+      /* Guide sections */
+      .guide-section h3 { font-size: 18px; }
+      .guide-section { margin-bottom: 20px; }
+
+      /* Gear grid */
+      .gear-grid { grid-template-columns: 1fr; gap: 10px; }
+      .gear-group h4 { font-size: 15px; }
+
+      /* Itinerary */
+      .day-item { grid-template-columns: 44px 1fr; gap: 10px; }
+      .day-num { width: 38px; height: 38px; font-size: 14px; }
+      .day-body { padding: 10px 12px; }
+
+      /* Gallery */
+      .gallery { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .gallery img { height: 120px; border-radius: 10px; }
+
+      /* Side cards */
+      .side-card { padding: 14px; border-radius: 14px; }
+      .status-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+      .status-actions button {
+        flex: 1;
+        min-width: 80px;
+        min-height: 40px;
+        font-size: 13px;
+        padding: 8px 10px;
+      }
+      .coordinate-actions { flex-wrap: wrap; gap: 6px; }
+      .coordinate-actions .btn {
+        flex: 1;
+        min-width: 90px;
+        min-height: 38px;
+        font-size: 12px;
+        padding: 8px;
+      }
+      .map-frame { height: 180px; }
+
+      /* Checkpoints */
+      .checkpoint-timeline { gap: 8px; }
+      .checkpoint-item { grid-template-columns: 36px 1fr; gap: 9px; }
+      .checkpoint-dot { width: 30px; height: 30px; font-size: 10px; }
+      .checkpoint-body { padding: 9px 10px; font-size: 12px; }
+      .checkpoint-meta span { font-size: 10px; }
+
+      /* Season grid */
+      .season-grid { grid-template-columns: 1fr; }
+      .season-card { padding: 8px 10px; }
+
+      /* Routebook banner */
+      .routebook-banner { flex-direction: column; gap: 10px; padding: 12px; }
+      .routebook-actions .btn { padding: 8px 10px; font-size: 12px; min-height: 36px; }
+
+      /* Footer */
+      .footer { padding: 22px 0 28px; font-size: 12px; line-height: 1.6; }
+
+      /* Settings modal */
+      .settings-modal { width: 100%; border-radius: 0; }
+      .settings-grid { grid-template-columns: 1fr; }
+      .settings-body { padding: 16px; }
+
+      /* Chapter divider */
+      .chapter-divider { margin: 22px 0 14px; font-size: 11px; }
+    }
+
+    /* Extra-small phones */
+    @media (max-width: 380px) {
+      .hero h1 { font-size: 27px; }
+      .weather-forecast { grid-template-columns: repeat(2, 1fr); }
+      .stat-list { grid-template-columns: 1fr 1fr; }
+      .filter-bar { grid-template-columns: 1fr; }
+      .card-stats { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    }
+
+    /* Smooth touch scrolling for all scrollable areas */
+    .route-tabs,
+    .chips,
+    .quick-tags {
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Prevent text selection on interactive buttons for better feel */
+    .btn, .chip, .quick-tag, .fav-btn, .route-card {
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    /* Active state feedback on touch */
+    @media (hover: none) {
+      .btn:active { transform: scale(0.97); }
+      .route-card:active { transform: scale(0.99); }
+      .chip:active { transform: scale(0.95); }
+      .quick-tag:active { transform: scale(0.95); }
     }
