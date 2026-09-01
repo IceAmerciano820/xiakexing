@@ -127,16 +127,115 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       return `images/routes/${route.id}/${number}.jpg`;
     }
 
-    function imageWithFallback(route, index = 0, alt = "") {
+    // Themed gradient placeholder that evokes the region (always works, no network)
+    const SCENE_THEMES = [
+      { sky: ["#2b5876", "#4e8aa8"], far: "#3e6b54", mid: "#2d5040", ground: "#1f3829", emoji: "🏔️" },
+      { sky: ["#c96f3a", "#f0b35e"], far: "#8a5a34", mid: "#6b4423", ground: "#4a2f18", emoji: "🌄" },
+      { sky: ["#3a6ea5", "#a8d0e6"], far: "#5c8a7a", mid: "#3d6b5b", ground: "#2a4a3d", emoji: "⛰️" },
+      { sky: ["#4b3f6b", "#8e7cc3"], far: "#5d6d7e", mid: "#3d4a5c", ground: "#283040", emoji: "🌃" },
+      { sky: ["#1d5c63", "#5fa8a0"], far: "#3a7d6e", mid: "#27584d", ground: "#183d35", emoji: "🌲" },
+      { sky: ["#8c3a3a", "#d98e6e"], far: "#9c5a4a", mid: "#724035", ground: "#4d2a22", emoji: "🍂" },
+      { sky: ["#2a4d7a", "#9fc5e8"], far: "#44738f", mid: "#2e5268", ground: "#1d3645", emoji: "🌊" }
+    ];
+    function hashStr(s) {
+      let h = 0;
+      for (let i = 0; i < s.length; i++) { h = ((h << 5) - h + s.charCodeAt(i)) | 0; }
+      return Math.abs(h);
+    }
+    function themedImage(route, index = 0) {
+      const h = hashStr((route.id || "x") + index);
+      const t = SCENE_THEMES[h % SCENE_THEMES.length];
+      const peak1 = 150 + (h % 60), peak2 = 180 + ((h >> 3) % 50), peak3 = 130 + ((h >> 5) % 70);
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="${t.sky[0]}"/><stop offset="1" stop-color="${t.sky[1]}"/>
+</linearGradient></defs>
+<rect width="800" height="600" fill="url(#sky)"/>
+<circle cx="${620 + (h % 80)}" cy="${90 + (h % 60)}" r="42" fill="rgba(255,255,255,0.35)"/>
+<polygon points="0,${380} ${180 + (h % 90)},${peak1} ${360 + (h % 60)},${peak2} ${540},${peak3} 800,360 800,600 0,600" fill="${t.far}" opacity="0.75"/>
+<polygon points="0,450 200,${peak2 + 40} 430,${peak1 + 60} 650,420 800,470 800,600 0,600" fill="${t.mid}"/>
+<polygon points="0,520 260,470 520,530 800,490 800,600 0,600" fill="${t.ground}"/>
+<text x="40" y="540" font-size="120" opacity="0.55">${t.emoji}</text>
+<text x="400" y="88" font-size="46" font-family="STKaiti,KaiTi,serif" fill="rgba(255,255,255,0.92)" text-anchor="middle" letter-spacing="6">${escapeHtml(route.name || "霞客行")}</text>
+</svg>`;
+      return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+    }
+
+    // Real photo source reachable in China (deterministic per route), then themed SVG.
+    function routeImageChain(route, index = 0) {
+      const chain = [];
       const local = localRouteImage(route, index);
-      const remote = route.images?.[index] || route.images?.[0] || FALLBACK_IMG;
-      const altText = escapeHtml(alt || route.name);
-      return `<img src="${local}" alt="${altText}" loading="lazy" decoding="async" width="400" height="300" onerror="this.onerror=null;this.src='${remote}';" />`;
+      if (local) chain.push(local);
+      chain.push(`https://picsum.photos/seed/xiake-${encodeURIComponent(route.id || "route")}-${index}/800/600`);
+      chain.push(themedImage(route, index));
+      return chain;
+    }
+
+    // Global image fallback machinery (chains survive onerror without quote escaping)
+    window.__imgChains = window.__imgChains || {};
+    window.__armImage = (img) => {
+      if (!img || !img.getAttribute("data-chain")) return;
+      if (img.__armed) return;
+      img.__armed = true;
+      const start = () => {
+        if (img.__watchdog) clearTimeout(img.__watchdog);
+        // Guard against sources that hang without firing error (blocked CDNs)
+        img.__watchdog = setTimeout(() => {
+          if (!img.complete || img.naturalWidth === 0) { window.__imgFail(img); }
+        }, 7000);
+      };
+      img.addEventListener("load", () => { if (img.__watchdog) clearTimeout(img.__watchdog); });
+      img.addEventListener("error", () => {
+        if (img.__watchdog) clearTimeout(img.__watchdog);
+        window.__imgFail(img);
+      });
+      if (!img.complete) start();
+    };
+    window.__imgFail = (img) => {
+      const chain = window.__imgChains[img.getAttribute("data-chain")];
+      if (!chain) return;
+      const idx = parseInt(img.dataset.fidx || "-1", 10) + 1;
+      if (idx < chain.length) {
+        img.dataset.fidx = String(idx);
+        img.src = chain[idx];
+        // re-arm watchdog for the next attempt
+        if (img.__watchdog) clearTimeout(img.__watchdog);
+        img.__watchdog = setTimeout(() => {
+          if (!img.complete || img.naturalWidth === 0) { window.__imgFail(img); }
+        }, 7000);
+      }
+    };
+    let __chainSeq = 0;
+    function imgWithChain(chain, alt) {
+      const key = "c" + (++__chainSeq);
+      window.__imgChains[key] = chain;
+      const altText = escapeHtml(alt || "");
+      return `<img src="${chain[0]}" alt="${altText}" loading="lazy" decoding="async" width="400" height="300" data-chain="${key}" data-fidx="-1" />`;
+    }
+
+    function imageWithFallback(route, index = 0, alt = "") {
+      return imgWithChain(routeImageChain(route, index), alt || route.name);
     }
 
     function cardImage(route) {
       return imageWithFallback(route, 0);
     }
+
+    // Watch for newly inserted images and arm their watchdogs
+    document.addEventListener("DOMContentLoaded", () => {
+      const scan = (root) => {
+        root.querySelectorAll("img[data-chain]").forEach((img) => window.__armImage(img));
+      };
+      scan(document);
+      new MutationObserver((muts) => {
+        muts.forEach((m) => m.addedNodes.forEach((n) => {
+          if (n.nodeType === 1) {
+            if (n.matches && n.matches("img[data-chain]")) window.__armImage(n);
+            if (n.querySelectorAll) scan(n);
+          }
+        }));
+      }).observe(document.body, { childList: true, subtree: true });
+    });
 
     function renderRoutes() {
       const routes = getFilteredRoutes();
@@ -315,8 +414,12 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
           const script = document.createElement("script");
           script.src = src;
           script.async = true;
-          script.onload = resolve;
-          script.onerror = tryNext;
+          const timer = setTimeout(() => {
+            script.remove();
+            tryNext();
+          }, 12000);
+          script.onload = () => { clearTimeout(timer); resolve(); };
+          script.onerror = () => { clearTimeout(timer); tryNext(); };
           document.head.appendChild(script);
         };
         tryNext();
@@ -341,14 +444,14 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
     function loadLeaflet() {
       const leafletVersion = "1.9.4";
       const cssCDNs = [
-        `https://cdn.jsdelivr.net/npm/leaflet@${leafletVersion}/dist/leaflet.css`,
-        `https://unpkg.com/leaflet@${leafletVersion}/dist/leaflet.css`,
-        `https://cdnjs.cloudflare.com/ajax/libs/leaflet/${leafletVersion}/leaflet.min.css`
+        `https://cdn.bootcdn.net/ajax/libs/leaflet/${leafletVersion}/leaflet.css`,
+        `https://cdn.staticfile.net/leaflet/${leafletVersion}/leaflet.css`,
+        `https://cdn.jsdelivr.net/npm/leaflet@${leafletVersion}/dist/leaflet.css`
       ];
       const jsCDNs = [
-        `https://cdn.jsdelivr.net/npm/leaflet@${leafletVersion}/dist/leaflet.js`,
-        `https://unpkg.com/leaflet@${leafletVersion}/dist/leaflet.js`,
-        `https://cdnjs.cloudflare.com/ajax/libs/leaflet/${leafletVersion}/leaflet.min.js`
+        `https://cdn.bootcdn.net/ajax/libs/leaflet/${leafletVersion}/leaflet.js`,
+        `https://cdn.staticfile.net/leaflet/${leafletVersion}/leaflet.js`,
+        `https://cdn.jsdelivr.net/npm/leaflet@${leafletVersion}/dist/leaflet.js`
       ];
       if (!document.querySelector('link[href*="leaflet.css"]')) {
         loadStylesheet(cssCDNs[0]);
@@ -583,7 +686,12 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
         container.innerHTML = "";
         const map = L.map(container, { zoomControl: true, attributionControl: true }).setView([35, 105], 5);
 
-        // Hiking-friendly tile layers with fallback (inspired by webmap.dev)
+        // China-friendly basemap: Gaode (AMap) tiles are fast and stable in China.
+        const gaodeLayer = L.tileLayer("https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}", {
+          subdomains: ["1", "2", "3", "4"],
+          maxZoom: 18,
+          attribution: "&copy; 高德地图"
+        });
         const topoLayer = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
           maxZoom: 17,
           attribution: "&copy; OpenTopoMap (CC-BY-SA)"
@@ -592,39 +700,99 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
           maxZoom: 18,
           attribution: "&copy; OpenStreetMap contributors"
         });
-        topoLayer.addTo(map);
+        gaodeLayer.addTo(map);
+
+        // Auto-fallback: if terrain tiles fail (often blocked in CN), use Gaode
         topoLayer.on("tileerror", () => {
-          if (map.hasLayer(topoLayer)) {
-            map.removeLayer(topoLayer);
-            osmLayer.addTo(map);
-          }
+          if (map.hasLayer(topoLayer)) { map.removeLayer(topoLayer); gaodeLayer.addTo(map); }
+        });
+        osmLayer.on("tileerror", () => {
+          if (map.hasLayer(osmLayer)) { map.removeLayer(osmLayer); gaodeLayer.addTo(map); }
         });
 
-        // Layer switcher for terrain / standard
         L.control.layers({
+          "标准地图（高德）": gaodeLayer,
           "地形图": topoLayer,
-          "标准地图": osmLayer
+          "OSM": osmLayer
         }, null, { position: "topright", collapsed: true }).addTo(map);
 
         const trackColor = DIFFICULTY_COLORS[book?.difficulty] || "#81251d";
-        const layer = L.geoJSON(data, {
-          style: { color: trackColor, weight: 4, opacity: 0.9 }
-        }).addTo(map);
-        map.fitBounds(layer.getBounds(), { padding: [26, 26] });
 
+        // WGS84 -> GCJ-02 conversion so tracks align with Gaode tiles
+        const gcjLatlng = (lat, lng) => {
+          const transformLat = (x, y) => {
+            let r = -100 + 2 * x + 3 * y + 0.2 * y * y + 0.1 * x * y + 0.2 * Math.sqrt(Math.abs(x));
+            r += (20 * Math.sin(6 * x * Math.PI) + 20 * Math.sin(2 * x * Math.PI)) * 2 / 3;
+            r += (20 * Math.sin(y * Math.PI) + 40 * Math.sin(y / 3 * Math.PI)) * 2 / 3;
+            r += (160 * Math.sin(y / 12 * Math.PI) + 320 * Math.sin(y * Math.PI / 30)) * 2 / 3;
+            return r;
+          };
+          const transformLng = (x, y) => {
+            let r = 300 + x + 2 * y + 0.1 * x * x + 0.1 * x * y + 0.1 * Math.sqrt(Math.abs(x));
+            r += (20 * Math.sin(6 * x * Math.PI) + 20 * Math.sin(2 * x * Math.PI)) * 2 / 3;
+            r += (20 * Math.sin(x * Math.PI) + 40 * Math.sin(x / 3 * Math.PI)) * 2 / 3;
+            r += (150 * Math.sin(x / 12 * Math.PI) + 300 * Math.sin(x / 30 * Math.PI)) * 2 / 3;
+            return r;
+          };
+          const a = 6378245, ee = 0.006693421622965943;
+          let dLat = transformLat(lng - 105, lat - 35);
+          let dLng = transformLng(lng - 105, lat - 35);
+          const radLat = lat / 180 * Math.PI;
+          let magic = Math.sin(radLat);
+          magic = 1 - ee * magic * magic;
+          const sqrtMagic = Math.sqrt(magic);
+          dLat = (dLat * 180) / ((a * (1 - ee)) / (magic * sqrtMagic) * Math.PI);
+          dLng = (dLng * 180) / (a / sqrtMagic * Math.cos(radLat) * Math.PI);
+          return [lat + dLat, lng + dLng];
+        };
+
+        const trackStyle = { color: trackColor, weight: 4, opacity: 0.9 };
+        const trackWgs = L.geoJSON(data, { style: trackStyle });
+        const trackGcj = L.geoJSON(data, {
+          style: trackStyle,
+          coordsToLatLng: (coords) => {
+            const p = gcjLatlng(coords[1], coords[0]);
+            return L.latLng(p[0], p[1]);
+          }
+        });
+        trackGcj.addTo(map);
+        map.fitBounds(trackWgs.getBounds(), { padding: [26, 26] });
+
+        // Checkpoint markers (build in both coordinate systems, toggle with basemap)
+        const cpWgs = L.layerGroup();
+        const cpGcj = L.layerGroup();
         if (Array.isArray(book.checkpoints)) {
           book.checkpoints.forEach((point) => {
             if (Number.isFinite(point.lat) && Number.isFinite(point.lon)) {
-              L.circleMarker([point.lat, point.lon], {
+              const mkOpts = {
                 radius: point.emergencyExit ? 6 : 5,
                 color: "#2a2118",
                 weight: 1,
                 fillColor: point.emergencyExit ? "#c5962e" : trackColor,
                 fillOpacity: 0.9
-              }).addTo(map).bindPopup(`<b>${point.name}</b><br/>${point.elevation}m · ${point.distance}km`);
+              };
+              const popup = `<b>${point.name}</b><br/>${point.elevation}m · ${point.distance}km`;
+              L.circleMarker([point.lat, point.lon], mkOpts).bindPopup(popup).addTo(cpWgs);
+              const gcj = gcjLatlng(point.lat, point.lon);
+              L.circleMarker(gcj, mkOpts).bindPopup(popup).addTo(cpGcj);
             }
           });
         }
+        cpGcj.addTo(map);
+
+        const useGc = () => {
+          if (map.hasLayer(gaodeLayer)) {
+            map.addLayer(cpGcj); map.removeLayer(cpWgs);
+            map.addLayer(trackGcj); map.removeLayer(trackWgs);
+          } else {
+            map.addLayer(cpWgs); map.removeLayer(cpGcj);
+            map.addLayer(trackWgs); map.removeLayer(trackGcj);
+          }
+        };
+        gaodeLayer.on("add", () => { useGc(); });
+        topoLayer.on("add", () => { map.addLayer(cpWgs); map.removeLayer(cpGcj); map.addLayer(trackWgs); map.removeLayer(trackGcj); });
+        osmLayer.on("add", () => { map.addLayer(cpWgs); map.removeLayer(cpGcj); map.addLayer(trackWgs); map.removeLayer(trackGcj); });
+        useGc();
       } catch (error) {
         console.warn(error);
         container.innerHTML = '<div class="weather-hint">轨迹地图加载失败，请检查网络或轨迹文件。</div>';
@@ -633,16 +801,16 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
 
     // ---------- Map resilience helpers ----------
     const ECHARTS_CDNS = [
+      "https://cdn.bootcdn.net/ajax/libs/echarts/5.5.0/echarts.min.js",
+      "https://cdn.staticfile.net/echarts/5.5.0/echarts.min.js",
+      "https://lib.baomitu.com/echarts/5.5.0/echarts.min.js",
       "https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js",
-      "https://unpkg.com/echarts@5.5.0/dist/echarts.min.js",
-      "https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js",
-      "https://cdn.bootcdn.net/ajax/libs/echarts/5.5.0/echarts.min.js"
+      "https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"
     ];
 
     const GEO_JSON_SOURCES = [
       "https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json",
-      "https://geo.datav.aliyun.com/areas_v3/bound/100000.json",
-      "https://cdn.jsdelivr.net/gh/nicehorse06/china-geojson@master/china.json"
+      "https://file.geojson.cn/china/1.6.3/china.json"
     ];
 
     async function fetchWithTimeout(url, timeoutMs = 8000) {
@@ -1173,7 +1341,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
           <div class="routebook-media">
             ${(book.media || []).map((item) => `
               <figure>
-                <img src="${escapeHtml(item.url)}" alt="${escapeHtml(item.caption)}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=FALLBACK_IMG;" />
+                ${(() => { const chain = [item.url, FALLBACK_IMG]; const k = "m" + (++window.__mediaSeq || (window.__mediaSeq = 1)); window.__imgChains[k] = chain; return `<img src="${escapeHtml(chain[0])}" alt="${escapeHtml(item.caption)}" loading="lazy" decoding="async" data-chain="${k}" data-fidx="-1" />`; })()}
                 <figcaption>${escapeHtml(item.caption)} · ${escapeHtml(item.location)}</figcaption>
               </figure>
             `).join("")}
@@ -1204,8 +1372,14 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
     function openModal(id) {
       const route = ROUTES.find((r) => r.id === id);
       if (!route) return;
-      $("#modalHeroImg").src = route.images[0];
-      $("#modalHeroImg").onerror = function () { this.onerror = null; this.src = FALLBACK_IMG; };
+      const heroChain = routeImageChain(route, 0);
+      const heroImg = $("#modalHeroImg");
+      const heroKey = "hero-" + route.id;
+      window.__imgChains[heroKey] = heroChain;
+      heroImg.dataset.chain = heroKey;
+      heroImg.dataset.fidx = "0";
+      heroImg.src = heroChain[0];
+      window.__armImage(heroImg);
       $("#modalRegion").textContent = `${route.region} · ${difficultyLabel(route.difficulty)} · ${route.days}`;
       $("#modalTitle").textContent = route.name;
       $("#modalStats").innerHTML = [
@@ -1273,7 +1447,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
           <div class="gallery">
             ${route.images.map((src, index) => {
               const local = localRouteImage(route, index);
-              return `<img src="${local}" alt="${escapeHtml(route.name)} ${index + 1}" loading="lazy" decoding="async" width="400" height="300" onerror="this.onerror=null;this.src='${src}';" data-full="${src}" />`;
+              return imgWithChain([local, src, themedImage(route, index)], `${route.name} ${index + 1}`);
             }).join("")}
           </div>
         </section>

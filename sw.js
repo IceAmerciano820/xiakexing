@@ -9,7 +9,7 @@
  *  - 图片：Stale-While-Revalidate，限制缓存数量
  */
 
-const CACHE_VERSION = 'xiake-v3';
+const CACHE_VERSION = 'xiake-v4';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
@@ -60,7 +60,11 @@ self.addEventListener('activate', (event) => {
 
 function isImage(url) {
   return /\.(jpg|jpeg|png|webp|gif|svg|avif)(\?|$)/i.test(url) ||
-    url.includes('images.unsplash.com');
+    url.includes('images.unsplash.com') ||
+    url.includes('picsum.photos') ||
+    url.includes('is.autonavi.com') ||
+    url.includes('tile.openstreetmap.org') ||
+    url.includes('opentopomap.org');
 }
 
 function isDataFile(url) {
@@ -73,6 +77,8 @@ function isCdnResource(url) {
     'unpkg.com',
     'cdnjs.cloudflare.com',
     'cdn.bootcdn.net',
+    'cdn.staticfile.net',
+    'lib.baomitu.com',
     'unpkg.zhimg.com'
   ];
   return cdnHosts.some((host) => url.hostname === host);
