@@ -127,6 +127,12 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       return `images/routes/${route.id}/${number}.jpg`;
     }
 
+    // Number of real on-site photos bundled with the site (generated manifest)
+    function routePhotoCount(route) {
+      if (window.ROUTE_PHOTOS && window.ROUTE_PHOTOS[route.id]) return window.ROUTE_PHOTOS[route.id];
+      return route.images ? route.images.length : 0;
+    }
+
     // Themed gradient placeholder that evokes the region (always works, no network)
     const SCENE_THEMES = [
       { sky: ["#2b5876", "#4e8aa8"], far: "#3e6b54", mid: "#2d5040", ground: "#1f3829", emoji: "🏔️" },
@@ -1445,10 +1451,9 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
         <section class="guide-section" id="section-gallery">
           <h3>🖼️ 沿途影像</h3>
           <div class="gallery">
-            ${route.images.map((src, index) => {
-              const local = localRouteImage(route, index);
-              return imgWithChain([local, src, themedImage(route, index)], `${route.name} ${index + 1}`);
-            }).join("")}
+            ${Array.from({ length: routePhotoCount(route) }, (_, index) =>
+              imgWithChain(routeImageChain(route, index), `${route.name} ${index + 1}`)
+            ).join("")}
           </div>
         </section>
       `;

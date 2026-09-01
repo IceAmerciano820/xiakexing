@@ -9,7 +9,7 @@
  *  - 图片：Stale-While-Revalidate，限制缓存数量
  */
 
-const CACHE_VERSION = 'xiake-v4';
+const CACHE_VERSION = 'xiake-v5';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
@@ -34,7 +34,7 @@ const STATIC_ASSETS = [
 ];
 
 // Max images to cache (LRU eviction)
-const MAX_IMAGE_CACHE = 60;
+const MAX_IMAGE_CACHE = 200;
 // Max CDN resources to cache
 const MAX_CDN_CACHE = 20;
 
