@@ -641,8 +641,8 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
 
     const GEO_JSON_SOURCES = [
       "https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json",
-      "https://geojson.cn/api/data/china.json",
-      "https://raw.githubusercontent.com/nicehorse06/china-geojson/master/china.json"
+      "https://geo.datav.aliyun.com/areas_v3/bound/100000.json",
+      "https://cdn.jsdelivr.net/gh/nicehorse06/china-geojson@master/china.json"
     ];
 
     async function fetchWithTimeout(url, timeoutMs = 8000) {
@@ -662,7 +662,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       for (const url of GEO_JSON_SOURCES) {
         try {
           const data = await fetchWithTimeout(url, 8000);
-          if (data && (data.features || data.type === "FeatureCollection")) return data;
+          if (data && (typeof data === "object") && (data.features || data.type || Array.isArray(data))) return data;
         } catch (e) {
           lastErr = e;
           console.warn(`地图数据源 ${url} 加载失败:`, e.message);
