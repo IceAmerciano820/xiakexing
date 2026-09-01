@@ -9,7 +9,7 @@
  *  - 图片：Stale-While-Revalidate，限制缓存数量
  */
 
-const CACHE_VERSION = 'xiake-v2';
+const CACHE_VERSION = 'xiake-v3';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
@@ -104,11 +104,19 @@ async function staleWhileRevalidate(request, cacheName) {
   const cache = await caches.open(cacheName);
   const cached = await cache.match(request);
   const fetchPromise = fetch(request).then((response) => {
-    if (response && response.status === 200) {
+    // Only cache successful, basic responses
+    if (response && response.status === 200 && response.type === 'basic') {
+      cache.put(request, response.clone());
+    }
+    // For cross-origin images (opaque response type), cache if ok
+    if (response && response.ok && (response.type === 'opaque' || response.type === 'cors')) {
       cache.put(request, response.clone());
     }
     return response;
-  }).catch(() => cached);
+  }).catch(() => {
+    // Network failed: return cache if we have it, otherwise let browser handle
+    return cached || Response.error();
+  });
   return cached || fetchPromise;
 }
 
@@ -116,14 +124,19 @@ async function staleWhileRevalidate(request, cacheName) {
 async function cacheFirst(request, cacheName) {
   const cache = await caches.open(cacheName);
   const cached = await cache.match(request);
-  if (cached) return cached;
+  if (cached && cached.ok) return cached;
   try {
     const response = await fetch(request);
-    if (response && response.status === 200) {
-      cache.put(request, response.clone());
+    // Only cache good responses (200 for basic, opaque for cross-origin)
+    if (response && (response.status === 200 || response.type === 'opaque') && response.ok !== false) {
+      // For cross-origin opaque responses status is 0 but they're valid
+      if (response.type === 'opaque' || response.status === 200) {
+        cache.put(request, response.clone());
+      }
     }
     return response;
   } catch (error) {
+    if (cached) return cached;
     return new Response('Offline', { status: 503, statusText: 'Offline' });
   }
 }
@@ -176,9 +189,9 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // GeoJSON data: cache first (rarely changes)
+  // GeoJSON data: network first (always try fresh, fall back to cache)
   if (isGeoJson(url)) {
-    event.respondWith(cacheFirst(request, CDN_CACHE));
+    event.respondWith(networkFirst(request, CDN_CACHE));
     return;
   }
 
@@ -192,7 +205,7 @@ self.addEventListener('fetch', (event) => {
 
 // Listen for skip waiting message from app
 self.addEventListener('message', (event) => {
-  if (event.data === 'SKIP_WAITING') {
+  if (event.data === 'SKIP_WAITING' || (event.data && event.data.type === 'SKIP_WAITING')) {
     self.skipWaiting();
   }
 });

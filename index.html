@@ -328,13 +328,19 @@
               if (newWorker) {
                 newWorker.addEventListener('statechange', () => {
                   if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                    console.log('[霞客] 新版本已就绪，刷新后生效。');
+                    // New version ready: activate immediately
+                    newWorker.postMessage({ type: 'SKIP_WAITING' });
                   }
                 });
               }
             });
           })
           .catch((err) => console.warn('[霞客] SW 注册失败:', err));
+        // Reload once when a new SW takes control
+        let reloaded = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          if (!reloaded) { reloaded = true; window.location.reload(); }
+        });
       });
     }
   </script>
