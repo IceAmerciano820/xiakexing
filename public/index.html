@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5" />
+  <meta name="theme-color" content="#81251d" />
+  <meta name="description" content="霞客 — AI 徒步路线助手。按地区、季节、难度筛选中国 64 条经典徒步路线，查看实时天气、分段攻略、装备清单与风险提示。" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="霞客" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="霞客 · AI 徒步路线助手" />
+  <meta property="og:description" content="把想去的地方，变成能走的路。64 条中国经典徒步路线，实时天气、分段攻略、装备清单与风险提示。" />
+  <meta property="og:locale" content="zh_CN" />
+  <title>霞客 · AI 徒步路线助手</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
+  <link rel="dns-prefetch" href="https://geo.datav.aliyun.com" />
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="apple-touch-icon" href="./images/icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="./images/icons/icon.svg" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="wrap header-inner">
+      <div class="brand">
+        <div class="brand-mark">霞</div>
+        <div>
+          霞客
+          <small>AI 徒步路线助手</small>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span class="fav-count" id="favCount">收藏 0</span>
+        <button class="btn" id="aiSettingsBtn" type="button">AI 设置</button>
+        <button class="btn btn-ghost" id="favFilterBtn" type="button">只看收藏</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="public-notice">
+    <strong>公开演示版提醒：</strong>部分路线为自动生成示例，轨迹、开放状态、门票、救援电话和线路细节尚未逐条核实。正式出发前，请务必通过当地官方景区、政府部门或持证向导确认。
+  </div>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-poster" aria-hidden="true">
+        <svg viewBox="0 0 1000 620" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="inkPaper" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#f7efdd"/>
+              <stop offset="0.58" stop-color="#e8dcc4"/>
+              <stop offset="1" stop-color="#d2c09f"/>
+            </linearGradient>
+            <linearGradient id="farMountain" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#7d8575" stop-opacity="0.34"/>
+              <stop offset="1" stop-color="#7d8575" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="midMountain" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#4f5a4d" stop-opacity="0.72"/>
+              <stop offset="1" stop-color="#4f5a4d" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="nearMountain" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#2c2c28" stop-opacity="0.94"/>
+              <stop offset="1" stop-color="#2c2c28" stop-opacity="0.18"/>
+            </linearGradient>
+            <filter id="mist" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="18"/>
+            </filter>
+          </defs>
+          <rect width="1000" height="620" fill="url(#inkPaper)"/>
+          <circle cx="728" cy="152" r="82" fill="#a83d28" opacity="0.78"/>
+          <g filter="url(#mist)" opacity="0.62">
+            <path d="M0 430 Q180 330 350 402 T700 348 T1000 420 V620 H0 Z" fill="url(#farMountain)"/>
+          </g>
+          <path d="M-30 520 L140 372 L280 486 L430 300 L610 500 L760 356 L1030 560 V620 H-30 Z" fill="url(#midMountain)"/>
+          <path d="M-40 610 L120 420 L250 535 L430 318 L580 542 L770 404 L1030 620 Z" fill="url(#nearMountain)"/>
+          <g stroke="#6d6252" stroke-width="1.3" opacity="0.3" fill="none">
+            <path class="cloud-path" d="M70 250 Q240 222 380 254"/>
+            <path class="cloud-path slow" d="M460 186 Q630 220 820 182"/>
+            <path class="cloud-path" d="M540 312 Q700 286 900 318"/>
+            <path class="cloud-path slow" d="M150 356 Q310 330 470 362"/>
+          </g>
+          <g stroke="#2a2118" stroke-width="2" stroke-linecap="round" fill="none">
+            <path class="bird-path" d="M162 148 Q172 135 184 148 Q194 135 204 148"/>
+            <path class="bird-path delay" d="M250 112 Q260 99 272 112 Q282 99 292 112"/>
+            <path class="bird-path delay" d="M846 118 Q856 106 868 118 Q878 106 888 118"/>
+          </g>
+          <g transform="translate(470 398)" opacity="0.88">
+            <circle cx="0" cy="-35" r="8" fill="#2a2118"/>
+            <path d="M-4 -26 L3 -2 L10 -26 Z" fill="#2a2118"/>
+            <path d="M-5 18 L-10 42 M5 18 L10 42 M0 14 L0 46" stroke="#2a2118" stroke-width="4" stroke-linecap="round"/>
+            <path d="M-13 6 L13 6 L9 34" stroke="#2a2118" stroke-width="3" stroke-linecap="round" fill="none"/>
+          </g>
+          <g transform="translate(890 526)">
+            <rect width="58" height="58" rx="7" fill="#81251d" opacity="0.94"/>
+            <text x="29" y="24" fill="#f7ecd7" font-size="23" text-anchor="middle" font-family="STKaiti, KaiTi, serif">霞</text>
+            <text x="29" y="50" fill="#f7ecd7" font-size="23" text-anchor="middle" font-family="STKaiti, KaiTi, serif">客</text>
+          </g>
+        </svg>
+      </div>
+      <div>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:4px;">
+          <div class="vertical-title">游历山水</div>
+          <div>
+            <div class="eyebrow">仗剑天涯 · 山水有径</div>
+            <div class="eyebrow" style="color:var(--muted);margin-top:5px;">Trail · Weather · Guide</div>
+          </div>
+        </div>
+        <h1>把想去的地方，<br />变成能走的路。</h1>
+        <p class="lead">像徐霞客一样游历山水：按地区、季节和难度筛选路线，查看实时天气、分段攻略、装备清单与风险提示。也可以直接告诉 AI 向导你的偏好，让它替你挑一条合适的山水之路。</p>
+        <div class="search-row">
+          <label class="search-box">
+            <span>🔍</span>
+            <input id="globalSearch" type="search" placeholder="搜索路线、目的地、雪山 / 森林 / 古道…" />
+          </label>
+          <button class="btn btn-primary" id="smartRecommendBtn" type="button">AI 帮我推荐</button>
+        </div>
+        <div class="quick-tags" id="quickTags">
+          <button class="quick-tag" type="button" data-q="云南 中等难度 3天">云南 · 中等难度 · 3天</button>
+          <button class="quick-tag" type="button" data-q="秋天去川西看雪山">秋天 · 川西 · 雪山</button>
+          <button class="quick-tag" type="button" data-q="新手轻松路线 2天">新手 · 轻松 · 2天</button>
+          <button class="quick-tag" type="button" data-q="夏天去新疆草原徒步">夏天 · 新疆 · 草原</button>
+        </div>
+      </div>
+      <aside class="hero-stats">
+        <h2>今日霞客简报</h2>
+        <p>路线库与天气为演示数据，出发前请以官方景区、气象和向导信息为准。</p>
+        <div class="stat"><span>已收录路线</span><b id="routeStat">0</b></div>
+        <div class="stat"><span>覆盖省区</span><b id="regionStat">0</b></div>
+        <div class="stat"><span>推荐指数均值</span><b id="scoreStat">0</b></div>
+      </aside>
+    </section>
+
+    <section class="assistant-panel" id="assistantPanel">
+      <div class="panel-head">
+        <div>
+          <h2>AI 智能推荐</h2>
+          <p>用一句话描述你的计划，助手会解析地区、季节、难度、天数和风景偏好。</p>
+        </div>
+        <button class="btn btn-ghost" id="closeAssistant" type="button">收起</button>
+      </div>
+      <textarea class="ai-prompt" id="aiPrompt" placeholder="例如：我想在云南 4 月走一条 3 天、中等难度、能看到雪山和森林的路线"></textarea>
+      <div class="ai-actions">
+        <button class="btn btn-primary" id="runAI" type="button">生成推荐</button>
+        <button class="btn" id="aiSurprise" type="button">随便推荐一条</button>
+        <span class="ai-note">未配置时使用本地轻量匹配；在右上角「AI 设置」填入 API Key / Token 即可启用云端大模型推荐。</span>
+      </div>
+      <div class="ai-results" id="aiResults"></div>
+    </section>
+
+    <div class="chapter-divider"><span><b></b>侠路 · 山河卷<b></b></span></div>
+
+    <section class="map-section">
+      <div class="section-head">
+        <h2>中国路线地图</h2>
+        <p>闪烁点为路线位置，点击标记可直接打开攻略。</p>
+      </div>
+      <div class="china-map" id="chinaMap" role="img" aria-label="中国徒步路线分布地图"></div>
+      <div class="map-legend">
+        <span><i class="green"></i>普通路线</span>
+        <span><i></i>高难度路线</span>
+        <span>标记大小随难度增加，滚轮可缩放地图。</span>
+      </div>
+    </section>
+
+    <section class="weather-section">
+      <div class="weather-card" id="weatherCard">
+        <div class="weather-now">
+          <div class="weather-emoji" id="weatherEmoji">⛅</div>
+          <div>
+            <div class="weather-loc" id="weatherLoc">正在定位路线…</div>
+            <div class="weather-temp" id="weatherTemp">--°</div>
+            <div class="weather-desc" id="weatherDesc">等待天气数据</div>
+          </div>
+        </div>
+        <div>
+          <div class="weather-toolbar">
+            <span class="weather-live"><i class="live-dot" id="weatherLiveDot"></i><span id="weatherUpdatedAt">等待实时更新</span></span>
+            <button class="btn" id="refreshWeatherBtn" type="button">立即刷新</button>
+          </div>
+          <div class="weather-forecast" id="weatherForecast">
+            <div class="weather-hint">天气数据来自 Open-Meteo 公开接口，按所选路线坐标获取。</div>
+          </div>
+          <div class="weather-meta" id="weatherMeta"></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="filter-bar">
+        <div class="field">
+          <label for="regionFilter">地区</label>
+          <select id="regionFilter"></select>
+        </div>
+        <div class="field">
+          <label for="seasonFilter">季节</label>
+          <select id="seasonFilter">
+            <option value="">全部季节</option>
+            <option value="春">春</option>
+            <option value="夏">夏</option>
+            <option value="秋">秋</option>
+            <option value="冬">冬</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>难度</label>
+          <div class="chips" id="difficultyChips">
+            <button class="chip active" data-difficulty="" type="button">全部</button>
+            <button class="chip" data-difficulty="1" type="button">入门</button>
+            <button class="chip" data-difficulty="2" type="button">休闲</button>
+            <button class="chip" data-difficulty="3" type="button">进阶</button>
+            <button class="chip" data-difficulty="4" type="button">挑战</button>
+            <button class="chip" data-difficulty="5" type="button">极限</button>
+          </div>
+        </div>
+        <div class="field">
+          <label for="statusFilter">我的路线</label>
+          <select id="statusFilter">
+            <option value="">全部状态</option>
+            <option value="saved">收藏</option>
+            <option value="wishlist">想去</option>
+            <option value="completed">已走过</option>
+          </select>
+        </div>
+        <button class="btn reset-btn" id="resetFilters" type="button">重置筛选</button>
+      </div>
+
+      <div class="section-head">
+        <h2>路线库</h2>
+        <p id="resultCount">加载中…</p>
+      </div>
+      <div class="route-grid" id="routeGrid"></div>
+      <div class="empty-state" id="emptyState">
+        <span class="big">🏕️</span>
+        没有找到完全匹配的路线，试着放宽地区、季节或难度条件。
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <strong>安全提示：</strong>本页面为路线筛选与信息聚合工具。高海拔、长距离、复杂天气路线存在真实风险；请结伴出行、携带轨迹与通信设备，并在出发前核实当地政策、防火封山、地质灾害预警及景区开放情况。数据与图片仅作演示参考。
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="settingsBackdrop" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+    <div class="modal settings-modal">
+      <div class="settings-head">
+        <div>
+          <h2 id="settingsTitle">AI 模型设置</h2>
+          <p>配置本地 AI 代理服务，用于真正的路线推荐问答。</p>
+        </div>
+        <button class="modal-close" id="settingsClose" type="button" aria-label="关闭">×</button>
+      </div>
+      <div class="settings-body">
+        <div class="settings-grid">
+          <div class="field">
+            <label for="aiBaseUrl">AI 代理地址</label>
+            <input id="aiBaseUrl" type="url" value="http://localhost:8787/api/ai" placeholder="http://localhost:8787/api/ai" />
+          </div>
+          <div class="field">
+            <label for="aiModel">模型</label>
+            <input id="aiModel" type="text" value="deepseek-chat" placeholder="deepseek-chat" />
+          </div>
+          <div class="field">
+            <label for="aiSystemPrompt">系统提示词（可选）</label>
+            <textarea id="aiSystemPrompt" placeholder="例如：你是一位谨慎、专业的徒步向导，优先考虑安全与季节适配。"></textarea>
+          </div>
+        </div>
+        <div class="settings-actions">
+          <button class="btn btn-primary" id="saveAiSettings" type="button">保存设置</button>
+          <button class="btn" id="testAiSettings" type="button">测试连接</button>
+          <button class="btn btn-danger" id="clearAiSettings" type="button">清除</button>
+          <span class="ai-note" id="aiSettingsStatus"></span>
+        </div>
+        <div class="settings-note">API Key 由本地 Node 代理读取，不再保存在浏览器中。启动代理后，默认地址为 http://localhost:8787/api/ai。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <div class="modal-hero">
+        <img id="modalHeroImg" alt="" />
+        <button class="modal-close" id="modalClose" type="button" aria-label="关闭">×</button>
+        <div class="modal-title">
+          <div class="region" id="modalRegion"></div>
+          <h2 id="modalTitle"></h2>
+        </div>
+      </div>
+      <div class="modal-content">
+        <div class="stat-list" id="modalStats"></div>
+        <div id="routeTabs"></div>
+        <div class="modal-grid">
+          <div id="modalMain"></div>
+          <aside id="modalSide"></aside>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="offline-indicator" id="offlineIndicator">📡 当前离线，已缓存路线可浏览</div>
+
+  <div class="pwa-install-banner" id="pwaInstallBanner">
+    <p>📲 把「霞客」添加到手机桌面，离线也能用</p>
+    <button class="pwa-btn" id="pwaInstallBtn" type="button">安装</button>
+    <button class="pwa-dismiss" id="pwaDismissBtn" type="button" aria-label="关闭">×</button>
+  </div>
+
+  <script src="./data/routes.js" defer></script>
+  <script src="./data/routebooks/yubeng.js" defer></script>
+  <script src="./data/routebooks/core.js" defer></script>
+  <script src="./data/routebooks/generated.js" defer></script>
+  <script src="./app.js" defer></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js', { scope: './' })
+          .then((reg) => {
+            reg.addEventListener('updatefound', () => {
+              const newWorker = reg.installing;
+              if (newWorker) {
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    console.log('[霞客] 新版本已就绪，刷新后生效。');
+                  }
+                });
+              }
+            });
+          })
+          .catch((err) => console.warn('[霞客] SW 注册失败:', err));
+      });
+    }
+  </script>
+</body>
+</html>
