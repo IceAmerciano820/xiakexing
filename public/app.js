@@ -814,9 +814,12 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       "https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"
     ];
 
+    // 优先使用自建数据文件：阿里云 DataV 接口在浏览器里会因来源限制返回 403，
+    // 自建后可离线加载、无第三方依赖，远程地址保留作为兜底。
     const GEO_JSON_SOURCES = [
-      "https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json",
-      "https://file.geojson.cn/china/1.6.3/china.json"
+      "data/china-map.json",
+      "https://file.geojson.cn/china/1.6.3/china.json",
+      "https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json"
     ];
 
     async function fetchWithTimeout(url, timeoutMs = 8000) {
