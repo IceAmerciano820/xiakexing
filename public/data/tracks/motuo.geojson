@@ -1,0 +1,34 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "墨脱徒步参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            95.308,
+            29.308
+          ],
+          [
+            95.316,
+            29.316
+          ],
+          [
+            95.324,
+            29.324
+          ],
+          [
+            95.332,
+            29.332
+          ]
+        ]
+      }
+    }
+  ]
+}

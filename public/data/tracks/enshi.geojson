@@ -1,0 +1,26 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "恩施大峡谷—鹿院坪参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            109.486,
+            30.176
+          ],
+          [
+            109.494,
+            30.184
+          ]
+        ]
+      }
+    }
+  ]
+}

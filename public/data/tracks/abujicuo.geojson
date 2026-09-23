@@ -1,0 +1,22 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "阿布吉措参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.87,
+            27.78
+          ]
+        ]
+      }
+    }
+  ]
+}

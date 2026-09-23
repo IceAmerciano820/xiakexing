@@ -1,0 +1,34 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "狼塔C+V参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            86.138,
+            43.408
+          ],
+          [
+            86.146,
+            43.416
+          ],
+          [
+            86.154,
+            43.424
+          ],
+          [
+            86.162,
+            43.432
+          ]
+        ]
+      }
+    }
+  ]
+}

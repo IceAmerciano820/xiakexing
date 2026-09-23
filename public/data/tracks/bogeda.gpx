@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="霞客示例路书" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>博格达大环线参考轨迹</name></metadata>
+  <trk><name>博格达大环线</name><trkseg>
+      <trkpt lat="43.788" lon="88.288"><ele>300</ele></trkpt>
+      <trkpt lat="43.796" lon="88.296"><ele>1633</ele></trkpt>
+      <trkpt lat="43.804" lon="88.304"><ele>2967</ele></trkpt>
+      <trkpt lat="43.812" lon="88.312"><ele>4300</ele></trkpt>
+    </trkseg></trk>
+</gpx>

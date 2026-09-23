@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="霞客示例路书" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>太姥山参考轨迹</name></metadata>
+  <trk><name>太姥山</name><trkseg>
+      <trkpt lat="27.1" lon="120.17"><ele>300</ele></trkpt>
+    </trkseg></trk>
+</gpx>

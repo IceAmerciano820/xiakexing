@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="霞客示例路书" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>尼汝—稻城亚丁穿越参考轨迹</name></metadata>
+  <trk><name>尼汝—稻城亚丁穿越</name><trkseg>
+      <trkpt lat="28.384" lon="100.284"><ele>1500</ele></trkpt>
+      <trkpt lat="28.392" lon="100.292"><ele>2325</ele></trkpt>
+      <trkpt lat="28.4" lon="100.3"><ele>3150</ele></trkpt>
+      <trkpt lat="28.408" lon="100.308"><ele>3975</ele></trkpt>
+      <trkpt lat="28.416" lon="100.316"><ele>4800</ele></trkpt>
+    </trkseg></trk>
+</gpx>

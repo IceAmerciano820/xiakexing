@@ -1,0 +1,38 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "尼汝—稻城亚丁穿越参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            100.284,
+            28.384
+          ],
+          [
+            100.292,
+            28.392
+          ],
+          [
+            100.3,
+            28.4
+          ],
+          [
+            100.308,
+            28.408
+          ],
+          [
+            100.316,
+            28.416
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="霞客示例路书" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>洛克线参考轨迹</name></metadata>
+  <trk><name>洛克线</name><trkseg>
+      <trkpt lat="28.734" lon="100.634"><ele>1200</ele></trkpt>
+      <trkpt lat="28.742" lon="100.642"><ele>2100</ele></trkpt>
+      <trkpt lat="28.75" lon="100.65"><ele>3000</ele></trkpt>
+      <trkpt lat="28.758" lon="100.658"><ele>3900</ele></trkpt>
+      <trkpt lat="28.766" lon="100.666"><ele>4800</ele></trkpt>
+    </trkseg></trk>
+</gpx>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="霞客示例路书" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>扎尕那—卓尼穿越参考轨迹</name></metadata>
+  <trk><name>扎尕那—卓尼穿越</name><trkseg>
+      <trkpt lat="34.208" lon="103.188"><ele>2000</ele></trkpt>
+      <trkpt lat="34.216" lon="103.196"><ele>2733</ele></trkpt>
+      <trkpt lat="34.224" lon="103.204"><ele>3467</ele></trkpt>
+      <trkpt lat="34.232" lon="103.212"><ele>4200</ele></trkpt>
+    </trkseg></trk>
+</gpx>

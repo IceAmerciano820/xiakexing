@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="霞客示例路书" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>格聂C线参考轨迹</name></metadata>
+  <trk><name>格聂C线</name><trkseg>
+      <trkpt lat="29.844" lon="99.814"><ele>850</ele></trkpt>
+      <trkpt lat="29.852" lon="99.822"><ele>1900</ele></trkpt>
+      <trkpt lat="29.86" lon="99.83"><ele>2950</ele></trkpt>
+      <trkpt lat="29.868" lon="99.838"><ele>4000</ele></trkpt>
+      <trkpt lat="29.876" lon="99.846"><ele>5050</ele></trkpt>
+    </trkseg></trk>
+</gpx>

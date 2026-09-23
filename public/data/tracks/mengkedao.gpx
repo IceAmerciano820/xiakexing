@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="霞客示例路书" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>孟克德古道参考轨迹</name></metadata>
+  <trk><name>孟克德古道</name><trkseg>
+      <trkpt lat="42.988" lon="83.988"><ele>2100</ele></trkpt>
+      <trkpt lat="42.996" lon="83.996"><ele>2567</ele></trkpt>
+      <trkpt lat="43.004" lon="84.004"><ele>3033</ele></trkpt>
+      <trkpt lat="43.012" lon="84.012"><ele>3500</ele></trkpt>
+    </trkseg></trk>
+</gpx>

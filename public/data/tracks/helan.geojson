@@ -1,0 +1,26 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "贺兰山参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            105.896,
+            38.796
+          ],
+          [
+            105.904,
+            38.804
+          ]
+        ]
+      }
+    }
+  ]
+}

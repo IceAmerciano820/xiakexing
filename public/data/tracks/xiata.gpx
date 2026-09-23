@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="霞客示例路书" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>夏塔古道参考轨迹</name></metadata>
+  <trk><name>夏塔古道</name><trkseg>
+      <trkpt lat="42.592" lon="80.542"><ele>1980</ele></trkpt>
+      <trkpt lat="42.6" lon="80.55"><ele>2780</ele></trkpt>
+      <trkpt lat="42.608" lon="80.558"><ele>3580</ele></trkpt>
+    </trkseg></trk>
+</gpx>

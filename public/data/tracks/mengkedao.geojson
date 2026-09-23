@@ -1,0 +1,34 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "孟克德古道参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            83.988,
+            42.988
+          ],
+          [
+            83.996,
+            42.996
+          ],
+          [
+            84.004,
+            43.004
+          ],
+          [
+            84.012,
+            43.012
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "祁连山草原穿越参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            100.492,
+            38.192
+          ],
+          [
+            100.5,
+            38.2
+          ],
+          [
+            100.508,
+            38.208
+          ]
+        ]
+      }
+    }
+  ]
+}

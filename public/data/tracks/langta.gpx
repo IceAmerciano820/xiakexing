@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="霞客示例路书" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>狼塔C+V参考轨迹</name></metadata>
+  <trk><name>狼塔C+V</name><trkseg>
+      <trkpt lat="43.408" lon="86.138"><ele>300</ele></trkpt>
+      <trkpt lat="43.416" lon="86.146"><ele>3300</ele></trkpt>
+      <trkpt lat="43.424" lon="86.154"><ele>6300</ele></trkpt>
+      <trkpt lat="43.432" lon="86.162"><ele>9300</ele></trkpt>
+    </trkseg></trk>
+</gpx>

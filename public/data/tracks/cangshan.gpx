@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="霞客示例路书" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>苍山玉带路参考轨迹</name></metadata>
+  <trk><name>苍山玉带路</name><trkseg>
+      <trkpt lat="25.676" lon="100.096"><ele>2100</ele></trkpt>
+      <trkpt lat="25.684" lon="100.104"><ele>2600</ele></trkpt>
+    </trkseg></trk>
+</gpx>

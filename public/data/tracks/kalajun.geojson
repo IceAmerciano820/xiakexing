@@ -1,0 +1,34 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "喀拉峻—琼库什台穿越参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            81.998,
+            43.048
+          ],
+          [
+            82.006,
+            43.056
+          ],
+          [
+            82.014,
+            43.064
+          ],
+          [
+            82.022,
+            43.072
+          ]
+        ]
+      }
+    }
+  ]
+}

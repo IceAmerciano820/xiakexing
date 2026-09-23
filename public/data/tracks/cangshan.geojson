@@ -1,0 +1,26 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "苍山玉带路参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            100.096,
+            25.676
+          ],
+          [
+            100.104,
+            25.684
+          ]
+        ]
+      }
+    }
+  ]
+}

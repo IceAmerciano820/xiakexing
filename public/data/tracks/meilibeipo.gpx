@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="霞客示例路书" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>梅里北坡参考轨迹</name></metadata>
+  <trk><name>梅里北坡</name><trkseg>
+      <trkpt lat="28.538" lon="98.818"><ele>1700</ele></trkpt>
+      <trkpt lat="28.546" lon="98.826"><ele>2867</ele></trkpt>
+      <trkpt lat="28.554" lon="98.834"><ele>4033</ele></trkpt>
+      <trkpt lat="28.562" lon="98.842"><ele>5200</ele></trkpt>
+    </trkseg></trk>
+</gpx>

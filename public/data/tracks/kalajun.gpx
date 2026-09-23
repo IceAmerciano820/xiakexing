@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="霞客示例路书" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>喀拉峻—琼库什台穿越参考轨迹</name></metadata>
+  <trk><name>喀拉峻—琼库什台穿越</name><trkseg>
+      <trkpt lat="43.048" lon="81.998"><ele>1900</ele></trkpt>
+      <trkpt lat="43.056" lon="82.006"><ele>2233</ele></trkpt>
+      <trkpt lat="43.064" lon="82.014"><ele>2567</ele></trkpt>
+      <trkpt lat="43.072" lon="82.022"><ele>2900</ele></trkpt>
+    </trkseg></trk>
+</gpx>

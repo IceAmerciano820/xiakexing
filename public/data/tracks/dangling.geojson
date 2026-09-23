@@ -1,0 +1,34 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "党岭—莫斯卡参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            101.408,
+            30.768
+          ],
+          [
+            101.416,
+            30.776
+          ],
+          [
+            101.424,
+            30.784
+          ],
+          [
+            101.432,
+            30.792
+          ]
+        ]
+      }
+    }
+  ]
+}

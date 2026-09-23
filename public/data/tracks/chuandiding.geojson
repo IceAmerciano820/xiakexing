@@ -1,0 +1,26 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "船底顶参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            113.166,
+            24.646
+          ],
+          [
+            113.174,
+            24.654
+          ]
+        ]
+      }
+    }
+  ]
+}

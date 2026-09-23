@@ -1,0 +1,26 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "大嵛山岛参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            120.306,
+            26.946
+          ],
+          [
+            120.314,
+            26.954
+          ]
+        ]
+      }
+    }
+  ]
+}

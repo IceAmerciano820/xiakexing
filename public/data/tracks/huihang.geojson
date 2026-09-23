@@ -1,0 +1,26 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "徽杭古道参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            118.886,
+            30.036
+          ],
+          [
+            118.894,
+            30.044
+          ]
+        ]
+      }
+    }
+  ]
+}

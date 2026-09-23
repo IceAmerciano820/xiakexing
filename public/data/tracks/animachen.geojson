@@ -1,0 +1,38 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "阿尼玛卿转山参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            99.534,
+            34.814
+          ],
+          [
+            99.542,
+            34.822
+          ],
+          [
+            99.55,
+            34.83
+          ],
+          [
+            99.558,
+            34.838
+          ],
+          [
+            99.566,
+            34.846
+          ]
+        ]
+      }
+    }
+  ]
+}

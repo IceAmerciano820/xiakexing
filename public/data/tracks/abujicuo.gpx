@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="霞客示例路书" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>阿布吉措参考轨迹</name></metadata>
+  <trk><name>阿布吉措</name><trkseg>
+      <trkpt lat="27.78" lon="99.87"><ele>3600</ele></trkpt>
+    </trkseg></trk>
+</gpx>

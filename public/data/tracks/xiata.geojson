@@ -1,0 +1,30 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "夏塔古道参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.542,
+            42.592
+          ],
+          [
+            80.55,
+            42.6
+          ],
+          [
+            80.558,
+            42.608
+          ]
+        ]
+      }
+    }
+  ]
+}

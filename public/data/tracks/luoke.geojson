@@ -1,0 +1,38 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "洛克线参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            100.634,
+            28.734
+          ],
+          [
+            100.642,
+            28.742
+          ],
+          [
+            100.65,
+            28.75
+          ],
+          [
+            100.658,
+            28.758
+          ],
+          [
+            100.666,
+            28.766
+          ]
+        ]
+      }
+    }
+  ]
+}

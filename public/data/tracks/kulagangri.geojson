@@ -1,0 +1,34 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "库拉岗日参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            90.588,
+            28.188
+          ],
+          [
+            90.596,
+            28.196
+          ],
+          [
+            90.604,
+            28.204
+          ],
+          [
+            90.612,
+            28.212
+          ]
+        ]
+      }
+    }
+  ]
+}

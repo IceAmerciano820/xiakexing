@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="霞客示例路书" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>张家界森林公园参考轨迹</name></metadata>
+  <trk><name>张家界森林公园</name><trkseg>
+      <trkpt lat="29.316" lon="110.426"><ele>300</ele></trkpt>
+      <trkpt lat="29.324" lon="110.434"><ele>1500</ele></trkpt>
+    </trkseg></trk>
+</gpx>

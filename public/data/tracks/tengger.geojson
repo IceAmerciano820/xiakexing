@@ -1,0 +1,30 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "腾格里五湖连穿参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            104.892,
+            38.592
+          ],
+          [
+            104.9,
+            38.6
+          ],
+          [
+            104.908,
+            38.608
+          ]
+        ]
+      }
+    }
+  ]
+}

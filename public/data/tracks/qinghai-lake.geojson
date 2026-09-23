@@ -1,0 +1,30 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "青海湖环湖参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            100.292,
+            36.542
+          ],
+          [
+            100.3,
+            36.55
+          ],
+          [
+            100.308,
+            36.558
+          ]
+        ]
+      }
+    }
+  ]
+}

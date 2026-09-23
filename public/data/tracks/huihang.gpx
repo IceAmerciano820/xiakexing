@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="霞客示例路书" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>徽杭古道参考轨迹</name></metadata>
+  <trk><name>徽杭古道</name><trkseg>
+      <trkpt lat="30.036" lon="118.886"><ele>550</ele></trkpt>
+      <trkpt lat="30.044" lon="118.894"><ele>1050</ele></trkpt>
+    </trkseg></trk>
+</gpx>

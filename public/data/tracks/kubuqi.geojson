@@ -1,0 +1,30 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "库布齐沙漠东线参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            109.192,
+            40.242
+          ],
+          [
+            109.2,
+            40.25
+          ],
+          [
+            109.208,
+            40.258
+          ]
+        ]
+      }
+    }
+  ]
+}

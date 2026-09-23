@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="霞客示例路书" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>珠峰东坡嘎玛沟参考轨迹</name></metadata>
+  <trk><name>珠峰东坡嘎玛沟</name><trkseg>
+      <trkpt lat="28.144" lon="86.964"><ele>300</ele></trkpt>
+      <trkpt lat="28.152" lon="86.972"><ele>1600</ele></trkpt>
+      <trkpt lat="28.16" lon="86.98"><ele>2900</ele></trkpt>
+      <trkpt lat="28.168" lon="86.988"><ele>4200</ele></trkpt>
+      <trkpt lat="28.176" lon="86.996"><ele>5500</ele></trkpt>
+    </trkseg></trk>
+</gpx>

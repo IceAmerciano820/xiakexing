@@ -1,0 +1,34 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "梅里北坡参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            98.818,
+            28.538
+          ],
+          [
+            98.826,
+            28.546
+          ],
+          [
+            98.834,
+            28.554
+          ],
+          [
+            98.842,
+            28.562
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "长白山天池西坡参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            128.056,
+            42.006
+          ],
+          [
+            128.064,
+            42.014
+          ]
+        ]
+      }
+    }
+  ]
+}

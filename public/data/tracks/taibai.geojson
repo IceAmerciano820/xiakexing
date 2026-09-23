@@ -1,0 +1,30 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "太白山南北穿越参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            107.762,
+            33.942
+          ],
+          [
+            107.77,
+            33.95
+          ],
+          [
+            107.778,
+            33.958
+          ]
+        ]
+      }
+    }
+  ]
+}

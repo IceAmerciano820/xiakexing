@@ -1,0 +1,38 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "珠峰东坡嘎玛沟参考轨迹",
+        "type": "hiking",
+        "source": "霞客示例路书"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            86.964,
+            28.144
+          ],
+          [
+            86.972,
+            28.152
+          ],
+          [
+            86.98,
+            28.16
+          ],
+          [
+            86.988,
+            28.168
+          ],
+          [
+            86.996,
+            28.176
+          ]
+        ]
+      }
+    }
+  ]
+}
