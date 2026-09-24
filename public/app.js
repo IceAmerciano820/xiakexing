@@ -1279,6 +1279,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
               ${book.status?.officialUrl ? `<a class="btn" href="${escapeHtml(book.status.officialUrl)}" target="_blank" rel="noopener">官方信息</a>` : ""}
               <a class="btn" href="${escapeHtml(book.tracks?.gpx || "#")}" download>下载 GPX</a>
               <button class="btn" type="button" data-print-guide>打印攻略</button>
+              <button class="btn" type="button" data-make-card>生成路线卡</button>
             </div>
           </div>
           <div class="status-line">
@@ -1508,6 +1509,24 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       if (printGuideButton) {
         printGuideButton.addEventListener("click", () => window.print());
       }
+      const makeCardButton = document.querySelector("#modalMain [data-make-card]");
+      if (makeCardButton) {
+        makeCardButton.addEventListener("click", async () => {
+          if (!window.XIAKE_POSTER) return;
+          const label = makeCardButton.textContent;
+          makeCardButton.disabled = true;
+          makeCardButton.textContent = "生成中…";
+          try {
+            const dataUrl = await window.XIAKE_POSTER.makeCard(route);
+            showCardPreview(dataUrl, route);
+          } catch (err) {
+            alert("生成路线卡失败：" + (err && err.message ? err.message : err));
+          } finally {
+            makeCardButton.disabled = false;
+            makeCardButton.textContent = label;
+          }
+        });
+      }
       $$("#routeTabs [data-target]").forEach((button) => {
         button.addEventListener("click", () => {
           const target = document.getElementById(button.dataset.target);
@@ -1543,6 +1562,57 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
     }
 
     /* ============ 深链接：?route=<路线id> 直达某条路线 ============ */
+    /* 路线卡预览：保存到相册 / 调起系统分享 */
+    function showCardPreview(dataUrl, route) {
+      const wrap = document.createElement("div");
+      wrap.style.cssText = "position:fixed;inset:0;z-index:9999;background:rgba(24,20,16,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px";
+      wrap.addEventListener("click", (e) => { if (e.target === wrap) wrap.remove(); });
+
+      const img = document.createElement("img");
+      img.src = dataUrl;
+      img.alt = route.name + " 路线卡";
+      img.style.cssText = "max-height:68vh;max-width:92vw;border-radius:6px;box-shadow:0 24px 60px rgba(0,0,0,.55)";
+
+      const tip = document.createElement("p");
+      tip.textContent = "手机可长按图片保存到相册";
+      tip.style.cssText = "color:rgba(255,255,255,.72);font-size:14px;margin:0";
+
+      const bar = document.createElement("div");
+      bar.style.cssText = "display:flex;gap:12px;flex-wrap:wrap;justify-content:center";
+
+      const save = document.createElement("a");
+      save.href = dataUrl;
+      save.download = route.name + "-路线卡.png";
+      save.className = "btn btn-primary";
+      save.textContent = "保存图片";
+
+      const share = document.createElement("button");
+      share.type = "button";
+      share.className = "btn";
+      share.textContent = "分享";
+      share.addEventListener("click", async () => {
+        try {
+          const blob = await (await fetch(dataUrl)).blob();
+          const file = new File([blob], route.name + "-路线卡.png", { type: "image/png" });
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({ files: [file], title: route.name + " 路线卡" });
+          } else {
+            alert("当前浏览器不支持直接分享图片，请点「保存图片」后再发布。");
+          }
+        } catch (err) { /* 用户取消分享 */ }
+      });
+
+      const close = document.createElement("button");
+      close.type = "button";
+      close.className = "btn";
+      close.textContent = "关闭";
+      close.addEventListener("click", () => wrap.remove());
+
+      bar.append(save, share, close);
+      wrap.append(img, tip, bar);
+      document.body.appendChild(wrap);
+    }
+
     const ROUTE_PARAM = "route";
 
     // 把当前打开的路线同步到地址栏（replaceState 不污染后退历史）
