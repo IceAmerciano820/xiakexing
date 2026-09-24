@@ -1527,10 +1527,12 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       document.body.style.width = "100%";
       document.body.style.top = `-${window.scrollY}px`;
       renderWeather(route);
+      syncUrlWithRoute(route.id); // 深链接：把当前路线写进地址栏，方便直接分享这一条
     }
 
     function closeModal() {
       $("#modalBackdrop").classList.remove("open");
+      clearRouteFromUrl();
       // Restore scroll position (iOS fix)
       const scrollY = document.body.style.top;
       document.body.style.overflow = "";
@@ -1538,6 +1540,41 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       document.body.style.width = "";
       document.body.style.top = "";
       if (scrollY) window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+    }
+
+    /* ============ 深链接：?route=<路线id> 直达某条路线 ============ */
+    const ROUTE_PARAM = "route";
+
+    // 把当前打开的路线同步到地址栏（replaceState 不污染后退历史）
+    function syncUrlWithRoute(id) {
+      try {
+        const url = new URL(window.location.href);
+        if (id) url.searchParams.set(ROUTE_PARAM, id);
+        else url.searchParams.delete(ROUTE_PARAM);
+        window.history.replaceState(null, "", url.toString());
+      } catch (err) {
+        // file:// 或极老浏览器下不支持，静默忽略
+      }
+    }
+
+    function clearRouteFromUrl() {
+      syncUrlWithRoute("");
+    }
+
+    // 启动时检查地址栏：带 ?route=<id> 就直达那条路线；参数无效则安静留在首页
+    function openRouteFromUrl() {
+      let id = "";
+      try {
+        id = new URLSearchParams(window.location.search).get(ROUTE_PARAM) || "";
+      } catch (err) {
+        return false;
+      }
+      if (!id) return false;
+      if (!ROUTES.some((route) => route.id === id)) return false;
+      openModal(id);
+      const main = $("#modalMain");
+      if (main) main.scrollTop = 0;
+      return true;
     }
 
     function parsePrompt(text) {
@@ -1988,6 +2025,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       initSelectors();
       bindEvents();
       renderRoutes();
+      openRouteFromUrl(); // 深链接：带 ?route=<id> 打开时直达该路线
       observeOnce("#weatherCard", () => renderWeather(ROUTES[0]), "350px");
       observeOnce(".map-section", () => initChinaMap(), "500px");
     }
