@@ -401,9 +401,25 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       }
     }
 
-    function loadScript(srcs) {
+    // 记住上一次真的能用的 CDN，下次直接放第一位（国内 cdnjs/jsdelivr 常挂 30s）
+    const CDN_PREF_KEY = "xiake-preferred-cdn";
+    function preferFastest(srcs, key) {
+      const list = Array.isArray(srcs) ? srcs.slice() : [srcs];
+      if (!key) return list;
+      try {
+        const saved = localStorage.getItem(`${CDN_PREF_KEY}:${key}`);
+        if (saved && list.indexOf(saved) > 0) return [saved].concat(list.filter((s) => s !== saved));
+      } catch (e) { /* 隐私模式下拿不到 localStorage，忽略 */ }
+      return list;
+    }
+    function rememberFastest(key, src) {
+      if (!key || !src) return;
+      try { localStorage.setItem(`${CDN_PREF_KEY}:${key}`, src); } catch (e) { /* ignore */ }
+    }
+
+    function loadScript(srcs, key) {
       // srcs can be a string or an array of URLs (tried in order for CDN fallback)
-      const list = Array.isArray(srcs) ? srcs : [srcs];
+      const list = preferFastest(srcs, key);
       return new Promise((resolve, reject) => {
         let idx = 0;
         const tryNext = () => {
@@ -423,8 +439,8 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
           const timer = setTimeout(() => {
             script.remove();
             tryNext();
-          }, 12000);
-          script.onload = () => { clearTimeout(timer); resolve(); };
+          }, 6000);
+          script.onload = () => { clearTimeout(timer); rememberFastest(key, src); resolve(); };
           script.onerror = () => { clearTimeout(timer); tryNext(); };
           document.head.appendChild(script);
         };
@@ -450,20 +466,22 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
     function loadLeaflet() {
       const leafletVersion = "1.9.4";
       const cssCDNs = [
-        `https://cdn.bootcdn.net/ajax/libs/leaflet/${leafletVersion}/leaflet.css`,
+        `https://lib.baomitu.com/leaflet/${leafletVersion}/leaflet.css`,
         `https://cdn.staticfile.net/leaflet/${leafletVersion}/leaflet.css`,
+        `https://cdn.bootcdn.net/ajax/libs/leaflet/${leafletVersion}/leaflet.css`,
         `https://cdn.jsdelivr.net/npm/leaflet@${leafletVersion}/dist/leaflet.css`
       ];
       const jsCDNs = [
-        `https://cdn.bootcdn.net/ajax/libs/leaflet/${leafletVersion}/leaflet.js`,
+        `https://lib.baomitu.com/leaflet/${leafletVersion}/leaflet.js`,
         `https://cdn.staticfile.net/leaflet/${leafletVersion}/leaflet.js`,
+        `https://cdn.bootcdn.net/ajax/libs/leaflet/${leafletVersion}/leaflet.js`,
         `https://cdn.jsdelivr.net/npm/leaflet@${leafletVersion}/dist/leaflet.js`
       ];
       if (!document.querySelector('link[href*="leaflet.css"]')) {
         loadStylesheet(cssCDNs[0]);
       }
       if (window.L) return Promise.resolve(window.L);
-      return loadScript(jsCDNs).then(() => window.L);
+      return loadScript(jsCDNs, "leaflet").then(() => window.L);
     }
 
     // ---------- Elevation Profile Generator ----------
@@ -680,6 +698,10 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       5: "#ef4444"  // extreme - red
     };
 
+    // 这 7 条线暂无实测轨迹（原占位文件已删除），等补到 GPX/GeoJSON 后从这里移除
+    const TRACK_PENDING_IDS = new Set(["abujicuo", "haituo", "lijiang", "liupan", "moganshan", "qingliangfeng", "taimu"]);
+    const hasTrack = (book) => Boolean(book && book.tracks && book.tracks.geojson) && !TRACK_PENDING_IDS.has(book.id);
+
     async function initTrackMap(geojsonPath, book) {
       const container = document.querySelector("#modalMain .track-map");
       if (!container || !geojsonPath) return;
@@ -801,15 +823,19 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
         useGc();
       } catch (error) {
         console.warn(error);
-        container.innerHTML = '<div class="weather-hint">轨迹地图加载失败，请检查网络或轨迹文件。</div>';
+        container.innerHTML = `
+          <div class="track-pending">
+            <b>轨迹待补充</b>
+            <p>这条线还没有可用轨迹数据，先看分段路书、海拔剖面和检查点坐标来规划。</p>
+          </div>`;
       }
     }
 
     // ---------- Map resilience helpers ----------
     const ECHARTS_CDNS = [
-      "https://cdn.bootcdn.net/ajax/libs/echarts/5.5.0/echarts.min.js",
-      "https://cdn.staticfile.net/echarts/5.5.0/echarts.min.js",
       "https://lib.baomitu.com/echarts/5.5.0/echarts.min.js",
+      "https://cdn.staticfile.net/echarts/5.5.0/echarts.min.js",
+      "https://cdn.bootcdn.net/ajax/libs/echarts/5.5.0/echarts.min.js",
       "https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js",
       "https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"
     ];
@@ -880,7 +906,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       // Load ECharts with CDN fallback
       try {
         if (!window.echarts) {
-          await loadScript(ECHARTS_CDNS);
+          await loadScript(ECHARTS_CDNS, "echarts");
         }
       } catch (error) {
         console.warn("ECharts 加载失败:", error);
@@ -1277,9 +1303,10 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
             </div>
             <div class="routebook-actions">
               ${book.status?.officialUrl ? `<a class="btn" href="${escapeHtml(book.status.officialUrl)}" target="_blank" rel="noopener">官方信息</a>` : ""}
-              <a class="btn" href="${escapeHtml(book.tracks?.gpx || "#")}" download>下载 GPX</a>
+              ${hasTrack(book) ? `<a class="btn" href="${escapeHtml(book.tracks.gpx)}" download>下载 GPX</a>` : ""}
               <button class="btn" type="button" data-print-guide>打印攻略</button>
               <button class="btn" type="button" data-make-card>生成路线卡</button>
+              <button class="btn" type="button" data-make-pages>生成图文 5 页</button>
             </div>
           </div>
           <div class="status-line">
@@ -1328,7 +1355,13 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
         </section>
         <section class="guide-section">
           <h3>🗺️ 轨迹地图</h3>
-          <div class="track-map" data-geojson="${escapeHtml(book.tracks?.geojson || "")}"></div>
+          ${hasTrack(book)
+            ? `<div class="track-map" data-geojson="${escapeHtml(book.tracks.geojson)}"></div>`
+            : `<div class="track-pending">
+                <b>轨迹待补充</b>
+                <p>这条线暂时没有实测 GPX 轨迹，先用分段路书、海拔剖面和检查点坐标规划；拿到轨迹后会在这里补上地图。</p>
+                <p class="track-pending-note">有这条线的真实轨迹？欢迎提供给霞客，我们会标注来源后更新。</p>
+              </div>`}
         </section>
         <section class="guide-section">
           <h3>💰 费用预算</h3>
@@ -1527,6 +1560,24 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
           }
         });
       }
+      const makePagesButton = document.querySelector("#modalMain [data-make-pages]");
+      if (makePagesButton) {
+        makePagesButton.addEventListener("click", async () => {
+          if (!window.XIAKE_POSTER || typeof window.XIAKE_POSTER.makePages !== "function") return;
+          const label = makePagesButton.textContent;
+          makePagesButton.disabled = true;
+          makePagesButton.textContent = "生成中…";
+          try {
+            const pages = await window.XIAKE_POSTER.makePages(route, routebook);
+            showPagesPreview(pages, route);
+          } catch (err) {
+            alert("生成图文失败：" + (err && err.message ? err.message : err));
+          } finally {
+            makePagesButton.disabled = false;
+            makePagesButton.textContent = label;
+          }
+        });
+      }
       $$("#routeTabs [data-target]").forEach((button) => {
         button.addEventListener("click", () => {
           const target = document.getElementById(button.dataset.target);
@@ -1535,7 +1586,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
           $$("#routeTabs [data-target]").forEach((tab) => tab.classList.toggle("active", tab === button));
         });
       });
-      if (routebook?.tracks?.geojson) {
+      if (hasTrack(routebook)) {
         initTrackMap(routebook.tracks.geojson, routebook);
       }
 
@@ -1610,6 +1661,79 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
 
       bar.append(save, share, close);
       wrap.append(img, tip, bar);
+      document.body.appendChild(wrap);
+    }
+
+    /* 小红书图文（5 页）预览：长按保存 / 一键保存全部 / 分享全部 */
+    function showPagesPreview(pages, route) {
+      const wrap = document.createElement("div");
+      wrap.style.cssText = "position:fixed;inset:0;z-index:9999;background:rgba(24,20,16,.9);display:flex;flex-direction:column;gap:14px;padding:20px";
+
+      const head = document.createElement("p");
+      head.textContent = route.name + " · 小红书图文 " + pages.length + " 页（手机可长按每张保存）";
+      head.style.cssText = "color:rgba(255,255,255,.78);font-size:14px;margin:0;text-align:center";
+
+      const list = document.createElement("div");
+      list.style.cssText = "flex:1;overflow:auto;display:flex;flex-direction:column;align-items:center;gap:18px;padding:6px";
+      pages.forEach((page, i) => {
+        const item = document.createElement("figure");
+        item.style.cssText = "margin:0;display:flex;flex-direction:column;align-items:center;gap:8px";
+        const img = document.createElement("img");
+        img.src = page.dataUrl;
+        img.alt = route.name + " " + page.title;
+        img.style.cssText = "width:min(86vw,420px);border-radius:6px;box-shadow:0 18px 44px rgba(0,0,0,.5);background:#f2ece1";
+        const cap = document.createElement("figcaption");
+        cap.textContent = (i + 1) + "/" + pages.length + " · " + page.title;
+        cap.style.cssText = "color:rgba(255,255,255,.66);font-size:13px";
+        item.append(img, cap);
+        list.appendChild(item);
+      });
+
+      const bar = document.createElement("div");
+      bar.style.cssText = "display:flex;gap:12px;flex-wrap:wrap;justify-content:center";
+
+      const saveAll = document.createElement("button");
+      saveAll.type = "button";
+      saveAll.className = "btn btn-primary";
+      saveAll.textContent = "保存全部 " + pages.length + " 张";
+      saveAll.addEventListener("click", () => {
+        pages.forEach((page, i) => {
+          setTimeout(() => {
+            const a = document.createElement("a");
+            a.href = page.dataUrl;
+            a.download = route.name + "-" + String(i + 1).padStart(2, "0") + "-" + page.id + ".png";
+            a.click();
+          }, i * 600);
+        });
+      });
+
+      const shareAll = document.createElement("button");
+      shareAll.type = "button";
+      shareAll.className = "btn";
+      shareAll.textContent = "分享全部";
+      shareAll.addEventListener("click", async () => {
+        try {
+          const files = [];
+          for (let i = 0; i < pages.length; i++) {
+            const blob = await (await fetch(pages[i].dataUrl)).blob();
+            files.push(new File([blob], route.name + "-" + String(i + 1).padStart(2, "0") + ".png", { type: "image/png" }));
+          }
+          if (navigator.canShare && navigator.canShare({ files: files })) {
+            await navigator.share({ files: files, title: route.name + " 徒步图文" });
+          } else {
+            alert("当前浏览器不支持一次分享多张，请点「保存全部」后在小红书里一起发布。");
+          }
+        } catch (err) { /* 用户取消分享 */ }
+      });
+
+      const close = document.createElement("button");
+      close.type = "button";
+      close.className = "btn";
+      close.textContent = "关闭";
+      close.addEventListener("click", () => wrap.remove());
+
+      bar.append(saveAll, shareAll, close);
+      wrap.append(head, list, bar);
       document.body.appendChild(wrap);
     }
 

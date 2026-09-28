@@ -770,6 +770,23 @@
     }
     .track-map .leaflet-container { font-family: var(--sans); }
 
+    .track-pending {
+      border: 1px dashed var(--line);
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(197, 150, 46, 0.10), rgba(231, 220, 197, 0.35));
+      padding: 18px 20px;
+      color: var(--muted);
+    }
+    .track-pending b {
+      display: block;
+      color: var(--brand);
+      font-family: var(--serif);
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+    .track-pending p { margin: 0 0 6px; font-size: 13px; line-height: 1.6; }
+    .track-pending .track-pending-note { color: var(--muted); font-size: 12px; opacity: 0.85; }
+
     @media (max-width: 900px) {
       .routebook-grid { grid-template-columns: 1fr; }
       .routebook-media { grid-template-columns: repeat(2, minmax(0, 1fr)); }
