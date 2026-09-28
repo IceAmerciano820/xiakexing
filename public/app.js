@@ -743,7 +743,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
     async function initTrackMap(geojsonPath, book) {
       const container = document.querySelector("#modalMain .track-map");
       if (!container || !geojsonPath) return;
-      container.innerHTML = '<div class="weather-hint">轨迹地图加载中…</div>';
+      container.innerHTML = '<div class="skeleton skeleton-map"></div>';
       try {
         const L = await loadLeaflet();
         const response = await fetch(geojsonPath);
@@ -861,7 +861,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
     async function initMiniMap(route) {
       const container = document.querySelector("#modalSide .mini-map");
       if (!container || !route) return;
-      container.innerHTML = '<div class="weather-hint">位置地图加载中…</div>';
+      container.innerHTML = '<div class="skeleton skeleton-map" style="min-height:100%"></div>';
       try {
         const L = await loadLeaflet();
         if (miniMapInstance) { miniMapInstance.remove(); miniMapInstance = null; }
@@ -912,12 +912,17 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
     async function loadChinaGeoJSON() {
       let lastErr;
       for (const url of GEO_JSON_SOURCES) {
-        try {
-          const data = await fetchWithTimeout(url, 8000);
-          if (data && (typeof data === "object") && (data.features || data.type || Array.isArray(data))) return data;
-        } catch (e) {
-          lastErr = e;
-          console.warn(`地图数据源 ${url} 加载失败:`, e.message);
+        // 自建文件是主源：冷启动时可能被 1MB 的 echarts 挤到超时，所以给更长时间并重试一次
+        const isLocal = url.startsWith("data/");
+        const attempts = isLocal ? 2 : 1;
+        for (let i = 0; i < attempts; i++) {
+          try {
+            const data = await fetchWithTimeout(url, isLocal ? 15000 : 8000);
+            if (data && (typeof data === "object") && (data.features || data.type || Array.isArray(data))) return data;
+          } catch (e) {
+            lastErr = e;
+            console.warn(`地图数据源 ${url} 加载失败（第 ${i + 1} 次）:`, e.message);
+          }
         }
       }
       throw lastErr || new Error("所有地图数据源均不可用");
@@ -1333,6 +1338,21 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       `;
     }
 
+    // 详情页顶部元信息：可信度 / 开放状态 / 门票 / 许可 / 更新时间 / 轨迹状态
+    function renderRouteMeta(route, book) {
+      const status = (book && book.status) || {};
+      const pills = [];
+      if (book && book.credibility) {
+        pills.push(`<span class="status-pill credibility cred-${book.credibility}">内容可信度 ${book.credibility}</span>`);
+      }
+      pills.push(`<span class="status-pill ${status.open === true ? "open" : "warn"}">${status.open === true ? "当前示例：开放" : status.open === false ? "当前示例：关闭/待确认" : "开放状态待核实"}</span>`);
+      pills.push(`<span class="status-pill ${status.ticketRequired ? "warn" : ""}">${status.ticketRequired ? "需购票" : "无需购票"}</span>`);
+      if (status.permitRequired) pills.push('<span class="status-pill warn">需许可证</span>');
+      if (book && book.updatedAt) pills.push(`<span class="status-pill">更新于 ${escapeHtml(book.updatedAt)}</span>`);
+      pills.push(`<span class="status-pill">${hasTrack(book) ? "实测轨迹" : "轨迹待补充"}</span>`);
+      return `<div class="route-meta">${pills.join("")}</div>`;
+    }
+
     function renderRoutebookSections(route, book) {
       if (!book) return "";
       const status = book.status || {};
@@ -1342,7 +1362,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
           <div class="routebook-banner">
             <div>
               <h3>📖 ${escapeHtml(book.name)} · 完整路书</h3>
-              <p>版本 v${book.version || 1} · 更新于 ${escapeHtml(book.updatedAt || "未标注")}。数据为示例路书，出发前请再次核实。</p>
+              <p>版本 v${book.version || 1}。数据为示例路书，出发前请再次核实。</p>
             </div>
             <div class="routebook-actions">
               ${book.status?.officialUrl ? `<a class="btn" href="${escapeHtml(book.status.officialUrl)}" target="_blank" rel="noopener">官方信息</a>` : ""}
@@ -1351,12 +1371,6 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
               <button class="btn" type="button" data-make-card>生成路线卡</button>
               <button class="btn" type="button" data-make-pages>生成图文 5 页</button>
             </div>
-          </div>
-          <div class="status-line">
-            ${book.credibility ? `<span class="status-pill credibility cred-${book.credibility}">内容可信度 ${book.credibility}</span>` : ""}
-            <span class="status-pill ${status.open === true ? "open" : "warn"}">${status.open === true ? "当前示例：开放" : status.open === false ? "当前示例：关闭/待确认" : "开放状态待核实"}</span>
-            <span class="status-pill ${status.ticketRequired ? "warn" : ""}">${status.ticketRequired ? "需购票" : "无需购票"}</span>
-            <span class="status-pill ${status.permitRequired ? "warn" : ""}">${status.permitRequired ? "需许可证" : "无需特别许可证"}</span>
           </div>
         </section>
         <section class="guide-section">
@@ -1483,6 +1497,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       $("#routeTabs").innerHTML = routeTabsHTML;
 
       $("#modalMain").innerHTML = `
+        ${renderRouteMeta(route, routebook)}
         <section class="guide-section" id="section-overview">
           <h3>📍 路线概览</h3>
           <p>${escapeHtml(route.summary)}</p>
@@ -1568,6 +1583,20 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
         </div>
       `;
 
+      // 手机吸底操作条：把最常用的四个动作固定在屏幕底部（桌面端隐藏）
+      const staleBar = document.querySelector("#modalBackdrop .modal-action-bar");
+      if (staleBar) staleBar.remove();
+      const actionBar = document.createElement("div");
+      actionBar.className = "modal-action-bar";
+      actionBar.innerHTML = `
+        <button class="action" type="button" data-share-route>分享</button>
+        <button class="action" type="button" data-make-card>路线卡</button>
+        <button class="action" type="button" data-make-pages>生成图文</button>
+        ${hasTrack(routebook) ? `<a class="action" href="${escapeHtml(routebook.tracks.gpx)}" download>下载 GPX</a>` : ""}
+      `;
+      const modalShell = document.querySelector("#modalBackdrop .modal");
+      if (modalShell) modalShell.appendChild(actionBar);
+
       $$(".gallery img").forEach((img) => {
         img.addEventListener("click", () => {
           $("#modalHeroImg").src = img.dataset.full;
@@ -1582,46 +1611,61 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
           });
         });
       });
-      const printGuideButton = document.querySelector("#modalMain [data-print-guide]");
-      if (printGuideButton) {
-        printGuideButton.addEventListener("click", () => window.print());
-      }
-      const makeCardButton = document.querySelector("#modalMain [data-make-card]");
-      if (makeCardButton) {
-        makeCardButton.addEventListener("click", async () => {
+      // 同一批动作在「路书横幅」和「手机吸底条」都有按钮，统一绑定
+      $$(".modal [data-print-guide]").forEach((button) => {
+        button.addEventListener("click", () => window.print());
+      });
+      $$(".modal [data-make-card]").forEach((button) => {
+        button.addEventListener("click", async () => {
           if (!window.XIAKE_POSTER) return;
-          const label = makeCardButton.textContent;
-          makeCardButton.disabled = true;
-          makeCardButton.textContent = "生成中…";
+          const label = button.textContent;
+          button.disabled = true;
+          button.textContent = "生成中…";
           try {
             const dataUrl = await window.XIAKE_POSTER.makeCard(route);
             showCardPreview(dataUrl, route);
           } catch (err) {
             alert("生成路线卡失败：" + (err && err.message ? err.message : err));
           } finally {
-            makeCardButton.disabled = false;
-            makeCardButton.textContent = label;
+            button.disabled = false;
+            button.textContent = label;
           }
         });
-      }
-      const makePagesButton = document.querySelector("#modalMain [data-make-pages]");
-      if (makePagesButton) {
-        makePagesButton.addEventListener("click", async () => {
+      });
+      $$(".modal [data-make-pages]").forEach((button) => {
+        button.addEventListener("click", async () => {
           if (!window.XIAKE_POSTER || typeof window.XIAKE_POSTER.makePages !== "function") return;
-          const label = makePagesButton.textContent;
-          makePagesButton.disabled = true;
-          makePagesButton.textContent = "生成中…";
+          const label = button.textContent;
+          button.disabled = true;
+          button.textContent = "生成中…";
           try {
             const pages = await window.XIAKE_POSTER.makePages(route, routebook);
             showPagesPreview(pages, route);
           } catch (err) {
             alert("生成图文失败：" + (err && err.message ? err.message : err));
           } finally {
-            makePagesButton.disabled = false;
-            makePagesButton.textContent = label;
+            button.disabled = false;
+            button.textContent = label;
           }
         });
-      }
+      });
+      // 手机吸底条：分享当前路线（系统分享，不支持时复制链接）
+      $$(".modal [data-share-route]").forEach((button) => {
+        button.addEventListener("click", async () => {
+          const url = location.origin + location.pathname + "?route=" + encodeURIComponent(route.id);
+          const title = route.name + " · 霞客徒步路线";
+          try {
+            if (navigator.share) {
+              await navigator.share({ title: title, text: title, url: url });
+            } else if (navigator.clipboard) {
+              await navigator.clipboard.writeText(url);
+              const label = button.textContent;
+              button.textContent = "已复制链接";
+              setTimeout(() => { button.textContent = label; }, 1600);
+            }
+          } catch (err) { /* 用户取消分享 */ }
+        });
+      });
       $$("#routeTabs [data-target]").forEach((button) => {
         button.addEventListener("click", () => {
           const target = document.getElementById(button.dataset.target);
