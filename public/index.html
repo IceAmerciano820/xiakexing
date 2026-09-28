@@ -14,6 +14,16 @@
   <meta property="og:description" content="把想去的地方，变成能走的路。64 条中国经典徒步路线，实时天气、分段攻略、装备清单与风险提示。" />
   <meta property="og:locale" content="zh_CN" />
   <title>霞客 · AI 徒步路线助手</title>
+  <script>
+    // 尽早应用主题，避免首屏闪白（夜间模式）
+    try {
+      var savedTheme = localStorage.getItem("xiake_theme");
+      if (!savedTheme) {
+        savedTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "night" : "day";
+      }
+      if (savedTheme === "night") document.documentElement.dataset.theme = "night";
+    } catch (e) { /* 隐私模式下忽略 */ }
+  </script>
   <link rel="preconnect" href="https://cdn.bootcdn.net" crossorigin />
   <link rel="preconnect" href="https://geo.datav.aliyun.com" crossorigin />
   <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
@@ -38,6 +48,7 @@
       </div>
       <div class="header-actions">
         <span class="fav-count" id="favCount">收藏 0</span>
+        <button class="btn btn-ghost" id="themeToggle" type="button">夜间</button>
         <button class="btn" id="aiSettingsBtn" type="button">AI 设置</button>
         <button class="btn btn-ghost" id="favFilterBtn" type="button">只看收藏</button>
       </div>
