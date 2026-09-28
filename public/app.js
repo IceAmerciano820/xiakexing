@@ -708,8 +708,8 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       5: "#ef4444"  // extreme - red
     };
 
-    // 这 7 条线暂无实测轨迹（原占位文件已删除），等补到 GPX/GeoJSON 后从这里移除
-    const TRACK_PENDING_IDS = new Set(["abujicuo", "haituo", "lijiang", "liupan", "moganshan", "qingliangfeng", "taimu"]);
+    // 还没拿到轨迹的路线写在这里，页面会显示「轨迹待补充」；2026-09 这 7 条已补齐实测轨迹
+    const TRACK_PENDING_IDS = new Set([]);
     const hasTrack = (book) => Boolean(book && book.tracks && book.tracks.geojson) && !TRACK_PENDING_IDS.has(book.id);
 
     async function initTrackMap(geojsonPath, book) {
@@ -795,6 +795,17 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
         });
         trackGcj.addTo(map);
         map.fitBounds(trackWgs.getBounds(), { padding: [26, 26] });
+
+        // 轨迹来源标注：有 properties.source 就显示，说明这条线是谁走的
+        const trackSource = data && data.features && data.features[0] && data.features[0].properties
+          ? data.features[0].properties.source
+          : "";
+        if (trackSource && container.parentElement && !container.parentElement.querySelector(".track-source")) {
+          const caption = document.createElement("p");
+          caption.className = "track-source";
+          caption.textContent = "轨迹来源：" + trackSource;
+          container.insertAdjacentElement("afterend", caption);
+        }
 
         // Checkpoint markers (build in both coordinate systems, toggle with basemap)
         const cpWgs = L.layerGroup();

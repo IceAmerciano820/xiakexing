@@ -770,6 +770,8 @@
     }
     .track-map .leaflet-container { font-family: var(--sans); }
 
+    .track-source { color: var(--muted); font-size: 12px; margin: 8px 0 0; }
+
     .track-pending {
       border: 1px dashed var(--line);
       border-radius: 14px;
