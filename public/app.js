@@ -952,7 +952,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
         const attempts = isLocal ? 2 : 1;
         for (let i = 0; i < attempts; i++) {
           try {
-            const data = await fetchWithTimeout(url, isLocal ? 15000 : 8000);
+            const data = await fetchWithTimeout(url, isLocal ? 20000 : 8000);
             if (data && (typeof data === "object") && (data.features || data.type || Array.isArray(data))) return data;
           } catch (e) {
             lastErr = e;
