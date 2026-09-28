@@ -402,7 +402,8 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
     }
 
     // 记住上一次真的能用的 CDN，下次直接放第一位（国内 cdnjs/jsdelivr 常挂 30s）
-    const CDN_PREF_KEY = "xiake-preferred-cdn";
+    // 版本号写进 key：之前误把「返回假 404 页面的 CDN」记进缓存，换 key 让旧记录自动失效
+    const CDN_PREF_KEY = "xiake-preferred-cdn:v2";
     function preferFastest(srcs, key) {
       const list = Array.isArray(srcs) ? srcs.slice() : [srcs];
       if (!key) return list;
@@ -417,8 +418,9 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       try { localStorage.setItem(`${CDN_PREF_KEY}:${key}`, src); } catch (e) { /* ignore */ }
     }
 
-    function loadScript(srcs, key) {
+    function loadScript(srcs, key, check) {
       // srcs can be a string or an array of URLs (tried in order for CDN fallback)
+      // check: 加载后校验全局对象是否真的就位——有些 CDN 用 200 返回「404: Not Found」页面
       const list = preferFastest(srcs, key);
       return new Promise((resolve, reject) => {
         let idx = 0;
@@ -429,19 +431,27 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
           }
           const src = list[idx++];
           // Skip if already loaded
-          if (document.querySelector(`script[src="${src}"]`)) {
+          if (document.querySelector(`script[src="${src}"]`) && (typeof check !== "function" || check())) {
             resolve();
             return;
           }
           const script = document.createElement("script");
           script.src = src;
           script.async = true;
-          const timer = setTimeout(() => {
+          const fail = (why) => {
             script.remove();
+            console.warn(`CDN 不可用（${why}）: ${src}`);
             tryNext();
-          }, 6000);
-          script.onload = () => { clearTimeout(timer); rememberFastest(key, src); resolve(); };
-          script.onerror = () => { clearTimeout(timer); tryNext(); };
+          };
+          // 12s：echarts 有 1MB，实测冷启动要 8s 左右，太短会误杀正常的源
+          const timer = setTimeout(() => fail("超时"), 12000);
+          script.onload = () => {
+            clearTimeout(timer);
+            if (typeof check === "function" && !check()) { fail("内容无效"); return; }
+            rememberFastest(key, src);
+            resolve();
+          };
+          script.onerror = () => { clearTimeout(timer); fail("加载失败"); };
           document.head.appendChild(script);
         };
         tryNext();
@@ -481,7 +491,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
         loadStylesheet(cssCDNs[0]);
       }
       if (window.L) return Promise.resolve(window.L);
-      return loadScript(jsCDNs, "leaflet").then(() => window.L);
+      return loadScript(jsCDNs, "leaflet", () => !!window.L).then(() => window.L);
     }
 
     // ---------- Elevation Profile Generator ----------
@@ -833,7 +843,6 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
 
     // ---------- Map resilience helpers ----------
     const ECHARTS_CDNS = [
-      "https://lib.baomitu.com/echarts/5.5.0/echarts.min.js",
       "https://cdn.staticfile.net/echarts/5.5.0/echarts.min.js",
       "https://cdn.bootcdn.net/ajax/libs/echarts/5.5.0/echarts.min.js",
       "https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js",
@@ -906,7 +915,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       // Load ECharts with CDN fallback
       try {
         if (!window.echarts) {
-          await loadScript(ECHARTS_CDNS, "echarts");
+          await loadScript(ECHARTS_CDNS, "echarts", () => !!window.echarts);
         }
       } catch (error) {
         console.warn("ECharts 加载失败:", error);
