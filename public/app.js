@@ -445,6 +445,23 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       try { localStorage.setItem(`${CDN_PREF_KEY}:${key}`, src); } catch (e) { /* ignore */ }
     }
 
+    // 先下载再执行：<script> 标签超时后即使移除了也会继续跑完，两个 echarts 会互相打架
+    async function loadScriptCode(url, timeoutMs, check) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeoutMs);
+      try {
+        const res = await fetch(url, { signal: controller.signal });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const code = await res.text();
+        if (code.length < 512) throw new Error("内容无效");
+        // eslint-disable-next-line no-new-func
+        new Function(code)();
+        if (typeof check === "function" && !check()) throw new Error("校验未通过");
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+
     function loadScript(srcs, key, check) {
       // srcs can be a string or an array of URLs (tried in order for CDN fallback)
       // check: 加载后校验全局对象是否真的就位——有些 CDN 用 200 返回「404: Not Found」页面
@@ -456,30 +473,21 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
             reject(new Error(`Failed to load script from all sources: ${list.join(", ")}`));
             return;
           }
-          const src = list[idx++];
-          // Skip if already loaded
-          if (document.querySelector(`script[src="${src}"]`) && (typeof check !== "function" || check())) {
+          if (typeof check === "function" && check()) { // 已经被别的源加载好了
             resolve();
             return;
           }
-          const script = document.createElement("script");
-          script.src = src;
-          script.async = true;
-          const fail = (why) => {
-            script.remove();
-            console.warn(`CDN 不可用（${why}）: ${src}`);
-            tryNext();
-          };
-          // 12s：echarts 有 1MB，实测冷启动要 8s 左右，太短会误杀正常的源
-          const timer = setTimeout(() => fail("超时"), 12000);
-          script.onload = () => {
-            clearTimeout(timer);
-            if (typeof check === "function" && !check()) { fail("内容无效"); return; }
-            rememberFastest(key, src);
-            resolve();
-          };
-          script.onerror = () => { clearTimeout(timer); fail("加载失败"); };
-          document.head.appendChild(script);
+          const src = list[idx++];
+          // 15s：echarts 有 1MB，实测慢网络冷启动要 8s 以上
+          loadScriptCode(src, 15000, check)
+            .then(() => {
+              rememberFastest(key, src);
+              resolve();
+            })
+            .catch((err) => {
+              console.warn(`CDN 不可用（${err.message}）: ${src}`);
+              tryNext();
+            });
         };
         tryNext();
       });
