@@ -712,6 +712,34 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
     const TRACK_PENDING_IDS = new Set([]);
     const hasTrack = (book) => Boolean(book && book.tracks && book.tracks.geojson) && !TRACK_PENDING_IDS.has(book.id);
 
+    // WGS84 -> GCJ-02：让轨迹和标注点在高德瓦片上对齐（轨迹地图与侧栏小地图共用）
+    function wgs84ToGcj(lat, lng) {
+      const transformLat = (x, y) => {
+        let r = -100 + 2 * x + 3 * y + 0.2 * y * y + 0.1 * x * y + 0.2 * Math.sqrt(Math.abs(x));
+        r += (20 * Math.sin(6 * x * Math.PI) + 20 * Math.sin(2 * x * Math.PI)) * 2 / 3;
+        r += (20 * Math.sin(y * Math.PI) + 40 * Math.sin(y / 3 * Math.PI)) * 2 / 3;
+        r += (160 * Math.sin(y / 12 * Math.PI) + 320 * Math.sin(y * Math.PI / 30)) * 2 / 3;
+        return r;
+      };
+      const transformLng = (x, y) => {
+        let r = 300 + x + 2 * y + 0.1 * x * x + 0.1 * x * y + 0.1 * Math.sqrt(Math.abs(x));
+        r += (20 * Math.sin(6 * x * Math.PI) + 20 * Math.sin(2 * x * Math.PI)) * 2 / 3;
+        r += (20 * Math.sin(x * Math.PI) + 40 * Math.sin(x / 3 * Math.PI)) * 2 / 3;
+        r += (150 * Math.sin(x / 12 * Math.PI) + 300 * Math.sin(x / 30 * Math.PI)) * 2 / 3;
+        return r;
+      };
+      const a = 6378245, ee = 0.006693421622965943;
+      let dLat = transformLat(lng - 105, lat - 35);
+      let dLng = transformLng(lng - 105, lat - 35);
+      const radLat = lat / 180 * Math.PI;
+      let magic = Math.sin(radLat);
+      magic = 1 - ee * magic * magic;
+      const sqrtMagic = Math.sqrt(magic);
+      dLat = (dLat * 180) / ((a * (1 - ee)) / (magic * sqrtMagic) * Math.PI);
+      dLng = (dLng * 180) / (a / sqrtMagic * Math.cos(radLat) * Math.PI);
+      return [lat + dLat, lng + dLng];
+    }
+
     async function initTrackMap(geojsonPath, book) {
       const container = document.querySelector("#modalMain .track-map");
       if (!container || !geojsonPath) return;
@@ -757,32 +785,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
         const trackColor = DIFFICULTY_COLORS[book?.difficulty] || "#81251d";
 
         // WGS84 -> GCJ-02 conversion so tracks align with Gaode tiles
-        const gcjLatlng = (lat, lng) => {
-          const transformLat = (x, y) => {
-            let r = -100 + 2 * x + 3 * y + 0.2 * y * y + 0.1 * x * y + 0.2 * Math.sqrt(Math.abs(x));
-            r += (20 * Math.sin(6 * x * Math.PI) + 20 * Math.sin(2 * x * Math.PI)) * 2 / 3;
-            r += (20 * Math.sin(y * Math.PI) + 40 * Math.sin(y / 3 * Math.PI)) * 2 / 3;
-            r += (160 * Math.sin(y / 12 * Math.PI) + 320 * Math.sin(y * Math.PI / 30)) * 2 / 3;
-            return r;
-          };
-          const transformLng = (x, y) => {
-            let r = 300 + x + 2 * y + 0.1 * x * x + 0.1 * x * y + 0.1 * Math.sqrt(Math.abs(x));
-            r += (20 * Math.sin(6 * x * Math.PI) + 20 * Math.sin(2 * x * Math.PI)) * 2 / 3;
-            r += (20 * Math.sin(x * Math.PI) + 40 * Math.sin(x / 3 * Math.PI)) * 2 / 3;
-            r += (150 * Math.sin(x / 12 * Math.PI) + 300 * Math.sin(x / 30 * Math.PI)) * 2 / 3;
-            return r;
-          };
-          const a = 6378245, ee = 0.006693421622965943;
-          let dLat = transformLat(lng - 105, lat - 35);
-          let dLng = transformLng(lng - 105, lat - 35);
-          const radLat = lat / 180 * Math.PI;
-          let magic = Math.sin(radLat);
-          magic = 1 - ee * magic * magic;
-          const sqrtMagic = Math.sqrt(magic);
-          dLat = (dLat * 180) / ((a * (1 - ee)) / (magic * sqrtMagic) * Math.PI);
-          dLng = (dLng * 180) / (a / sqrtMagic * Math.cos(radLat) * Math.PI);
-          return [lat + dLat, lng + dLng];
-        };
+        const gcjLatlng = wgs84ToGcj;
 
         const trackStyle = { color: trackColor, weight: 4, opacity: 0.9 };
         const trackWgs = L.geoJSON(data, { style: trackStyle });
@@ -853,6 +856,32 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
     }
 
     // ---------- Map resilience helpers ----------
+    // 侧栏「位置地图」：高德底图的小地图（OSM 的 iframe 在国内打不开，已替换）
+    let miniMapInstance = null;
+    async function initMiniMap(route) {
+      const container = document.querySelector("#modalSide .mini-map");
+      if (!container || !route) return;
+      container.innerHTML = '<div class="weather-hint">位置地图加载中…</div>';
+      try {
+        const L = await loadLeaflet();
+        if (miniMapInstance) { miniMapInstance.remove(); miniMapInstance = null; }
+        const gcj = wgs84ToGcj(route.lat, route.lon);
+        const map = L.map(container, { scrollWheelZoom: false, attributionControl: false }).setView(gcj, 12);
+        L.tileLayer("https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}", {
+          subdomains: ["1", "2", "3", "4"],
+          maxZoom: 18,
+          attribution: "&copy; 高德地图"
+        }).addTo(map);
+        L.circleMarker(gcj, {
+          radius: 8, color: "#2a2118", weight: 2, fillColor: "#81251d", fillOpacity: 0.9
+        }).bindPopup(escapeHtml(route.name)).addTo(map);
+        miniMapInstance = map;
+      } catch (error) {
+        console.warn(error);
+        container.innerHTML = '<div class="weather-hint">位置地图加载失败，可用上方按钮在手机地图里打开。</div>';
+      }
+    }
+
     const ECHARTS_CDNS = [
       "https://cdn.staticfile.net/echarts/5.5.0/echarts.min.js",
       "https://cdn.bootcdn.net/ajax/libs/echarts/5.5.0/echarts.min.js",
@@ -1112,12 +1141,6 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
 
     function difficultyLabel(value) {
       return DIFFICULTY[value] || "";
-    }
-
-    function routeMap(route) {
-      const delta = 0.045;
-      const bbox = `${route.lon - delta},${route.lat - delta * 0.65},${route.lon + delta},${route.lat + delta * 0.65}`;
-      return `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${route.lat},${route.lon}`;
     }
 
     const TRANSPORT_HUBS = {
@@ -1540,7 +1563,8 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
         </div>
         <div class="side-card">
           <h4>🌍 位置地图</h4>
-          <iframe class="map-frame" src="${routeMap(route)}" title="${escapeHtml(route.name)}地图" loading="lazy"></iframe>
+          <div class="mini-map" data-lat="${route.lat}" data-lon="${route.lon}"></div>
+          <p class="mini-map-note">高德底图 · 可拖动查看，或点上方按钮在手机地图里打开</p>
         </div>
       `;
 
@@ -1609,6 +1633,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       if (hasTrack(routebook)) {
         initTrackMap(routebook.tracks.geojson, routebook);
       }
+      initMiniMap(route);
 
       $("#modalBackdrop").classList.add("open");
       document.body.style.overflow = "hidden";

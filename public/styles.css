@@ -598,7 +598,9 @@
     .badge.status-done { color: #1f5b34; background: #dbead5; }
     .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
     .gallery img { width: 100%; height: 84px; object-fit: cover; border-radius: 10px; cursor: pointer; }
-    .map-frame { width: 100%; height: 240px; border: 0; border-radius: 14px; background: #dfe8df; }
+    .mini-map { width: 100%; height: 240px; border-radius: 14px; overflow: hidden; background: #e7dcc5; border: 1px solid var(--line); }
+    .mini-map .leaflet-container { font-family: var(--sans); }
+    .mini-map-note { color: var(--muted); font-size: 12px; margin: 8px 0 0; }
     .risk { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 10px 12px; border-radius: 0 10px 10px 0; margin-bottom: 8px; font-size: 14px; }
     .coordinate-actions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 6px; }
     .coordinate-actions .btn { padding: 7px 10px; font-size: 12px; border-radius: 10px; }
@@ -819,7 +821,8 @@
       }
       .modal-close,
       .routebook-actions,
-      .map-frame,
+      .mini-map,
+      .mini-map-note,
       .coordinate-actions { display: none; }
     }
 
@@ -1174,7 +1177,7 @@
         font-size: 12px;
         padding: 8px;
       }
-      .map-frame { height: 180px; }
+      .mini-map { height: 180px; }
 
       /* Checkpoints */
       .checkpoint-timeline { gap: 8px; }

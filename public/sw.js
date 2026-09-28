@@ -9,7 +9,7 @@
  *  - 图片：Stale-While-Revalidate，限制缓存数量
  */
 
-const CACHE_VERSION = 'xiake-v8';
+const CACHE_VERSION = 'xiake-v9';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
