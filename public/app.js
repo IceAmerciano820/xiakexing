@@ -84,6 +84,33 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       }
     }
 
+    // 首页三入口：按季节 / 难度 / 地区，点了滚到对应筛选控件（季节会直接预设当季）
+    function initQuickEntries() {
+      const currentSeason = () => {
+        const month = new Date().getMonth() + 1;
+        if (month >= 3 && month <= 5) return "春";
+        if (month >= 6 && month <= 8) return "夏";
+        if (month >= 9 && month <= 11) return "秋";
+        return "冬";
+      };
+      $$("[data-quick]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const kind = button.dataset.quick;
+          if (kind === "season") {
+            const select = $("#seasonFilter");
+            if (select) {
+              select.value = currentSeason();
+              select.dispatchEvent(new Event("change"));
+              select.scrollIntoView({ behavior: "smooth", block: "center" });
+              return;
+            }
+          }
+          const target = kind === "difficulty" ? $("#difficultyChips") : $("#regionFilter");
+          if (target) target.scrollIntoView({ behavior: "smooth", block: "center" });
+        });
+      });
+    }
+
     function saveUserRouteState() {
       localStorage.setItem("xiake_favorites", JSON.stringify(Array.from(state.favorites)));
       localStorage.setItem("xiake_wishlist", JSON.stringify(Array.from(state.wishlist)));
@@ -312,6 +339,10 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
                 <div><b>${route.distance}</b><span>公里</span></div>
                 <div><b>${route.highest}</b><span>最高海拔</span></div>
                 <div><b>${route.tags.length}</b><span>标签</span></div>
+              </div>
+              <div class="card-actions">
+                <button class="card-action primary" data-make-pages="${route.id}" type="button">生成图文</button>
+                <button class="card-action" data-open-route="${route.id}" type="button">看攻略</button>
               </div>
             </div>
           </article>
@@ -1797,6 +1828,22 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
     }
 
     /* 小红书图文（5 页）预览：长按保存 / 一键保存全部 / 分享全部 */
+    // 生成图文：首页卡片和详情页共用同一套逻辑
+    async function makePagesForRoute(routeId, button) {
+      const route = ROUTES.find((item) => item.id === routeId);
+      if (!route || !window.XIAKE_POSTER || typeof window.XIAKE_POSTER.makePages !== "function") return;
+      const label = button ? button.textContent : "";
+      if (button) { button.disabled = true; button.textContent = "生成中…"; }
+      try {
+        const pages = await window.XIAKE_POSTER.makePages(route, ROUTEBOOKS[route.id]);
+        showPagesPreview(pages, route);
+      } catch (err) {
+        alert("生成图文失败：" + (err && err.message ? err.message : err));
+      } finally {
+        if (button) { button.disabled = false; button.textContent = label; }
+      }
+    }
+
     function showPagesPreview(pages, route) {
       const wrap = document.createElement("div");
       wrap.style.cssText = "position:fixed;inset:0;z-index:9999;background:rgba(24,20,16,.9);display:flex;flex-direction:column;gap:14px;padding:20px";
@@ -2196,6 +2243,13 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
           toggleFavorite(fav.dataset.fav, event);
           return;
         }
+        // 卡片上直接生成小红书图文：不用先进详情页
+        const makePages = event.target.closest("[data-make-pages]");
+        if (makePages) {
+          event.stopPropagation();
+          makePagesForRoute(makePages.dataset.makePages, makePages);
+          return;
+        }
         openModal(card.dataset.id);
       });
       $("#routeGrid").addEventListener("keydown", (event) => {
@@ -2350,6 +2404,7 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
     function init() {
       initSelectors();
       initTheme();
+      initQuickEntries();
       bindEvents();
       renderRoutes();
       openRouteFromUrl(); // 深链接：带 ?route=<id> 打开时直达该路线
