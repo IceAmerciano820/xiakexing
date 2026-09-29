@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.1" creator="霞客 · 两步路轨迹" xmlns="http://www.topografix.com/GPX/1/1">
   <metadata><name>清凉峰参考轨迹</name></metadata>
-  <trk><name>清凉峰</name><trkseg>
+  <trk><name>清凉峰</name>
+    <trkseg>
       <trkpt lat="30.15575" lon="118.86564"><ele>688</ele></trkpt>
       <trkpt lat="30.15596" lon="118.86514"><ele>690</ele></trkpt>
       <trkpt lat="30.155975" lon="118.86455"><ele>691</ele></trkpt>
@@ -564,5 +565,6 @@
       <trkpt lat="30.148458" lon="118.86563"><ele>681</ele></trkpt>
       <trkpt lat="30.148348" lon="118.86544"><ele>678</ele></trkpt>
       <trkpt lat="30.148424" lon="118.86529"><ele>675</ele></trkpt>
-    </trkseg></trk>
+    </trkseg>
+  </trk>
 </gpx>

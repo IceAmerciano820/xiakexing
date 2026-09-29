@@ -6,7 +6,8 @@
       "properties": {
         "name": "漓江杨堤—兴坪参考轨迹",
         "type": "hiking",
-        "source": "两步路用户轨迹"
+        "source": "两步路用户轨迹",
+        "segments": 1
       },
       "geometry": {
         "type": "LineString",

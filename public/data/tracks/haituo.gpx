@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.1" creator="霞客 · 两步路轨迹" xmlns="http://www.topografix.com/GPX/1/1">
   <metadata><name>海坨山参考轨迹</name></metadata>
-  <trk><name>海坨山</name><trkseg>
+  <trk><name>海坨山</name>
+    <trkseg>
       <trkpt lat="40.565127" lon="115.746458"><ele>1214</ele></trkpt>
       <trkpt lat="40.565155" lon="115.74651"><ele>1213</ele></trkpt>
       <trkpt lat="40.56513" lon="115.74656"><ele>1214</ele></trkpt>
@@ -2230,5 +2231,6 @@
       <trkpt lat="40.56526" lon="115.746531"><ele>1212</ele></trkpt>
       <trkpt lat="40.565215" lon="115.746535"><ele>1213</ele></trkpt>
       <trkpt lat="40.565185" lon="115.746477"><ele>1212</ele></trkpt>
-    </trkseg></trk>
+    </trkseg>
+  </trk>
 </gpx>

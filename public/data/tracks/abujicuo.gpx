@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.1" creator="霞客 · 两步路轨迹" xmlns="http://www.topografix.com/GPX/1/1">
   <metadata><name>阿布吉措参考轨迹</name></metadata>
-  <trk><name>阿布吉措</name><trkseg>
+  <trk><name>阿布吉措</name>
+    <trkseg>
       <trkpt lat="27.733291" lon="99.967892"><ele>3694</ele></trkpt>
       <trkpt lat="27.733215" lon="99.967811"><ele>3694</ele></trkpt>
       <trkpt lat="27.733152" lon="99.9679"><ele>3693</ele></trkpt>
@@ -1682,5 +1683,6 @@
       <trkpt lat="27.653358" lon="99.883855"><ele>3557</ele></trkpt>
       <trkpt lat="27.653286" lon="99.883782"><ele>3558</ele></trkpt>
       <trkpt lat="27.653286" lon="99.883782"><ele>3558</ele></trkpt>
-    </trkseg></trk>
+    </trkseg>
+  </trk>
 </gpx>

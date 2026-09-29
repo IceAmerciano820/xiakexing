@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.1" creator="霞客 · 两步路轨迹" xmlns="http://www.topografix.com/GPX/1/1">
   <metadata><name>六盘山参考轨迹</name></metadata>
-  <trk><name>六盘山</name><trkseg>
+  <trk><name>六盘山</name>
+    <trkseg>
       <trkpt lat="35.608685" lon="106.24337"><ele>2170</ele></trkpt>
       <trkpt lat="35.60849" lon="106.243034"><ele>2170</ele></trkpt>
       <trkpt lat="35.60829" lon="106.24285"><ele>2169</ele></trkpt>
@@ -623,5 +624,6 @@
       <trkpt lat="35.494595" lon="106.2567"><ele>2125</ele></trkpt>
       <trkpt lat="35.49453" lon="106.25677"><ele>2124</ele></trkpt>
       <trkpt lat="35.49453" lon="106.25677"><ele>2124</ele></trkpt>
-    </trkseg></trk>
+    </trkseg>
+  </trk>
 </gpx>

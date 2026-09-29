@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.1" creator="霞客 · 两步路轨迹" xmlns="http://www.topografix.com/GPX/1/1">
   <metadata><name>漓江杨堤—兴坪参考轨迹</name></metadata>
-  <trk><name>漓江杨堤—兴坪</name><trkseg>
+  <trk><name>漓江杨堤—兴坪</name>
+    <trkseg>
       <trkpt lat="24.991733" lon="110.422401"><ele>188</ele></trkpt>
       <trkpt lat="24.991687" lon="110.422317"><ele>188</ele></trkpt>
       <trkpt lat="24.99162" lon="110.422234"><ele>188</ele></trkpt>
@@ -1927,5 +1928,6 @@
       <trkpt lat="24.920496" lon="110.527721"><ele>118</ele></trkpt>
       <trkpt lat="24.920529" lon="110.527726"><ele>119</ele></trkpt>
       <trkpt lat="24.920529" lon="110.527726"><ele>119</ele></trkpt>
-    </trkseg></trk>
+    </trkseg>
+  </trk>
 </gpx>
