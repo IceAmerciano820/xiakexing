@@ -4503,8 +4503,8 @@ Object.assign(window.ROUTEBOOKS, {
     "version": 1,
     "updatedAt": "2026-08-16",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹来自两步路用户上传（2026-09 入库，约 20 km）",
+      "检查点与票价仍为待核实数据，出发前请与当地确认"
     ],
     "status": {
       "open": null,
@@ -5099,13 +5099,13 @@ Object.assign(window.ROUTEBOOKS, {
   },
   "qilian": {
     "id": "qilian",
-    "name": "祁连山草原穿越",
+    "name": "冰沟河穿越",
     "credibility": "C",
     "version": 1,
     "updatedAt": "2026-08-16",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹来自两步路用户上传（2026-09 入库，约 26 km）",
+      "检查点与票价仍为待核实数据，出发前请与当地确认"
     ],
     "status": {
       "open": null,
@@ -5570,13 +5570,13 @@ Object.assign(window.ROUTEBOOKS, {
   },
   "qinghai-lake": {
     "id": "qinghai-lake",
-    "name": "青海湖环湖",
+    "name": "青海湖环湖骑行",
     "credibility": "C",
     "version": 1,
     "updatedAt": "2026-08-16",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹来自两步路用户上传（2026-09 入库，约 355 km 骑行）",
+      "检查点与票价仍为待核实数据，出发前请与当地确认"
     ],
     "status": {
       "open": null,
