@@ -5,10 +5,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "徽杭古道",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -69,40 +69,132 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "绩溪伏岭",
-        "lat": 30.036,
-        "lon": 118.886,
-        "elevation": 550,
+        "name": "起点",
+        "lat": 30.149036,
+        "lon": 118.850205,
+        "elevation": 679,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "沿古道缓升，过江南第一关后进入山谷，约 9 公里，住下雪堂或蓝天凹。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "下雪堂",
-        "lat": 30.044,
-        "lon": 118.894,
-        "elevation": 1050,
-        "distance": 18,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "登蓝天凹看群山，随后一路下坡至浙江临安永来村，约 9 公里。"
+        "name": "途中 4.3 km",
+        "lat": 30.142427,
+        "lon": 118.837593,
+        "elevation": 766,
+        "distance": 4.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 30.136798,
+        "lon": 118.827196,
+        "elevation": 1044,
+        "distance": 6,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 1044 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "途中 8.7 km",
+        "lat": 30.137742,
+        "lon": 118.804891,
+        "elevation": 710,
+        "distance": 8.7,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 13 km",
+        "lat": 30.137815,
+        "lon": 118.776808,
+        "elevation": 545,
+        "distance": 13,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 30.144198,
+        "lon": 118.747874,
+        "elevation": 277,
+        "distance": 17.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 550
+        "elevation": 679
       },
       {
-        "distance": 18,
-        "elevation": 1050
+        "distance": 1.6,
+        "elevation": 700
+      },
+      {
+        "distance": 3.2,
+        "elevation": 706
+      },
+      {
+        "distance": 4.7,
+        "elevation": 848
+      },
+      {
+        "distance": 6.3,
+        "elevation": 1026
+      },
+      {
+        "distance": 7.9,
+        "elevation": 807
+      },
+      {
+        "distance": 9.5,
+        "elevation": 628
+      },
+      {
+        "distance": 11,
+        "elevation": 602
+      },
+      {
+        "distance": 12.6,
+        "elevation": 556
+      },
+      {
+        "distance": 14.2,
+        "elevation": 469
+      },
+      {
+        "distance": 15.8,
+        "elevation": 326
+      },
+      {
+        "distance": 17.3,
+        "elevation": 277
       }
     ],
     "itinerary": [
@@ -162,10 +254,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "喀拉峻—琼库什台穿越",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -226,74 +318,119 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "特克斯",
-        "lat": 43.048,
-        "lon": 81.998,
-        "elevation": 1900,
+        "name": "起点",
+        "lat": 42.915822,
+        "lon": 82.193203,
+        "elevation": 2036,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "进入草原徒步，约 10-12 公里，住加撒干营地或牧民家。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "加撒干",
-        "lat": 43.056,
-        "lon": 82.006,
-        "elevation": 2233,
-        "distance": 14,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "下切河谷再上升，约 14 公里，住琼库什台村。"
+        "name": "途中 13.8 km",
+        "lat": 42.998865,
+        "lon": 82.166183,
+        "elevation": 2415,
+        "distance": 13.8,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "琼库什台周边牧场",
-        "lat": 43.064,
-        "lon": 82.014,
-        "elevation": 2567,
-        "distance": 28,
-        "water": true,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "轻松适应或走乌孙古道入口段，拍摄古村与森林。"
+        "name": "途中 27.7 km",
+        "lat": 43.031097,
+        "lon": 82.282777,
+        "elevation": 2382,
+        "distance": 27.7,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "琼库什台",
-        "lat": 43.072,
-        "lon": 82.022,
-        "elevation": 2900,
-        "distance": 42,
-        "water": true,
-        "camp": true,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "乘车返回特克斯，途中可停留八卦城。"
+        "name": "最高点",
+        "lat": 43.035249,
+        "lon": 82.421245,
+        "elevation": 2886,
+        "distance": 41.1,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 2886 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "终点",
+        "lat": 43.110186,
+        "lon": 82.52053,
+        "elevation": 1394,
+        "distance": 55.2,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 1900
+        "elevation": 2036
       },
       {
-        "distance": 14,
-        "elevation": 2233
+        "distance": 5,
+        "elevation": 2164
       },
       {
-        "distance": 28,
-        "elevation": 2567
+        "distance": 10,
+        "elevation": 1793
       },
       {
-        "distance": 42,
-        "elevation": 2900
+        "distance": 15,
+        "elevation": 2481
+      },
+      {
+        "distance": 20.1,
+        "elevation": 2475
+      },
+      {
+        "distance": 25.1,
+        "elevation": 2337
+      },
+      {
+        "distance": 30.1,
+        "elevation": 2407
+      },
+      {
+        "distance": 35.1,
+        "elevation": 2588
+      },
+      {
+        "distance": 40.1,
+        "elevation": 2835
+      },
+      {
+        "distance": 45.1,
+        "elevation": 2400
+      },
+      {
+        "distance": 50.2,
+        "elevation": 1854
+      },
+      {
+        "distance": 55.2,
+        "elevation": 1394
       }
     ],
     "itinerary": [
@@ -371,10 +508,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "扎尕那—卓尼穿越",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -435,74 +572,132 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "扎尕那",
-        "lat": 34.208,
-        "lon": 103.188,
-        "elevation": 2000,
+        "name": "起点",
+        "lat": 34.247932,
+        "lon": 103.200645,
+        "elevation": 3135,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "从村后进入峡谷与石林，约 12 公里，扎营。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "一线天",
-        "lat": 34.216,
-        "lon": 103.196,
-        "elevation": 2733,
-        "distance": 19,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "翻越多个垭口，海拔 4000 米上下，约 13 公里。"
+        "name": "途中 12.5 km",
+        "lat": 34.270107,
+        "lon": 103.267845,
+        "elevation": 3957,
+        "distance": 12.5,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "垭口",
-        "lat": 34.224,
-        "lon": 103.204,
-        "elevation": 3467,
-        "distance": 39,
-        "water": true,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "下降进入河谷，约 14 公里，扎营。"
+        "name": "途中 24.9 km",
+        "lat": 34.241356,
+        "lon": 103.371773,
+        "elevation": 3965,
+        "distance": 24.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "牧场",
-        "lat": 34.232,
-        "lon": 103.212,
-        "elevation": 4200,
-        "distance": 58,
-        "water": true,
-        "camp": true,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "沿河谷出山，联系车辆返回卓尼，约 16 公里。"
+        "name": "最高点",
+        "lat": 34.24715,
+        "lon": 103.384697,
+        "elevation": 4153,
+        "distance": 26.4,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 4153 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "途中 37.3 km",
+        "lat": 34.275806,
+        "lon": 103.4627,
+        "elevation": 3185,
+        "distance": 37.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 34.319527,
+        "lon": 103.543442,
+        "elevation": 3206,
+        "distance": 49.8,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 2000
+        "elevation": 3135
       },
       {
-        "distance": 19,
-        "elevation": 2733
+        "distance": 4.5,
+        "elevation": 3673
       },
       {
-        "distance": 39,
-        "elevation": 3467
+        "distance": 9.1,
+        "elevation": 3974
       },
       {
-        "distance": 58,
-        "elevation": 4200
+        "distance": 13.6,
+        "elevation": 4003
+      },
+      {
+        "distance": 18.1,
+        "elevation": 3818
+      },
+      {
+        "distance": 22.6,
+        "elevation": 3806
+      },
+      {
+        "distance": 27.1,
+        "elevation": 4104
+      },
+      {
+        "distance": 31.7,
+        "elevation": 3719
+      },
+      {
+        "distance": 36.2,
+        "elevation": 3265
+      },
+      {
+        "distance": 40.7,
+        "elevation": 3339
+      },
+      {
+        "distance": 45.2,
+        "elevation": 3582
+      },
+      {
+        "distance": 49.8,
+        "elevation": 3206
       }
     ],
     "itinerary": [
@@ -580,10 +775,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "船底顶",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -644,40 +839,106 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "罗坑/新洞",
-        "lat": 24.646,
-        "lon": 113.166,
-        "elevation": 300,
+        "name": "起点",
+        "lat": 24.426507,
+        "lon": 113.235912,
+        "elevation": 281,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "上升明显，过乱石坡后登顶，约 12 公里，山顶扎营。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "船底顶",
-        "lat": 24.654,
-        "lon": 113.174,
-        "elevation": 1900,
-        "distance": 25,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "视队伍能力选择下撤路线，约 13 公里，注意湿滑路段。"
+        "name": "途中 5.8 km",
+        "lat": 24.447876,
+        "lon": 113.272449,
+        "elevation": 453,
+        "distance": 5.8,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 24.481555,
+        "lon": 113.261367,
+        "elevation": 1587,
+        "distance": 11.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 1587 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "终点",
+        "lat": 24.456132,
+        "lon": 113.231134,
+        "elevation": 535,
+        "distance": 17.4,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 300
+        "elevation": 281
       },
       {
-        "distance": 25,
-        "elevation": 1900
+        "distance": 2.1,
+        "elevation": 304
+      },
+      {
+        "distance": 4.2,
+        "elevation": 336
+      },
+      {
+        "distance": 6.3,
+        "elevation": 602
+      },
+      {
+        "distance": 8.4,
+        "elevation": 984
+      },
+      {
+        "distance": 10.6,
+        "elevation": 1335
+      },
+      {
+        "distance": 12.7,
+        "elevation": 1385
+      },
+      {
+        "distance": 14.8,
+        "elevation": 1139
+      },
+      {
+        "distance": 16.9,
+        "elevation": 647
+      },
+      {
+        "distance": 19,
+        "elevation": 731
+      },
+      {
+        "distance": 21.1,
+        "elevation": 577
+      },
+      {
+        "distance": 23.2,
+        "elevation": 260
       }
     ],
     "itinerary": [
@@ -737,10 +998,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "长白山天池西坡",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -801,40 +1062,119 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "西坡景区",
-        "lat": 42.006,
-        "lon": 128.056,
-        "elevation": 1770,
+        "name": "起点",
+        "lat": 41.944209,
+        "lon": 127.94447,
+        "elevation": 1462,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "乘景区交通至登山点，沿台阶上天池，再走苔原栈道，约 6-8 公里。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "地下森林",
-        "lat": 42.014,
-        "lon": 128.064,
-        "elevation": 2470,
-        "distance": 12,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "轻松森林徒步，约 4 公里，随后返程。"
+        "name": "途中 11.1 km",
+        "lat": 41.989694,
+        "lon": 128.009481,
+        "elevation": 2094,
+        "distance": 11.1,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 41.99682,
+        "lon": 128.02885,
+        "elevation": 2467,
+        "distance": 13.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 2467 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "途中 22.1 km",
+        "lat": 41.95912,
+        "lon": 127.998447,
+        "elevation": 1717,
+        "distance": 22.1,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 41.913303,
+        "lon": 127.925154,
+        "elevation": 1388,
+        "distance": 33.2,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 1770
+        "elevation": 1462
       },
       {
-        "distance": 12,
-        "elevation": 2470
+        "distance": 4.2,
+        "elevation": 1624
+      },
+      {
+        "distance": 8.1,
+        "elevation": 1851
+      },
+      {
+        "distance": 12.1,
+        "elevation": 2169
+      },
+      {
+        "distance": 16.1,
+        "elevation": 2171
+      },
+      {
+        "distance": 20.1,
+        "elevation": 1871
+      },
+      {
+        "distance": 24.1,
+        "elevation": 1618
+      },
+      {
+        "distance": 28.1,
+        "elevation": 1465
+      },
+      {
+        "distance": 32.2,
+        "elevation": 1430
+      },
+      {
+        "distance": 36.2,
+        "elevation": 1323
+      },
+      {
+        "distance": 40.2,
+        "elevation": 1417
+      },
+      {
+        "distance": 44.2,
+        "elevation": 1465
       }
     ],
     "itinerary": [
@@ -894,10 +1234,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "太白山南北穿越",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -958,57 +1298,132 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "厚畛子",
-        "lat": 33.942,
-        "lon": 107.762,
-        "elevation": 1167,
+        "name": "起点",
+        "lat": 33.874361,
+        "lon": 107.813877,
+        "elevation": 1554,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "沿溪谷与森林上升，约 12 公里，住南天门。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "南天门",
-        "lat": 33.95,
-        "lon": 107.77,
-        "elevation": 2467,
-        "distance": 24,
-        "water": false,
-        "camp": false,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "进入高山石海区，约 16 公里，住大爷海附近。"
+        "name": "途中 9.1 km",
+        "lat": 33.915511,
+        "lon": 107.780043,
+        "elevation": 3087,
+        "distance": 9.1,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "大爷海",
-        "lat": 33.958,
-        "lon": 107.778,
-        "elevation": 3767,
-        "distance": 48,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "沿北坡景区步道下撤，约 14 公里，乘索道/交通出山。"
+        "name": "最高点",
+        "lat": 33.955073,
+        "lon": 107.764477,
+        "elevation": 3724,
+        "distance": 15.2,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 3724 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "途中 18.2 km",
+        "lat": 33.968407,
+        "lon": 107.772311,
+        "elevation": 3567,
+        "distance": 18.2,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 27.2 km",
+        "lat": 34.015216,
+        "lon": 107.720138,
+        "elevation": 2726,
+        "distance": 27.2,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 34.054026,
+        "lon": 107.661714,
+        "elevation": 1073,
+        "distance": 36.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 1167
+        "elevation": 1554
       },
       {
-        "distance": 24,
-        "elevation": 2467
+        "distance": 3.3,
+        "elevation": 1761
       },
       {
-        "distance": 48,
-        "elevation": 3767
+        "distance": 6.6,
+        "elevation": 2510
+      },
+      {
+        "distance": 10.7,
+        "elevation": 3094
+      },
+      {
+        "distance": 13.2,
+        "elevation": 3319
+      },
+      {
+        "distance": 16.5,
+        "elevation": 3568
+      },
+      {
+        "distance": 19.8,
+        "elevation": 3294
+      },
+      {
+        "distance": 23.1,
+        "elevation": 2930
+      },
+      {
+        "distance": 26.4,
+        "elevation": 2719
+      },
+      {
+        "distance": 29.7,
+        "elevation": 2129
+      },
+      {
+        "distance": 33,
+        "elevation": 1452
+      },
+      {
+        "distance": 36.3,
+        "elevation": 1073
       }
     ],
     "itinerary": [
@@ -1077,10 +1492,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "莫干山古道",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -1141,23 +1556,80 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "庾村",
-        "lat": 30.6,
-        "lon": 119.88,
-        "elevation": 320,
+        "name": "起点",
+        "lat": 30.604732,
+        "lon": 119.88265,
+        "elevation": 102,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "从庾村沿古道上山，穿竹林至剑池，再环线返回，约 9 公里。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 30.608535,
+        "lon": 119.867206,
+        "elevation": 454,
+        "distance": 2,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 320
+        "elevation": 102
+      },
+      {
+        "distance": 0.7,
+        "elevation": 185
+      },
+      {
+        "distance": 1.5,
+        "elevation": 302
+      },
+      {
+        "distance": 2.2,
+        "elevation": 465
+      },
+      {
+        "distance": 3,
+        "elevation": 565
+      },
+      {
+        "distance": 3.7,
+        "elevation": 576
+      },
+      {
+        "distance": 4.4,
+        "elevation": 588
+      },
+      {
+        "distance": 5.2,
+        "elevation": 549
+      },
+      {
+        "distance": 5.9,
+        "elevation": 514
+      },
+      {
+        "distance": 6.6,
+        "elevation": 371
+      },
+      {
+        "distance": 7.4,
+        "elevation": 245
+      },
+      {
+        "distance": 8.1,
+        "elevation": 111
       }
     ],
     "itinerary": [
@@ -1208,10 +1680,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "漓江杨堤—兴坪",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -1272,23 +1744,132 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "杨堤",
-        "lat": 24.95,
-        "lon": 110.54,
-        "elevation": 300,
+        "name": "起点",
+        "lat": 24.991733,
+        "lon": 110.422401,
+        "elevation": 188,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "沿江边步道行走，约 16 公里，可在兴坪住一晚看日落。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 24.980842,
+        "lon": 110.441352,
+        "elevation": 228,
+        "distance": 3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 228 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "途中 5 km",
+        "lat": 24.969952,
+        "lon": 110.45214,
+        "elevation": 118,
+        "distance": 5,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 9.9 km",
+        "lat": 24.94805,
+        "lon": 110.473737,
+        "elevation": 114,
+        "distance": 9.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 14.9 km",
+        "lat": 24.92437,
+        "lon": 110.48946,
+        "elevation": 112,
+        "distance": 14.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 24.920529,
+        "lon": 110.527726,
+        "elevation": 119,
+        "distance": 19.8,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 300
+        "elevation": 188
+      },
+      {
+        "distance": 1.8,
+        "elevation": 182
+      },
+      {
+        "distance": 3.6,
+        "elevation": 127
+      },
+      {
+        "distance": 5.4,
+        "elevation": 128
+      },
+      {
+        "distance": 7.2,
+        "elevation": 118
+      },
+      {
+        "distance": 9,
+        "elevation": 109
+      },
+      {
+        "distance": 10.8,
+        "elevation": 110
+      },
+      {
+        "distance": 12.6,
+        "elevation": 94
+      },
+      {
+        "distance": 14.4,
+        "elevation": 114
+      },
+      {
+        "distance": 16.2,
+        "elevation": 119
+      },
+      {
+        "distance": 18,
+        "elevation": 121
+      },
+      {
+        "distance": 19.8,
+        "elevation": 119
       }
     ],
     "itinerary": [
@@ -1339,10 +1920,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "恩施大峡谷—鹿院坪",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -1403,40 +1984,106 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "恩施大峡谷",
-        "lat": 30.176,
-        "lon": 109.486,
-        "elevation": 800,
+        "name": "起点",
+        "lat": 30.473873,
+        "lon": 109.221967,
+        "elevation": 1243,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "游览地缝后走七星寨栈道，约 8-10 公里，住沐抚镇。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "沐抚",
-        "lat": 30.184,
-        "lon": 109.494,
-        "elevation": 1700,
-        "distance": 18,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "下至天坑村落鹿院坪，走溪谷环线，约 8 公里，后返回恩施。"
+        "name": "途中 3.7 km",
+        "lat": 30.482202,
+        "lon": 109.209432,
+        "elevation": 1343,
+        "distance": 3.7,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 7.4 km",
+        "lat": 30.496355,
+        "lon": 109.186108,
+        "elevation": 1243,
+        "distance": 7.4,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 30.505337,
+        "lon": 109.176973,
+        "elevation": 1521,
+        "distance": 14.8,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 1521 m；数据取自两步路实测轨迹。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 800
+        "elevation": 1243
       },
       {
-        "distance": 18,
-        "elevation": 1700
+        "distance": 1.3,
+        "elevation": 1114
+      },
+      {
+        "distance": 2.7,
+        "elevation": 1152
+      },
+      {
+        "distance": 4,
+        "elevation": 1393
+      },
+      {
+        "distance": 5.4,
+        "elevation": 1428
+      },
+      {
+        "distance": 6.7,
+        "elevation": 1247
+      },
+      {
+        "distance": 8.1,
+        "elevation": 1209
+      },
+      {
+        "distance": 9.4,
+        "elevation": 1255
+      },
+      {
+        "distance": 10.7,
+        "elevation": 1333
+      },
+      {
+        "distance": 12.1,
+        "elevation": 1153
+      },
+      {
+        "distance": 13.4,
+        "elevation": 1249
+      },
+      {
+        "distance": 14.8,
+        "elevation": 1521
       }
     ],
     "itinerary": [
@@ -1496,10 +2143,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "洛克线",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -1560,91 +2207,132 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "木里水洛",
-        "lat": 28.734,
-        "lon": 100.634,
-        "elevation": 1200,
+        "name": "起点",
+        "lat": 28.427744,
+        "lon": 100.558687,
+        "elevation": 3030,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "乘车进入徒步起点，适应海拔。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "嘟噜村",
-        "lat": 28.742,
-        "lon": 100.642,
-        "elevation": 2100,
-        "distance": 18,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "沿水洛河上升，进入原始森林。"
+        "name": "途中 14.7 km",
+        "lat": 28.392329,
+        "lon": 100.496158,
+        "elevation": 3415,
+        "distance": 14.7,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "满措牛场",
-        "lat": 28.75,
-        "lon": 100.65,
-        "elevation": 3000,
-        "distance": 36,
-        "water": true,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "翻越垭口，雪山开始出现。"
+        "name": "途中 29.3 km",
+        "lat": 28.35893,
+        "lon": 100.398066,
+        "elevation": 4633,
+        "distance": 29.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "杂巴拉",
-        "lat": 28.758,
-        "lon": 100.658,
-        "elevation": 3900,
-        "distance": 54,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "经过高山海子与牧场，扎营。"
+        "name": "最高点",
+        "lat": 28.305995,
+        "lon": 100.331239,
+        "elevation": 4784,
+        "distance": 42,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 4784 m；数据取自两步路实测轨迹。"
       },
       {
-        "name": "新果牛场",
-        "lat": 28.766,
-        "lon": 100.666,
-        "elevation": 4800,
-        "distance": 72,
-        "water": true,
-        "camp": true,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "出山进入亚丁，结束穿越。"
+        "name": "途中 44 km",
+        "lat": 28.320922,
+        "lon": 100.326348,
+        "elevation": 4761,
+        "distance": 44,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 28.389384,
+        "lon": 100.383292,
+        "elevation": 4217,
+        "distance": 58.6,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 1200
+        "elevation": 3030
       },
       {
-        "distance": 18,
-        "elevation": 2100
+        "distance": 5.3,
+        "elevation": 3018
       },
       {
-        "distance": 36,
-        "elevation": 3000
+        "distance": 10.7,
+        "elevation": 3259
       },
       {
-        "distance": 54,
-        "elevation": 3900
+        "distance": 16,
+        "elevation": 3529
       },
       {
-        "distance": 72,
-        "elevation": 4800
+        "distance": 21.3,
+        "elevation": 3960
+      },
+      {
+        "distance": 26.6,
+        "elevation": 4338
+      },
+      {
+        "distance": 32,
+        "elevation": 4502
+      },
+      {
+        "distance": 37.3,
+        "elevation": 4297
+      },
+      {
+        "distance": 42.6,
+        "elevation": 4765
+      },
+      {
+        "distance": 48,
+        "elevation": 4717
+      },
+      {
+        "distance": 53.3,
+        "elevation": 4520
+      },
+      {
+        "distance": 58.6,
+        "elevation": 4217
       }
     ],
     "itinerary": [
@@ -1731,10 +2419,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "党岭—莫斯卡",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -1795,74 +2483,132 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "党岭村",
-        "lat": 30.768,
-        "lon": 101.408,
-        "elevation": 2800,
+        "name": "起点",
+        "lat": 31.344902,
+        "lon": 101.600926,
+        "elevation": 4308,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "沿森林与草甸上升，住葫芦海附近。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "葫芦海",
-        "lat": 30.776,
-        "lon": 101.416,
-        "elevation": 3267,
-        "distance": 12,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "走海子环线后返回，拍摄晨雾。"
+        "name": "最高点",
+        "lat": 31.346294,
+        "lon": 101.588662,
+        "elevation": 4366,
+        "distance": 1.5,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 4366 m；数据取自两步路实测轨迹。"
       },
       {
-        "name": "党岭村",
-        "lat": 30.784,
-        "lon": 101.424,
-        "elevation": 3733,
-        "distance": 23,
-        "water": true,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "翻越牧场垭口进入莫斯卡，住村中。"
+        "name": "途中 19.2 km",
+        "lat": 31.244486,
+        "lon": 101.669625,
+        "elevation": 3581,
+        "distance": 19.2,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "莫斯卡",
-        "lat": 30.792,
-        "lon": 101.432,
-        "elevation": 4200,
-        "distance": 35,
-        "water": true,
-        "camp": true,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "轻松返程，途中可看土拨鼠。"
+        "name": "途中 38.4 km",
+        "lat": 31.101008,
+        "lon": 101.672805,
+        "elevation": 2821,
+        "distance": 38.4,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 57.5 km",
+        "lat": 31.072598,
+        "lon": 101.543454,
+        "elevation": 2692,
+        "distance": 57.5,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 31.073178,
+        "lon": 101.404675,
+        "elevation": 3397,
+        "distance": 76.7,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 2800
+        "elevation": 4308
       },
       {
-        "distance": 12,
-        "elevation": 3267
+        "distance": 7,
+        "elevation": 4013
       },
       {
-        "distance": 23,
-        "elevation": 3733
+        "distance": 14,
+        "elevation": 3751
       },
       {
-        "distance": 35,
-        "elevation": 4200
+        "distance": 20.9,
+        "elevation": 3466
+      },
+      {
+        "distance": 27.9,
+        "elevation": 3286
+      },
+      {
+        "distance": 34.9,
+        "elevation": 2984
+      },
+      {
+        "distance": 41.9,
+        "elevation": 2673
+      },
+      {
+        "distance": 48.8,
+        "elevation": 2555
+      },
+      {
+        "distance": 55.8,
+        "elevation": 2657
+      },
+      {
+        "distance": 62.8,
+        "elevation": 2852
+      },
+      {
+        "distance": 69.7,
+        "elevation": 3176
+      },
+      {
+        "distance": 76.7,
+        "elevation": 3397
       }
     ],
     "itinerary": [
@@ -1940,10 +2686,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "格聂C线",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -2004,91 +2750,132 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "理塘",
-        "lat": 29.844,
-        "lon": 99.814,
-        "elevation": 850,
+        "name": "起点",
+        "lat": 29.796176,
+        "lon": 99.661781,
+        "elevation": 3916,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "乘车至徒步起点，适应海拔。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "新冷古寺",
-        "lat": 29.852,
-        "lon": 99.822,
-        "elevation": 1900,
-        "distance": 24,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "沿河谷与草甸缓升。"
+        "name": "途中 29.7 km",
+        "lat": 29.690668,
+        "lon": 99.541363,
+        "elevation": 4787,
+        "distance": 29.7,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "夯达营地",
-        "lat": 29.86,
-        "lon": 99.83,
-        "elevation": 2950,
-        "distance": 48,
-        "water": true,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "翻越草坡，接近神山北壁。"
+        "name": "最高点",
+        "lat": 29.849207,
+        "lon": 99.489786,
+        "elevation": 4977,
+        "distance": 53.2,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 4977 m；数据取自两步路实测轨迹。"
       },
       {
-        "name": "热梯河谷",
-        "lat": 29.868,
-        "lon": 99.838,
-        "elevation": 4000,
-        "distance": 71,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "穿越海子群与垭口。"
+        "name": "途中 59.4 km",
+        "lat": 29.892452,
+        "lon": 99.470713,
+        "elevation": 4364,
+        "distance": 59.4,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "格木村",
-        "lat": 29.876,
-        "lon": 99.846,
-        "elevation": 5050,
-        "distance": 95,
-        "water": true,
-        "camp": true,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "完成环线并乘车返回理塘。"
+        "name": "途中 89.1 km",
+        "lat": 30.052163,
+        "lon": 99.510021,
+        "elevation": 4328,
+        "distance": 89.1,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 30.116785,
+        "lon": 99.743307,
+        "elevation": 4245,
+        "distance": 118.8,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 850
+        "elevation": 3916
       },
       {
-        "distance": 24,
-        "elevation": 1900
+        "distance": 10.8,
+        "elevation": 3964
       },
       {
-        "distance": 48,
-        "elevation": 2950
+        "distance": 21.6,
+        "elevation": 4692
       },
       {
-        "distance": 71,
-        "elevation": 4000
+        "distance": 32.4,
+        "elevation": 4653
       },
       {
-        "distance": 95,
-        "elevation": 5050
+        "distance": 43.2,
+        "elevation": 4183
+      },
+      {
+        "distance": 54,
+        "elevation": 4795
+      },
+      {
+        "distance": 64.8,
+        "elevation": 3956
+      },
+      {
+        "distance": 75.6,
+        "elevation": 4007
+      },
+      {
+        "distance": 86.5,
+        "elevation": 4248
+      },
+      {
+        "distance": 97.2,
+        "elevation": 4783
+      },
+      {
+        "distance": 108,
+        "elevation": 4277
+      },
+      {
+        "distance": 118.8,
+        "elevation": 4245
       }
     ],
     "itinerary": [
@@ -2175,10 +2962,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "尼汝—稻城亚丁穿越",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -2239,91 +3026,132 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "香格里拉",
-        "lat": 28.384,
-        "lon": 100.284,
-        "elevation": 1500,
+        "name": "起点",
+        "lat": 27.955679,
+        "lon": 100.064423,
+        "elevation": 2839,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "乘车进入尼汝，适应海拔。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "尼汝",
-        "lat": 28.392,
-        "lon": 100.292,
-        "elevation": 2325,
-        "distance": 20,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "穿过森林与溪谷，扎营。"
+        "name": "途中 18.9 km",
+        "lat": 28.078285,
+        "lon": 100.062151,
+        "elevation": 3665,
+        "distance": 18.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "南宝牧场",
-        "lat": 28.4,
-        "lon": 100.3,
-        "elevation": 3150,
-        "distance": 39,
-        "water": true,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "翻越垭口后进入牧场。"
+        "name": "途中 37.7 km",
+        "lat": 28.07085,
+        "lon": 100.199569,
+        "elevation": 3900,
+        "distance": 37.7,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "新寨河",
-        "lat": 28.408,
-        "lon": 100.308,
-        "elevation": 3975,
-        "distance": 59,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "下切至卡斯地狱谷。"
+        "name": "途中 56.6 km",
+        "lat": 28.401081,
+        "lon": 100.280773,
+        "elevation": 3412,
+        "distance": 56.6,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "卡斯村",
-        "lat": 28.416,
-        "lon": 100.316,
-        "elevation": 4800,
-        "distance": 78,
-        "water": true,
-        "camp": true,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "出山进入亚丁，结束穿越。"
+        "name": "最高点",
+        "lat": 28.367179,
+        "lon": 100.336312,
+        "elevation": 4698,
+        "distance": 67.5,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 4698 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "终点",
+        "lat": 28.389418,
+        "lon": 100.383108,
+        "elevation": 4184,
+        "distance": 75.5,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 1500
+        "elevation": 2839
       },
       {
-        "distance": 20,
-        "elevation": 2325
+        "distance": 6.9,
+        "elevation": 3320
       },
       {
-        "distance": 39,
-        "elevation": 3150
+        "distance": 13.7,
+        "elevation": 4029
       },
       {
-        "distance": 59,
-        "elevation": 3975
+        "distance": 20.6,
+        "elevation": 3863
       },
       {
-        "distance": 78,
-        "elevation": 4800
+        "distance": 27.4,
+        "elevation": 4462
+      },
+      {
+        "distance": 34.3,
+        "elevation": 4106
+      },
+      {
+        "distance": 41.2,
+        "elevation": 3550
+      },
+      {
+        "distance": 48,
+        "elevation": 2898
+      },
+      {
+        "distance": 54.9,
+        "elevation": 3263
+      },
+      {
+        "distance": 61.8,
+        "elevation": 4056
+      },
+      {
+        "distance": 68.6,
+        "elevation": 4547
+      },
+      {
+        "distance": 75.5,
+        "elevation": 4184
       }
     ],
     "itinerary": [
@@ -2410,10 +3238,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "梅里北坡",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -2474,74 +3302,132 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "亚贡村",
-        "lat": 28.538,
-        "lon": 98.818,
-        "elevation": 1700,
+        "name": "起点",
+        "lat": 28.60688,
+        "lon": 98.723053,
+        "elevation": 3077,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "沿河谷进入森林，适应海拔。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "涨价营地",
-        "lat": 28.546,
-        "lon": 98.826,
-        "elevation": 2867,
-        "distance": 18,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "上升至冰川观景营地，风景渐开。"
+        "name": "途中 12.3 km",
+        "lat": 28.566352,
+        "lon": 98.676632,
+        "elevation": 3494,
+        "distance": 12.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "坡均营地",
-        "lat": 28.554,
-        "lon": 98.834,
-        "elevation": 4033,
-        "distance": 37,
-        "water": true,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "翻越垭口，注意风雪。"
+        "name": "途中 24.6 km",
+        "lat": 28.535617,
+        "lon": 98.651957,
+        "elevation": 4758,
+        "distance": 24.6,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "坡将营地",
-        "lat": 28.562,
-        "lon": 98.842,
-        "elevation": 5200,
-        "distance": 55,
-        "water": true,
-        "camp": true,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "根据天气选择垭口，下撤至亚贡。"
+        "name": "最高点",
+        "lat": 28.555026,
+        "lon": 98.632813,
+        "elevation": 5210,
+        "distance": 32.2,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 5210 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "途中 36.8 km",
+        "lat": 28.54973,
+        "lon": 98.658688,
+        "elevation": 4181,
+        "distance": 36.8,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 28.596926,
+        "lon": 98.713119,
+        "elevation": 2967,
+        "distance": 49.1,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 1700
+        "elevation": 3077
       },
       {
-        "distance": 18,
-        "elevation": 2867
+        "distance": 4.5,
+        "elevation": 3084
       },
       {
-        "distance": 37,
-        "elevation": 4033
+        "distance": 8.9,
+        "elevation": 3317
       },
       {
-        "distance": 55,
-        "elevation": 5200
+        "distance": 13.4,
+        "elevation": 3538
+      },
+      {
+        "distance": 17.9,
+        "elevation": 3855
+      },
+      {
+        "distance": 22.3,
+        "elevation": 4440
+      },
+      {
+        "distance": 26.8,
+        "elevation": 4259
+      },
+      {
+        "distance": 31.2,
+        "elevation": 4946
+      },
+      {
+        "distance": 35.7,
+        "elevation": 4268
+      },
+      {
+        "distance": 40.2,
+        "elevation": 3630
+      },
+      {
+        "distance": 44.6,
+        "elevation": 3273
+      },
+      {
+        "distance": 49.1,
+        "elevation": 2967
       }
     ],
     "itinerary": [
@@ -2619,10 +3505,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "库拉岗日",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -2683,74 +3569,115 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "洛扎",
-        "lat": 28.188,
-        "lon": 90.588,
-        "elevation": 3300,
+        "name": "起点",
+        "lat": 28.256985,
+        "lon": 90.756072,
+        "elevation": null,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "乘车进入，适应海拔。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "措玉村",
-        "lat": 28.196,
-        "lon": 90.596,
-        "elevation": 3900,
-        "distance": 15,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "轻装或重装前往白马林措。"
+        "name": "途中 7.9 km",
+        "lat": 28.271127,
+        "lon": 90.733288,
+        "elevation": 4567,
+        "distance": 7.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "白马林措",
-        "lat": 28.204,
-        "lon": 90.604,
-        "elevation": 4500,
-        "distance": 30,
-        "water": true,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "沿湖泊群行走，扎营。"
+        "name": "途中 15.8 km",
+        "lat": 28.240493,
+        "lon": 90.743032,
+        "elevation": 4763,
+        "distance": 15.8,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "介久措",
-        "lat": 28.212,
-        "lon": 90.612,
-        "elevation": 5100,
-        "distance": 45,
-        "water": true,
-        "camp": true,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "下撤返回，结束环线。"
+        "name": "途中 23.7 km",
+        "lat": 28.291465,
+        "lon": 90.752237,
+        "elevation": 4888,
+        "distance": 23.7,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 28.305262,
+        "lon": 90.751093,
+        "elevation": 5247,
+        "distance": 25.4,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 5247 m；数据取自两步路实测轨迹。"
       }
     ],
     "elevationProfile": [
       {
-        "distance": 0,
-        "elevation": 3300
+        "distance": 2.9,
+        "elevation": 4684
       },
       {
-        "distance": 15,
-        "elevation": 3900
+        "distance": 5.7,
+        "elevation": 4539
       },
       {
-        "distance": 30,
-        "elevation": 4500
+        "distance": 8.6,
+        "elevation": 4686
       },
       {
-        "distance": 45,
-        "elevation": 5100
+        "distance": 11.5,
+        "elevation": 4519
+      },
+      {
+        "distance": 14.3,
+        "elevation": 4664
+      },
+      {
+        "distance": 17.2,
+        "elevation": 4664
+      },
+      {
+        "distance": 20.1,
+        "elevation": 4594
+      },
+      {
+        "distance": 22.9,
+        "elevation": 4781
+      },
+      {
+        "distance": 25.8,
+        "elevation": 5165
+      },
+      {
+        "distance": 28.7,
+        "elevation": 4733
+      },
+      {
+        "distance": 31.5,
+        "elevation": 4499
       }
     ],
     "itinerary": [
@@ -2828,10 +3755,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "墨脱徒步",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -2892,76 +3819,72 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "派镇",
-        "lat": 29.308,
-        "lon": 95.308,
-        "elevation": 300,
+        "name": "起点",
+        "lat": 29.516506,
+        "lon": 94.88267,
+        "elevation": null,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "翻越雪山垭口后下降。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "拉格",
-        "lat": 29.316,
-        "lon": 95.316,
-        "elevation": 1700,
-        "distance": 26,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "穿行原始森林，住汗密。"
+        "name": "途中 20.3 km",
+        "lat": 29.460821,
+        "lon": 95.01242,
+        "elevation": null,
+        "distance": 20.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "汗密",
-        "lat": 29.324,
-        "lon": 95.324,
-        "elevation": 3100,
-        "distance": 52,
-        "water": true,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "经过蚂蟥区和陡峭山路，下至背崩。"
+        "name": "途中 38.8 km",
+        "lat": 29.326141,
+        "lon": 95.1749,
+        "elevation": null,
+        "distance": 38.8,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "背崩",
-        "lat": 29.332,
-        "lon": 95.332,
-        "elevation": 4500,
-        "distance": 78,
-        "water": true,
-        "camp": true,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "沿江边公路或步道进入墨脱。"
+        "name": "途中 58 km",
+        "lat": 29.272896,
+        "lon": 95.206085,
+        "elevation": null,
+        "distance": 58,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 29.32366,
+        "lon": 95.32906,
+        "elevation": null,
+        "distance": 77.2,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
-    "elevationProfile": [
-      {
-        "distance": 0,
-        "elevation": 300
-      },
-      {
-        "distance": 26,
-        "elevation": 1700
-      },
-      {
-        "distance": 52,
-        "elevation": 3100
-      },
-      {
-        "distance": 78,
-        "elevation": 4500
-      }
-    ],
+    "elevationProfile": [],
     "itinerary": [
       {
         "day": 1,
@@ -3037,10 +3960,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "珠峰东坡嘎玛沟",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -3101,91 +4024,132 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "曲当乡",
-        "lat": 28.144,
-        "lon": 86.964,
-        "elevation": 300,
+        "name": "起点",
+        "lat": 28.080206,
+        "lon": 87.31457,
+        "elevation": 3731,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "进入徒步起点，扎营湖边。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "晓乌措",
-        "lat": 28.152,
-        "lon": 86.972,
-        "elevation": 1600,
-        "distance": 30,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "翻越高垭口，下降至沟谷。"
+        "name": "途中 21.6 km",
+        "lat": 27.977217,
+        "lon": 87.217514,
+        "elevation": 4095,
+        "distance": 21.6,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "卓湘",
-        "lat": 28.16,
-        "lon": 86.98,
-        "elevation": 2900,
-        "distance": 60,
-        "water": true,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "沿嘎玛沟前进，雪山全景出现。"
+        "name": "途中 43.3 km",
+        "lat": 27.991264,
+        "lon": 87.061066,
+        "elevation": 5093,
+        "distance": 43.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "白当",
-        "lat": 28.168,
-        "lon": 86.988,
-        "elevation": 4200,
-        "distance": 90,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "近距离感受珠峰东壁。"
+        "name": "途中 64.9 km",
+        "lat": 27.996714,
+        "lon": 87.159966,
+        "elevation": 4267,
+        "distance": 64.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "白当",
-        "lat": 28.176,
-        "lon": 86.996,
-        "elevation": 5500,
-        "distance": 120,
-        "water": true,
-        "camp": true,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "翻越垭口后下撤至曲当。"
+        "name": "最高点",
+        "lat": 28.039713,
+        "lon": 87.19936,
+        "elevation": 5343,
+        "distance": 73.5,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 5343 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "终点",
+        "lat": 28.07206,
+        "lon": 87.287155,
+        "elevation": 3918,
+        "distance": 86.5,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 300
+        "elevation": 3731
       },
       {
-        "distance": 30,
-        "elevation": 1600
+        "distance": 7.9,
+        "elevation": 4518
       },
       {
-        "distance": 60,
-        "elevation": 2900
+        "distance": 15.7,
+        "elevation": 4362
       },
       {
-        "distance": 90,
-        "elevation": 4200
+        "distance": 23.6,
+        "elevation": 4385
       },
       {
-        "distance": 120,
-        "elevation": 5500
+        "distance": 31.5,
+        "elevation": 4321
+      },
+      {
+        "distance": 39.3,
+        "elevation": 4880
+      },
+      {
+        "distance": 47.2,
+        "elevation": 5257
+      },
+      {
+        "distance": 55,
+        "elevation": 4963
+      },
+      {
+        "distance": 62.9,
+        "elevation": 4405
+      },
+      {
+        "distance": 70.8,
+        "elevation": 4960
+      },
+      {
+        "distance": 78.6,
+        "elevation": 4564
+      },
+      {
+        "distance": 86.5,
+        "elevation": 3918
       }
     ],
     "itinerary": [
@@ -3272,10 +4236,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "苍山玉带路",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -3336,40 +4300,119 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "感通寺",
-        "lat": 25.676,
-        "lon": 100.096,
-        "elevation": 2100,
+        "name": "起点",
+        "lat": 25.690778,
+        "lon": 100.146162,
+        "elevation": 2123,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "沿玉带路横切，约 12-14 公里。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "中和寺",
-        "lat": 25.684,
-        "lon": 100.104,
-        "elevation": 2600,
-        "distance": 14,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "可继续北行或乘索道下山。"
+        "name": "途中 4.5 km",
+        "lat": 25.678295,
+        "lon": 100.134468,
+        "elevation": 2636,
+        "distance": 4.5,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 9.1 km",
+        "lat": 25.660444,
+        "lon": 100.131412,
+        "elevation": 2672,
+        "distance": 9.1,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 13.6 km",
+        "lat": 25.650009,
+        "lon": 100.143202,
+        "elevation": 2619,
+        "distance": 13.6,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 25.647455,
+        "lon": 100.168568,
+        "elevation": 2244,
+        "distance": 18.1,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 2100
+        "elevation": 2123
       },
       {
-        "distance": 14,
-        "elevation": 2600
+        "distance": 1.7,
+        "elevation": 2419
+      },
+      {
+        "distance": 3.3,
+        "elevation": 2626
+      },
+      {
+        "distance": 4.9,
+        "elevation": 2626
+      },
+      {
+        "distance": 6.6,
+        "elevation": 2635
+      },
+      {
+        "distance": 8.2,
+        "elevation": 2630
+      },
+      {
+        "distance": 9.9,
+        "elevation": 2630
+      },
+      {
+        "distance": 11.5,
+        "elevation": 2643
+      },
+      {
+        "distance": 13.2,
+        "elevation": 2638
+      },
+      {
+        "distance": 14.8,
+        "elevation": 2426
+      },
+      {
+        "distance": 16.5,
+        "elevation": 2291
+      },
+      {
+        "distance": 18.1,
+        "elevation": 2244
       }
     ],
     "itinerary": [
@@ -3429,10 +4472,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "阿布吉措",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -3493,23 +4536,119 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "香格里拉",
-        "lat": 27.78,
-        "lon": 99.87,
-        "elevation": 3600,
+        "name": "起点",
+        "lat": 27.733291,
+        "lon": 99.967892,
+        "elevation": 3694,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "乘车至徒步点，往返约 11 公里，湖面海拔约 4200 米。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
+      },
+      {
+        "name": "途中 4.5 km",
+        "lat": 27.699484,
+        "lon": 99.965311,
+        "elevation": 3935,
+        "distance": 4.5,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 9 km",
+        "lat": 27.700536,
+        "lon": 99.928206,
+        "elevation": 4004,
+        "distance": 9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 13.4 km",
+        "lat": 27.675051,
+        "lon": 99.908711,
+        "elevation": 4355,
+        "distance": 13.4,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 27.653286,
+        "lon": 99.883782,
+        "elevation": 3558,
+        "distance": 17.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 3600
+        "elevation": 3694
+      },
+      {
+        "distance": 1.6,
+        "elevation": 3826
+      },
+      {
+        "distance": 3.3,
+        "elevation": 3920
+      },
+      {
+        "distance": 4.9,
+        "elevation": 3915
+      },
+      {
+        "distance": 6.5,
+        "elevation": 3921
+      },
+      {
+        "distance": 8.2,
+        "elevation": 3959
+      },
+      {
+        "distance": 9.8,
+        "elevation": 4044
+      },
+      {
+        "distance": 11.4,
+        "elevation": 4113
+      },
+      {
+        "distance": 13,
+        "elevation": 4290
+      },
+      {
+        "distance": 14.7,
+        "elevation": 4120
+      },
+      {
+        "distance": 16.3,
+        "elevation": 3740
+      },
+      {
+        "distance": 17.9,
+        "elevation": 3558
       }
     ],
     "itinerary": [
@@ -3560,10 +4699,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "夏塔古道",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -3624,57 +4763,132 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "昭苏",
-        "lat": 42.592,
-        "lon": 80.542,
-        "elevation": 1980,
+        "name": "起点",
+        "lat": 42.668124,
+        "lon": 80.586925,
+        "elevation": 1922,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "乘车进入，适应环境。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "温泉营地",
-        "lat": 42.6,
-        "lon": 80.55,
-        "elevation": 2780,
-        "distance": 28,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "沿河谷接近木扎尔特冰川，约 18-20 公里。"
+        "name": "途中 17.3 km",
+        "lat": 42.559529,
+        "lon": 80.706175,
+        "elevation": 2213,
+        "distance": 17.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "夏塔",
-        "lat": 42.608,
-        "lon": 80.558,
-        "elevation": 3580,
-        "distance": 55,
-        "water": true,
-        "camp": true,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "轻松返程。"
+        "name": "途中 34.7 km",
+        "lat": 42.463711,
+        "lon": 80.836474,
+        "elevation": 2547,
+        "distance": 34.7,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 42.445732,
+        "lon": 80.844072,
+        "elevation": 2677,
+        "distance": 37.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 2677 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "途中 52 km",
+        "lat": 42.583011,
+        "lon": 80.681685,
+        "elevation": 2150,
+        "distance": 52,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 42.680731,
+        "lon": 80.618188,
+        "elevation": 1876,
+        "distance": 69.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 1980
+        "elevation": 1922
       },
       {
-        "distance": 28,
-        "elevation": 2780
+        "distance": 6.3,
+        "elevation": 1983
       },
       {
-        "distance": 55,
-        "elevation": 3580
+        "distance": 12.6,
+        "elevation": 2121
+      },
+      {
+        "distance": 18.9,
+        "elevation": 2252
+      },
+      {
+        "distance": 25.2,
+        "elevation": 2314
+      },
+      {
+        "distance": 31.5,
+        "elevation": 2405
+      },
+      {
+        "distance": 37.8,
+        "elevation": 2667
+      },
+      {
+        "distance": 44.1,
+        "elevation": 2382
+      },
+      {
+        "distance": 50.4,
+        "elevation": 2180
+      },
+      {
+        "distance": 56.7,
+        "elevation": 2022
+      },
+      {
+        "distance": 63,
+        "elevation": 1920
+      },
+      {
+        "distance": 69.3,
+        "elevation": 1876
       }
     ],
     "itinerary": [
@@ -3743,10 +4957,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "孟克德古道",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -3807,74 +5021,132 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "独库公路",
-        "lat": 42.988,
-        "lon": 83.988,
-        "elevation": 2100,
+        "name": "起点",
+        "lat": 43.919107,
+        "lon": 84.527809,
+        "elevation": 1738,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "进入沟谷，扎营。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "沟口",
-        "lat": 42.996,
-        "lon": 83.996,
-        "elevation": 2567,
-        "distance": 18,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "沿河谷上行至天湖。"
+        "name": "途中 14.7 km",
+        "lat": 43.888026,
+        "lon": 84.391,
+        "elevation": 2079,
+        "distance": 14.7,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "达坂下营地",
-        "lat": 43.004,
-        "lon": 84.004,
-        "elevation": 3033,
-        "distance": 37,
-        "water": true,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "翻越达坂后进入北坡牧场。"
+        "name": "途中 29.3 km",
+        "lat": 43.853343,
+        "lon": 84.239922,
+        "elevation": 2342,
+        "distance": 29.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "牧场",
-        "lat": 43.012,
-        "lon": 84.012,
-        "elevation": 3500,
-        "distance": 55,
-        "water": true,
-        "camp": true,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "沿河谷下降至公路。"
+        "name": "途中 43.9 km",
+        "lat": 43.836969,
+        "lon": 84.115751,
+        "elevation": 3242,
+        "distance": 43.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 43.84202,
+        "lon": 84.102988,
+        "elevation": 3438,
+        "distance": 45.4,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 3438 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "终点",
+        "lat": 43.852058,
+        "lon": 83.994637,
+        "elevation": 2672,
+        "distance": 58.6,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
+        "elevation": 1738
+      },
+      {
+        "distance": 5.3,
+        "elevation": 1830
+      },
+      {
+        "distance": 10.7,
+        "elevation": 2005
+      },
+      {
+        "distance": 16,
         "elevation": 2100
       },
       {
-        "distance": 18,
-        "elevation": 2567
+        "distance": 21.3,
+        "elevation": 2189
       },
       {
-        "distance": 37,
-        "elevation": 3033
+        "distance": 26.6,
+        "elevation": 2253
       },
       {
-        "distance": 55,
-        "elevation": 3500
+        "distance": 32,
+        "elevation": 2528
+      },
+      {
+        "distance": 37.3,
+        "elevation": 2670
+      },
+      {
+        "distance": 42.6,
+        "elevation": 3116
+      },
+      {
+        "distance": 47.9,
+        "elevation": 3184
+      },
+      {
+        "distance": 53.3,
+        "elevation": 2608
+      },
+      {
+        "distance": 58.6,
+        "elevation": 2672
       }
     ],
     "itinerary": [
@@ -3952,10 +5224,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "博格达大环线",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -4016,74 +5288,132 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "达坂城",
-        "lat": 43.788,
-        "lon": 88.288,
-        "elevation": 300,
+        "name": "起点",
+        "lat": 43.681061,
+        "lon": 88.509324,
+        "elevation": 2412,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "进入博格达北坡，接近冰湖。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "冰湖营地",
-        "lat": 43.796,
-        "lon": 88.296,
-        "elevation": 1633,
-        "distance": 33,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "近距离看主峰与冰川。"
+        "name": "途中 19.3 km",
+        "lat": 43.801214,
+        "lon": 88.458436,
+        "elevation": 3627,
+        "distance": 19.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "大本营",
-        "lat": 43.804,
-        "lon": 88.304,
-        "elevation": 2967,
-        "distance": 67,
-        "water": true,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "翻越达坂，进入南坡。"
+        "name": "途中 38.6 km",
+        "lat": 43.816434,
+        "lon": 88.318102,
+        "elevation": 3835,
+        "distance": 38.6,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "黑沟达坂",
-        "lat": 43.812,
-        "lon": 88.312,
-        "elevation": 4300,
-        "distance": 100,
-        "water": true,
-        "camp": true,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "沿河谷下撤至公路。"
+        "name": "最高点",
+        "lat": 43.766342,
+        "lon": 88.336434,
+        "elevation": 4171,
+        "distance": 54.7,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 4171 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "途中 57.9 km",
+        "lat": 43.757484,
+        "lon": 88.365122,
+        "elevation": 3506,
+        "distance": 57.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 43.684313,
+        "lon": 88.461146,
+        "elevation": 2766,
+        "distance": 77.2,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 300
+        "elevation": 2412
       },
       {
-        "distance": 33,
-        "elevation": 1633
+        "distance": 7,
+        "elevation": 2895
       },
       {
-        "distance": 67,
-        "elevation": 2967
+        "distance": 14,
+        "elevation": 3318
       },
       {
-        "distance": 100,
-        "elevation": 4300
+        "distance": 21,
+        "elevation": 3700
+      },
+      {
+        "distance": 28.1,
+        "elevation": 3352
+      },
+      {
+        "distance": 35.1,
+        "elevation": 3758
+      },
+      {
+        "distance": 42.1,
+        "elevation": 3579
+      },
+      {
+        "distance": 49.1,
+        "elevation": 3260
+      },
+      {
+        "distance": 56.1,
+        "elevation": 3621
+      },
+      {
+        "distance": 63.1,
+        "elevation": 3219
+      },
+      {
+        "distance": 70.2,
+        "elevation": 2592
+      },
+      {
+        "distance": 77.2,
+        "elevation": 2766
       }
     ],
     "itinerary": [
@@ -4161,10 +5491,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "狼塔C+V",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -4225,74 +5555,132 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "呼图壁",
-        "lat": 43.408,
-        "lon": 86.138,
-        "elevation": 300,
+        "name": "起点",
+        "lat": 43.241616,
+        "lon": 86.29186,
+        "elevation": 2862,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "进入天山，适应重装。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "翻越白杨沟达坂",
-        "lat": 43.416,
-        "lon": 86.146,
-        "elevation": 3300,
-        "distance": 67,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "过冰河，扎营。"
+        "name": "途中 48 km",
+        "lat": 43.683708,
+        "lon": 86.303775,
+        "elevation": 3346,
+        "distance": 48,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "台普希克马河",
-        "lat": 43.424,
-        "lon": 86.154,
-        "elevation": 6300,
-        "distance": 133,
-        "water": true,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "连续翻越，强度极大。"
+        "name": "最高点",
+        "lat": 43.487265,
+        "lon": 86.207573,
+        "elevation": 4977,
+        "distance": 81.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 4977 m；数据取自两步路实测轨迹。"
       },
       {
-        "name": "达坂",
-        "lat": 43.432,
-        "lon": 86.162,
-        "elevation": 9300,
-        "distance": 200,
-        "water": true,
-        "camp": true,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "沿河谷下撤，完成穿越。"
+        "name": "途中 96.1 km",
+        "lat": 43.405926,
+        "lon": 86.195458,
+        "elevation": 2801,
+        "distance": 96.1,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 144.1 km",
+        "lat": 43.354159,
+        "lon": 86.771819,
+        "elevation": 1870,
+        "distance": 144.1,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 43.194772,
+        "lon": 86.693872,
+        "elevation": 2914,
+        "distance": 192.1,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 300
+        "elevation": 2862
       },
       {
-        "distance": 67,
-        "elevation": 3300
+        "distance": 17.5,
+        "elevation": 3499
       },
       {
-        "distance": 133,
-        "elevation": 6300
+        "distance": 34.9,
+        "elevation": 2024
       },
       {
-        "distance": 200,
-        "elevation": 9300
+        "distance": 52.4,
+        "elevation": 3125
+      },
+      {
+        "distance": 69.9,
+        "elevation": 2515
+      },
+      {
+        "distance": 87.3,
+        "elevation": 2854
+      },
+      {
+        "distance": 104.8,
+        "elevation": 3769
+      },
+      {
+        "distance": 122.5,
+        "elevation": 3240
+      },
+      {
+        "distance": 139.7,
+        "elevation": 2014
+      },
+      {
+        "distance": 157.2,
+        "elevation": 3243
+      },
+      {
+        "distance": 174.7,
+        "elevation": 2365
+      },
+      {
+        "distance": 192.1,
+        "elevation": 2914
       }
     ],
     "itinerary": [
@@ -4370,10 +5758,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "海坨山",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -4434,23 +5822,119 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "大海坨村",
-        "lat": 40.53,
-        "lon": 115.84,
-        "elevation": 1241,
+        "name": "起点",
+        "lat": 40.565127,
+        "lon": 115.746458,
+        "elevation": 1214,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "往返约 18 公里，可轻装或山顶露营。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
+      },
+      {
+        "name": "途中 3.3 km",
+        "lat": 40.548522,
+        "lon": 115.765183,
+        "elevation": 1587,
+        "distance": 3.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 40.554217,
+        "lon": 115.774962,
+        "elevation": 1851,
+        "distance": 5.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 1851 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "途中 6.6 km",
+        "lat": 40.561292,
+        "lon": 115.778276,
+        "elevation": 1615,
+        "distance": 6.6,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 40.581507,
+        "lon": 115.762584,
+        "elevation": 1197,
+        "distance": 9.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 1241
+        "elevation": 1214
+      },
+      {
+        "distance": 1.2,
+        "elevation": 1341
+      },
+      {
+        "distance": 2.4,
+        "elevation": 1433
+      },
+      {
+        "distance": 3.6,
+        "elevation": 1653
+      },
+      {
+        "distance": 4.8,
+        "elevation": 1796
+      },
+      {
+        "distance": 6,
+        "elevation": 1760
+      },
+      {
+        "distance": 7.2,
+        "elevation": 1488
+      },
+      {
+        "distance": 8.4,
+        "elevation": 1314
+      },
+      {
+        "distance": 9.6,
+        "elevation": 1204
+      },
+      {
+        "distance": 10.8,
+        "elevation": 1167
+      },
+      {
+        "distance": 12,
+        "elevation": 1176
+      },
+      {
+        "distance": 13.2,
+        "elevation": 1212
       }
     ],
     "itinerary": [
@@ -4501,10 +5985,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "库布齐沙漠东线",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "轨迹来自两步路用户上传（2026-09 入库，约 20 km）",
-      "检查点与票价仍为待核实数据，出发前请与当地确认"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -4565,57 +6049,132 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "包头",
-        "lat": 40.242,
-        "lon": 109.192,
-        "elevation": 1000,
+        "name": "起点",
+        "lat": 40.307017,
+        "lon": 109.701905,
+        "elevation": 1078,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "进入沙漠，适应沙地行走。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "营地",
-        "lat": 40.25,
-        "lon": 109.2,
-        "elevation": 1100,
-        "distance": 18,
-        "water": false,
-        "camp": false,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "翻越沙丘，住龙头拐。"
+        "name": "最高点",
+        "lat": 40.287169,
+        "lon": 109.711793,
+        "elevation": 1112,
+        "distance": 2.7,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 1112 m；数据取自两步路实测轨迹。"
       },
       {
-        "name": "龙头拐",
-        "lat": 40.258,
-        "lon": 109.208,
-        "elevation": 1200,
-        "distance": 35,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "完成穿越并返回。"
+        "name": "途中 4.9 km",
+        "lat": 40.28984,
+        "lon": 109.731148,
+        "elevation": 1099,
+        "distance": 4.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 9.8 km",
+        "lat": 40.294413,
+        "lon": 109.778886,
+        "elevation": 1048,
+        "distance": 9.8,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 14.7 km",
+        "lat": 40.2894,
+        "lon": 109.823015,
+        "elevation": 1078,
+        "distance": 14.7,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 40.304162,
+        "lon": 109.852145,
+        "elevation": 1061,
+        "distance": 19.6,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 1000
+        "elevation": 1078
       },
       {
-        "distance": 18,
-        "elevation": 1100
+        "distance": 1.8,
+        "elevation": 1097
       },
       {
-        "distance": 35,
-        "elevation": 1200
+        "distance": 3.6,
+        "elevation": 1105
+      },
+      {
+        "distance": 5.3,
+        "elevation": 1103
+      },
+      {
+        "distance": 7.1,
+        "elevation": 1088
+      },
+      {
+        "distance": 8.9,
+        "elevation": 1072
+      },
+      {
+        "distance": 10.7,
+        "elevation": 1053
+      },
+      {
+        "distance": 12.5,
+        "elevation": 1085
+      },
+      {
+        "distance": 14.3,
+        "elevation": 1080
+      },
+      {
+        "distance": 16,
+        "elevation": 1088
+      },
+      {
+        "distance": 17.8,
+        "elevation": 1065
+      },
+      {
+        "distance": 19.6,
+        "elevation": 1061
       }
     ],
     "itinerary": [
@@ -4684,10 +6243,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "腾格里五湖连穿",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -4748,57 +6307,128 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "银川",
-        "lat": 38.592,
-        "lon": 104.892,
-        "elevation": 1100,
+        "name": "起点",
+        "lat": 38.70266,
+        "lon": 105.238893,
+        "elevation": null,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "进入沙漠，住湖边营地。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "天鹅湖",
-        "lat": 38.6,
-        "lon": 104.9,
-        "elevation": 1275,
-        "distance": 26,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "穿越沙丘与湖盆。"
+        "name": "途中 11.9 km",
+        "lat": 38.639503,
+        "lon": 105.243247,
+        "elevation": 1297,
+        "distance": 11.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "苏海图湖",
-        "lat": 38.608,
-        "lon": 104.908,
-        "elevation": 1450,
-        "distance": 52,
-        "water": true,
-        "camp": true,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "完成穿越返回银川。"
+        "name": "途中 23.8 km",
+        "lat": 38.55616,
+        "lon": 105.178588,
+        "elevation": 1293,
+        "distance": 23.8,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 38.48285,
+        "lon": 105.149612,
+        "elevation": 1382,
+        "distance": 33.2,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 1382 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "途中 35.7 km",
+        "lat": 38.463088,
+        "lon": 105.154325,
+        "elevation": 1298,
+        "distance": 35.7,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 38.497127,
+        "lon": 105.26746,
+        "elevation": 1287,
+        "distance": 47.6,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
-        "distance": 0,
-        "elevation": 1100
+        "distance": 4.3,
+        "elevation": 1284
+      },
+      {
+        "distance": 8.7,
+        "elevation": 1300
+      },
+      {
+        "distance": 13,
+        "elevation": 1290
+      },
+      {
+        "distance": 17.3,
+        "elevation": 1294
+      },
+      {
+        "distance": 21.6,
+        "elevation": 1291
       },
       {
         "distance": 26,
-        "elevation": 1275
+        "elevation": 1291
       },
       {
-        "distance": 52,
-        "elevation": 1450
+        "distance": 30.3,
+        "elevation": 1295
+      },
+      {
+        "distance": 34.6,
+        "elevation": 1312
+      },
+      {
+        "distance": 39,
+        "elevation": 1321
+      },
+      {
+        "distance": 43.3,
+        "elevation": 1297
+      },
+      {
+        "distance": 47.6,
+        "elevation": 1287
       }
     ],
     "itinerary": [
@@ -4867,10 +6497,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "阿尼玛卿转山",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -4931,91 +6561,119 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "玛沁",
-        "lat": 34.814,
-        "lon": 99.534,
-        "elevation": 400,
+        "name": "起点",
+        "lat": 34.658849,
+        "lon": 99.686966,
+        "elevation": 3902,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "乘车进入，适应海拔。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "雪山乡",
-        "lat": 34.822,
-        "lon": 99.542,
-        "elevation": 1525,
-        "distance": 33,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "开始转山。"
+        "name": "最高点",
+        "lat": 34.71037,
+        "lon": 99.461838,
+        "elevation": 4702,
+        "distance": 29.5,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 4702 m；数据取自两步路实测轨迹。"
       },
       {
-        "name": "白塔营地",
-        "lat": 34.83,
-        "lon": 99.55,
-        "elevation": 2650,
-        "distance": 65,
-        "water": true,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "翻越高垭口。"
+        "name": "途中 34.2 km",
+        "lat": 34.742457,
+        "lon": 99.435639,
+        "elevation": 4567,
+        "distance": 34.2,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "达木乔垭口",
-        "lat": 34.838,
-        "lon": 99.558,
-        "elevation": 3775,
-        "distance": 98,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "沿冰川与草甸前行。"
+        "name": "途中 68.3 km",
+        "lat": 34.951349,
+        "lon": 99.294088,
+        "elevation": 3998,
+        "distance": 68.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "下大武",
-        "lat": 34.846,
-        "lon": 99.566,
-        "elevation": 4900,
-        "distance": 130,
-        "water": true,
-        "camp": true,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "完成转山环线。"
+        "name": "终点",
+        "lat": 34.85727,
+        "lon": 99.563294,
+        "elevation": 4140,
+        "distance": 102.5,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 400
+        "elevation": 3902
       },
       {
-        "distance": 33,
-        "elevation": 1525
+        "distance": 12.5,
+        "elevation": 4124
       },
       {
-        "distance": 65,
-        "elevation": 2650
+        "distance": 24.8,
+        "elevation": 4624
       },
       {
-        "distance": 98,
-        "elevation": 3775
+        "distance": 37.3,
+        "elevation": 4510
       },
       {
-        "distance": 130,
-        "elevation": 4900
+        "distance": 49.7,
+        "elevation": 4159
+      },
+      {
+        "distance": 62.1,
+        "elevation": 4078
+      },
+      {
+        "distance": 74.6,
+        "elevation": 3967
+      },
+      {
+        "distance": 86.9,
+        "elevation": 4351
+      },
+      {
+        "distance": 99.4,
+        "elevation": 4261
+      },
+      {
+        "distance": 111.8,
+        "elevation": 3872
+      },
+      {
+        "distance": 124.2,
+        "elevation": 3703
+      },
+      {
+        "distance": 136.6,
+        "elevation": 3881
       }
     ],
     "itinerary": [
@@ -5102,10 +6760,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "冰沟河穿越",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "轨迹来自两步路用户上传（2026-09 入库，约 26 km）",
-      "检查点与票价仍为待核实数据，出发前请与当地确认"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -5166,57 +6824,106 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "祁连县",
-        "lat": 38.192,
-        "lon": 100.492,
-        "elevation": 3000,
+        "name": "起点",
+        "lat": 37.659725,
+        "lon": 102.269154,
+        "elevation": 2953,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "进入草原，扎营。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "牧场营地",
-        "lat": 38.2,
-        "lon": 100.5,
-        "elevation": 3600,
-        "distance": 23,
-        "water": false,
-        "camp": true,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "翻越草甸垭口。"
+        "name": "途中 6.5 km",
+        "lat": 37.61778,
+        "lon": 102.229287,
+        "elevation": 3652,
+        "distance": 6.5,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "河谷",
-        "lat": 38.208,
-        "lon": 100.508,
-        "elevation": 4200,
-        "distance": 45,
-        "water": true,
-        "camp": true,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "沿溪谷下撤。"
+        "name": "最高点",
+        "lat": 37.599782,
+        "lon": 102.203754,
+        "elevation": 3949,
+        "distance": 9.8,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 3949 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "终点",
+        "lat": 37.693212,
+        "lon": 102.313985,
+        "elevation": 2604,
+        "distance": 25.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
+        "elevation": 2953
+      },
+      {
+        "distance": 2.4,
+        "elevation": 3173
+      },
+      {
+        "distance": 4.7,
+        "elevation": 3495
+      },
+      {
+        "distance": 7.1,
+        "elevation": 3698
+      },
+      {
+        "distance": 9.4,
+        "elevation": 3842
+      },
+      {
+        "distance": 11.8,
+        "elevation": 3768
+      },
+      {
+        "distance": 14.1,
+        "elevation": 3579
+      },
+      {
+        "distance": 16.5,
+        "elevation": 3296
+      },
+      {
+        "distance": 18.8,
         "elevation": 3000
       },
       {
-        "distance": 23,
-        "elevation": 3600
+        "distance": 21.2,
+        "elevation": 2845
       },
       {
-        "distance": 45,
-        "elevation": 4200
+        "distance": 23.5,
+        "elevation": 2724
+      },
+      {
+        "distance": 25.9,
+        "elevation": 2604
       }
     ],
     "itinerary": [
@@ -5285,10 +6992,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "贺兰山",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -5349,40 +7056,119 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "苏峪口",
-        "lat": 38.796,
-        "lon": 105.896,
-        "elevation": 2056,
+        "name": "起点",
+        "lat": 38.739921,
+        "lon": 106.0207,
+        "elevation": 1447,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "沿景区步道上升，住山下。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "岩画",
-        "lat": 38.804,
-        "lon": 105.904,
-        "elevation": 3556,
-        "distance": 28,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "轻松游览后返程。"
+        "name": "途中 6.5 km",
+        "lat": 38.719202,
+        "lon": 105.976792,
+        "elevation": 1484,
+        "distance": 6.5,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 13 km",
+        "lat": 38.74478,
+        "lon": 105.927415,
+        "elevation": 1798,
+        "distance": 13,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 38.743232,
+        "lon": 105.916678,
+        "elevation": 2153,
+        "distance": 15.7,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 2153 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "终点",
+        "lat": 38.714264,
+        "lon": 105.989454,
+        "elevation": 1435,
+        "distance": 25.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 2056
+        "elevation": 1447
       },
       {
-        "distance": 28,
-        "elevation": 3556
+        "distance": 2.4,
+        "elevation": 1392
+      },
+      {
+        "distance": 4.7,
+        "elevation": 1432
+      },
+      {
+        "distance": 7.1,
+        "elevation": 1508
+      },
+      {
+        "distance": 9.4,
+        "elevation": 1634
+      },
+      {
+        "distance": 11.8,
+        "elevation": 1718
+      },
+      {
+        "distance": 14.1,
+        "elevation": 1946
+      },
+      {
+        "distance": 16.5,
+        "elevation": 2003
+      },
+      {
+        "distance": 18.8,
+        "elevation": 1771
+      },
+      {
+        "distance": 21.2,
+        "elevation": 1645
+      },
+      {
+        "distance": 23.5,
+        "elevation": 1523
+      },
+      {
+        "distance": 25.9,
+        "elevation": 1435
       }
     ],
     "itinerary": [
@@ -5442,10 +7228,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "六盘山",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -5506,23 +7292,119 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "泾源",
-        "lat": 35.6,
-        "lon": 106.2,
-        "elevation": 2242,
+        "name": "起点",
+        "lat": 35.608685,
+        "lon": 106.24337,
+        "elevation": 2170,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "环线约 16 公里。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
+      },
+      {
+        "name": "途中 4.4 km",
+        "lat": 35.576942,
+        "lon": 106.23958,
+        "elevation": 2522,
+        "distance": 4.4,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 35.559326,
+        "lon": 106.23719,
+        "elevation": 2898,
+        "distance": 8.4,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 2898 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "途中 13.2 km",
+        "lat": 35.52965,
+        "lon": 106.2445,
+        "elevation": 2294,
+        "distance": 13.2,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 35.49453,
+        "lon": 106.25677,
+        "elevation": 2124,
+        "distance": 17.6,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
+        "elevation": 2170
+      },
+      {
+        "distance": 1.6,
+        "elevation": 2268
+      },
+      {
+        "distance": 3.2,
+        "elevation": 2403
+      },
+      {
+        "distance": 4.8,
+        "elevation": 2573
+      },
+      {
+        "distance": 6.4,
+        "elevation": 2775
+      },
+      {
+        "distance": 8,
+        "elevation": 2844
+      },
+      {
+        "distance": 9.7,
+        "elevation": 2785
+      },
+      {
+        "distance": 11.2,
+        "elevation": 2411
+      },
+      {
+        "distance": 12.8,
+        "elevation": 2304
+      },
+      {
+        "distance": 14.4,
         "elevation": 2242
+      },
+      {
+        "distance": 16,
+        "elevation": 2198
+      },
+      {
+        "distance": 17.6,
+        "elevation": 2124
       }
     ],
     "itinerary": [
@@ -5573,10 +7455,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "青海湖环湖骑行",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "轨迹来自两步路用户上传（2026-09 入库，约 355 km 骑行）",
-      "检查点与票价仍为待核实数据，出发前请与当地确认"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -5637,57 +7519,119 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "西海镇",
-        "lat": 36.542,
-        "lon": 100.292,
-        "elevation": 2900,
+        "name": "起点",
+        "lat": 36.957367,
+        "lon": 100.895072,
+        "elevation": 3110,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "沿湖岸行走或骑行。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "二郎剑",
-        "lat": 36.55,
-        "lon": 100.3,
-        "elevation": 3050,
-        "distance": 23,
-        "water": false,
-        "camp": false,
-        "signal": false,
-        "toilet": false,
-        "emergencyExit": false,
-        "note": "看日出与草原。"
+        "name": "途中 88.9 km",
+        "lat": 36.60228,
+        "lon": 100.396043,
+        "elevation": 3243,
+        "distance": 88.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
       },
       {
-        "name": "环湖西路返回",
-        "lat": 36.558,
-        "lon": 100.308,
-        "elevation": 3200,
-        "distance": 45,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "选择合适路段收尾。"
+        "name": "途中 177.6 km",
+        "lat": 36.923031,
+        "lon": 99.595681,
+        "elevation": 3218,
+        "distance": 177.6,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 266.3 km",
+        "lat": 37.317548,
+        "lon": 100.110546,
+        "elevation": 3296,
+        "distance": 266.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 37.060495,
+        "lon": 100.698,
+        "elevation": 3451,
+        "distance": 332.4,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 3451 m；数据取自两步路实测轨迹。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 2900
+        "elevation": 3110
       },
       {
-        "distance": 23,
-        "elevation": 3050
+        "distance": 32.5,
+        "elevation": 3248
       },
       {
-        "distance": 45,
-        "elevation": 3200
+        "distance": 64.6,
+        "elevation": 3233
+      },
+      {
+        "distance": 96.9,
+        "elevation": 3264
+      },
+      {
+        "distance": 129.1,
+        "elevation": 3208
+      },
+      {
+        "distance": 161.5,
+        "elevation": 3224
+      },
+      {
+        "distance": 193.7,
+        "elevation": 3208
+      },
+      {
+        "distance": 225.9,
+        "elevation": 3207
+      },
+      {
+        "distance": 258.3,
+        "elevation": 3237
+      },
+      {
+        "distance": 290.6,
+        "elevation": 3239
+      },
+      {
+        "distance": 322.8,
+        "elevation": 3362
+      },
+      {
+        "distance": 355,
+        "elevation": 3107
       }
     ],
     "itinerary": [
@@ -5756,10 +7700,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "黄山",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -5820,40 +7764,132 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "云谷寺",
-        "lat": 30.126,
-        "lon": 118.156,
-        "elevation": 664,
+        "name": "起点",
+        "lat": 30.102935,
+        "lon": 118.165689,
+        "elevation": 737,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "从后山上山，住山顶。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "光明顶",
-        "lat": 30.134,
-        "lon": 118.164,
-        "elevation": 1864,
-        "distance": 22,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "前山下撤，台阶较多。"
+        "name": "途中 4.6 km",
+        "lat": 30.125884,
+        "lon": 118.168935,
+        "elevation": 1669,
+        "distance": 4.6,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 30.134241,
+        "lon": 118.164521,
+        "elevation": 1820,
+        "distance": 6.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 1820 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "途中 9.2 km",
+        "lat": 30.134013,
+        "lon": 118.150785,
+        "elevation": 1498,
+        "distance": 9.2,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 13.8 km",
+        "lat": 30.14379,
+        "lon": 118.162614,
+        "elevation": 1607,
+        "distance": 13.8,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 30.119685,
+        "lon": 118.187672,
+        "elevation": 903,
+        "distance": 18.4,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 664
+        "elevation": 737
       },
       {
-        "distance": 22,
-        "elevation": 1864
+        "distance": 1.7,
+        "elevation": 845
+      },
+      {
+        "distance": 3.3,
+        "elevation": 1400
+      },
+      {
+        "distance": 5,
+        "elevation": 1694
+      },
+      {
+        "distance": 6.7,
+        "elevation": 1784
+      },
+      {
+        "distance": 8.4,
+        "elevation": 1616
+      },
+      {
+        "distance": 10,
+        "elevation": 1112
+      },
+      {
+        "distance": 11.7,
+        "elevation": 1370
+      },
+      {
+        "distance": 13.4,
+        "elevation": 1568
+      },
+      {
+        "distance": 15,
+        "elevation": 1632
+      },
+      {
+        "distance": 16.7,
+        "elevation": 1185
+      },
+      {
+        "distance": 18.4,
+        "elevation": 903
       }
     ],
     "itinerary": [
@@ -5913,10 +7949,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "九华山",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -5977,40 +8013,106 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "九华街",
-        "lat": 30.476,
-        "lon": 117.796,
-        "elevation": 342,
+        "name": "起点",
+        "lat": 30.492462,
+        "lon": 117.848963,
+        "elevation": 492,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "沿古道和步道行走。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "九华街",
-        "lat": 30.484,
-        "lon": 117.804,
-        "elevation": 1342,
-        "distance": 20,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "走花台栈道，看山色。"
+        "name": "途中 3.6 km",
+        "lat": 30.471872,
+        "lon": 117.838332,
+        "elevation": 710,
+        "distance": 3.6,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 30.463858,
+        "lon": 117.818157,
+        "elevation": 1343,
+        "distance": 6.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 1343 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "终点",
+        "lat": 30.482407,
+        "lon": 117.82759,
+        "elevation": 1260,
+        "distance": 10.7,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 342
+        "elevation": 492
       },
       {
-        "distance": 20,
-        "elevation": 1342
+        "distance": 1.3,
+        "elevation": 478
+      },
+      {
+        "distance": 2.6,
+        "elevation": 631
+      },
+      {
+        "distance": 3.9,
+        "elevation": 706
+      },
+      {
+        "distance": 5.2,
+        "elevation": 947
+      },
+      {
+        "distance": 6.5,
+        "elevation": 1207
+      },
+      {
+        "distance": 7.8,
+        "elevation": 1297
+      },
+      {
+        "distance": 9,
+        "elevation": 1166
+      },
+      {
+        "distance": 10.3,
+        "elevation": 1222
+      },
+      {
+        "distance": 11.6,
+        "elevation": 1123
+      },
+      {
+        "distance": 12.9,
+        "elevation": 768
+      },
+      {
+        "distance": 14.2,
+        "elevation": 509
       }
     ],
     "itinerary": [
@@ -6070,10 +8172,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "天目七尖",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -6134,40 +8236,132 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "西天目",
-        "lat": 30.346,
-        "lon": 119.416,
-        "elevation": 300,
+        "name": "起点",
+        "lat": 30.334438,
+        "lon": 119.460637,
+        "elevation": 350,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "连续上下，约 22 公里，住农家。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "千亩田",
-        "lat": 30.354,
-        "lon": 119.424,
-        "elevation": 3500,
-        "distance": 42,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "完成七尖，约 20 公里。"
+        "name": "途中 10.8 km",
+        "lat": 30.359026,
+        "lon": 119.407668,
+        "elevation": 1377,
+        "distance": 10.8,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 30.38339,
+        "lon": 119.398409,
+        "elevation": 1601,
+        "distance": 14.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 1601 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "途中 21.5 km",
+        "lat": 30.403513,
+        "lon": 119.44304,
+        "elevation": 1364,
+        "distance": 21.5,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 32.3 km",
+        "lat": 30.404504,
+        "lon": 119.506878,
+        "elevation": 989,
+        "distance": 32.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 30.352338,
+        "lon": 119.47204,
+        "elevation": 361,
+        "distance": 43,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 300
+        "elevation": 350
       },
       {
-        "distance": 42,
-        "elevation": 3500
+        "distance": 3.9,
+        "elevation": 898
+      },
+      {
+        "distance": 7.8,
+        "elevation": 1363
+      },
+      {
+        "distance": 11.7,
+        "elevation": 1367
+      },
+      {
+        "distance": 15.6,
+        "elevation": 1335
+      },
+      {
+        "distance": 19.5,
+        "elevation": 1508
+      },
+      {
+        "distance": 23.5,
+        "elevation": 1427
+      },
+      {
+        "distance": 27.4,
+        "elevation": 1047
+      },
+      {
+        "distance": 31.3,
+        "elevation": 1229
+      },
+      {
+        "distance": 35.2,
+        "elevation": 1196
+      },
+      {
+        "distance": 39.1,
+        "elevation": 1257
+      },
+      {
+        "distance": 43,
+        "elevation": 361
       }
     ],
     "itinerary": [
@@ -6227,10 +8421,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "清凉峰",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -6291,23 +8485,132 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "银龙坞",
-        "lat": 30.05,
-        "lon": 118.85,
-        "elevation": 300,
+        "name": "起点",
+        "lat": 30.15575,
+        "lon": 118.86564,
+        "elevation": 688,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "约 24 公里环线。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
+      },
+      {
+        "name": "途中 6.4 km",
+        "lat": 30.151583,
+        "lon": 118.818825,
+        "elevation": 712,
+        "distance": 6.4,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 12.9 km",
+        "lat": 30.130669,
+        "lon": 118.83355,
+        "elevation": 1218,
+        "distance": 12.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 30.10086,
+        "lon": 118.86171,
+        "elevation": 1777,
+        "distance": 18,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 1777 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "途中 19.2 km",
+        "lat": 30.110512,
+        "lon": 118.86577,
+        "elevation": 1631,
+        "distance": 19.2,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 30.148424,
+        "lon": 118.86529,
+        "elevation": 675,
+        "distance": 25.6,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 300
+        "elevation": 688
+      },
+      {
+        "distance": 2.3,
+        "elevation": 744
+      },
+      {
+        "distance": 4.7,
+        "elevation": 874
+      },
+      {
+        "distance": 7,
+        "elevation": 696
+      },
+      {
+        "distance": 9.3,
+        "elevation": 761
+      },
+      {
+        "distance": 11.6,
+        "elevation": 1022
+      },
+      {
+        "distance": 14,
+        "elevation": 1374
+      },
+      {
+        "distance": 16.3,
+        "elevation": 1600
+      },
+      {
+        "distance": 18.6,
+        "elevation": 1703
+      },
+      {
+        "distance": 21,
+        "elevation": 1373
+      },
+      {
+        "distance": 23.3,
+        "elevation": 1127
+      },
+      {
+        "distance": 25.6,
+        "elevation": 675
       }
     ],
     "itinerary": [
@@ -6358,10 +8661,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "三清山",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -6422,40 +8725,93 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "金沙索道",
-        "lat": 28.896,
-        "lon": 118.046,
-        "elevation": 919,
+        "name": "起点",
+        "lat": 28.880467,
+        "lon": 118.061647,
+        "elevation": 572,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "沿栈道环线。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "三清宫",
-        "lat": 28.904,
-        "lon": 118.054,
-        "elevation": 1819,
-        "distance": 18,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "继续环线后下山。"
+        "name": "途中 4.1 km",
+        "lat": 28.903956,
+        "lon": 118.06161,
+        "elevation": 1287,
+        "distance": 4.1,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 28.912156,
+        "lon": 118.054063,
+        "elevation": 1624,
+        "distance": 8.1,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 919
+        "elevation": 572
       },
       {
-        "distance": 18,
-        "elevation": 1819
+        "distance": 1.5,
+        "elevation": 780
+      },
+      {
+        "distance": 3,
+        "elevation": 1110
+      },
+      {
+        "distance": 4.4,
+        "elevation": 1365
+      },
+      {
+        "distance": 5.9,
+        "elevation": 1517
+      },
+      {
+        "distance": 7.4,
+        "elevation": 1600
+      },
+      {
+        "distance": 8.8,
+        "elevation": 1583
+      },
+      {
+        "distance": 10.3,
+        "elevation": 1526
+      },
+      {
+        "distance": 11.8,
+        "elevation": 1606
+      },
+      {
+        "distance": 13.3,
+        "elevation": 1617
+      },
+      {
+        "distance": 14.7,
+        "elevation": 1412
+      },
+      {
+        "distance": 16.2,
+        "elevation": 1341
       }
     ],
     "itinerary": [
@@ -6515,10 +8871,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "庐山",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -6579,40 +8935,132 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "牯岭",
-        "lat": 29.546,
-        "lon": 115.976,
-        "elevation": 574,
+        "name": "起点",
+        "lat": 29.572129,
+        "lon": 115.975924,
+        "elevation": 1082,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "环山步道。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "五老峰",
-        "lat": 29.554,
-        "lon": 115.984,
-        "elevation": 1474,
-        "distance": 20,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "看瀑布后返回。"
+        "name": "途中 4.9 km",
+        "lat": 29.548485,
+        "lon": 115.972831,
+        "elevation": 1063,
+        "distance": 4.9,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 9.8 km",
+        "lat": 29.548029,
+        "lon": 116.010273,
+        "elevation": 1278,
+        "distance": 9.8,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 29.551194,
+        "lon": 116.018041,
+        "elevation": 1360,
+        "distance": 11,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 1360 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "途中 14.7 km",
+        "lat": 29.566558,
+        "lon": 116.027025,
+        "elevation": 672,
+        "distance": 14.7,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 29.54309,
+        "lon": 116.057523,
+        "elevation": 121,
+        "distance": 19.5,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 574
+        "elevation": 1082
       },
       {
-        "distance": 20,
-        "elevation": 1474
+        "distance": 1.8,
+        "elevation": 1027
+      },
+      {
+        "distance": 3.6,
+        "elevation": 1012
+      },
+      {
+        "distance": 5.3,
+        "elevation": 1095
+      },
+      {
+        "distance": 7.1,
+        "elevation": 1026
+      },
+      {
+        "distance": 8.9,
+        "elevation": 1145
+      },
+      {
+        "distance": 10.7,
+        "elevation": 1300
+      },
+      {
+        "distance": 12.4,
+        "elevation": 986
+      },
+      {
+        "distance": 14.2,
+        "elevation": 775
+      },
+      {
+        "distance": 16,
+        "elevation": 353
+      },
+      {
+        "distance": 17.8,
+        "elevation": 190
+      },
+      {
+        "distance": 19.5,
+        "elevation": 121
       }
     ],
     "itinerary": [
@@ -6672,10 +9120,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "武夷山",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -6736,40 +9184,106 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "天游峰",
-        "lat": 27.716,
-        "lon": 117.676,
-        "elevation": 300,
+        "name": "起点",
+        "lat": 27.653716,
+        "lon": 117.970185,
+        "elevation": 189,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "核心步道。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "大红袍",
-        "lat": 27.724,
-        "lon": 117.684,
-        "elevation": 1400,
-        "distance": 24,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "环线返回。"
+        "name": "途中 5.8 km",
+        "lat": 27.678579,
+        "lon": 117.961575,
+        "elevation": 224,
+        "distance": 5.8,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 27.665013,
+        "lon": 117.943053,
+        "elevation": 563,
+        "distance": 10.4,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 563 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "终点",
+        "lat": 27.629803,
+        "lon": 117.942893,
+        "elevation": 258,
+        "distance": 17.5,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 300
+        "elevation": 189
       },
       {
-        "distance": 24,
-        "elevation": 1400
+        "distance": 2.1,
+        "elevation": 321
+      },
+      {
+        "distance": 4.2,
+        "elevation": 316
+      },
+      {
+        "distance": 6.4,
+        "elevation": 225
+      },
+      {
+        "distance": 8.5,
+        "elevation": 343
+      },
+      {
+        "distance": 10.6,
+        "elevation": 536
+      },
+      {
+        "distance": 12.7,
+        "elevation": 197
+      },
+      {
+        "distance": 14.8,
+        "elevation": 238
+      },
+      {
+        "distance": 16.9,
+        "elevation": 259
+      },
+      {
+        "distance": 19.1,
+        "elevation": 228
+      },
+      {
+        "distance": 21.2,
+        "elevation": 192
+      },
+      {
+        "distance": 23.3,
+        "elevation": 194
       }
     ],
     "itinerary": [
@@ -6829,10 +9343,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "太姥山",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -6893,23 +9407,93 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "太姥山景区",
-        "lat": 27.1,
-        "lon": 120.17,
-        "elevation": 300,
+        "name": "起点",
+        "lat": 27.126658,
+        "lon": 120.2196,
+        "elevation": 8,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "环线约 16 公里。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
+      },
+      {
+        "name": "途中 3.8 km",
+        "lat": 27.124417,
+        "lon": 120.195622,
+        "elevation": 531,
+        "distance": 3.8,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 27.124602,
+        "lon": 120.182897,
+        "elevation": 916,
+        "distance": 6.5,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 916 m；数据取自两步路实测轨迹。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 300
+        "elevation": 8
+      },
+      {
+        "distance": 1.4,
+        "elevation": 185
+      },
+      {
+        "distance": 2.8,
+        "elevation": 414
+      },
+      {
+        "distance": 4.1,
+        "elevation": 541
+      },
+      {
+        "distance": 5.5,
+        "elevation": 786
+      },
+      {
+        "distance": 6.9,
+        "elevation": 863
+      },
+      {
+        "distance": 8.3,
+        "elevation": 670
+      },
+      {
+        "distance": 9.6,
+        "elevation": 661
+      },
+      {
+        "distance": 11,
+        "elevation": 564
+      },
+      {
+        "distance": 12.4,
+        "elevation": 483
+      },
+      {
+        "distance": 13.8,
+        "elevation": 233
+      },
+      {
+        "distance": 15.1,
+        "elevation": 22
       }
     ],
     "itinerary": [
@@ -6960,10 +9544,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "大嵛山岛",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -7024,40 +9608,119 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "三沙码头",
-        "lat": 26.946,
-        "lon": 120.306,
-        "elevation": 300,
+        "name": "起点",
+        "lat": 26.959481,
+        "lon": 120.320136,
+        "elevation": 8,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "上岛徒步并扎营。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "环岛公路/草甸",
-        "lat": 26.954,
-        "lon": 120.314,
-        "elevation": 800,
-        "distance": 18,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "看日出后离岛。"
+        "name": "途中 6.8 km",
+        "lat": 26.947807,
+        "lon": 120.346054,
+        "elevation": 386,
+        "distance": 6.8,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 26.932462,
+        "lon": 120.3511,
+        "elevation": 430,
+        "distance": 9.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 430 m；数据取自两步路实测轨迹。"
+      },
+      {
+        "name": "途中 13.6 km",
+        "lat": 26.935729,
+        "lon": 120.376619,
+        "elevation": 65,
+        "distance": 13.6,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 26.963022,
+        "lon": 120.355319,
+        "elevation": 27,
+        "distance": 20.4,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 300
+        "elevation": 8
       },
       {
-        "distance": 18,
-        "elevation": 800
+        "distance": 2.5,
+        "elevation": 16
+      },
+      {
+        "distance": 4.9,
+        "elevation": 316
+      },
+      {
+        "distance": 7.4,
+        "elevation": 349
+      },
+      {
+        "distance": 9.9,
+        "elevation": 318
+      },
+      {
+        "distance": 12.3,
+        "elevation": 150
+      },
+      {
+        "distance": 14.9,
+        "elevation": 37
+      },
+      {
+        "distance": 17.5,
+        "elevation": 83
+      },
+      {
+        "distance": 19.7,
+        "elevation": 41
+      },
+      {
+        "distance": 22.2,
+        "elevation": 40
+      },
+      {
+        "distance": 24.7,
+        "elevation": 51
+      },
+      {
+        "distance": 27.1,
+        "elevation": 7
       }
     ],
     "itinerary": [
@@ -7117,10 +9780,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "张家界森林公园",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -7181,40 +9844,106 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "森林公园门票站",
-        "lat": 29.316,
-        "lon": 110.426,
-        "elevation": 300,
+        "name": "起点",
+        "lat": 29.361907,
+        "lon": 110.401692,
+        "elevation": 472,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "沿溪谷与步道上山。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "袁家界",
-        "lat": 29.324,
-        "lon": 110.434,
-        "elevation": 1500,
-        "distance": 24,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "环线后下山。"
+        "name": "途中 9.8 km",
+        "lat": 29.348692,
+        "lon": 110.419173,
+        "elevation": 750,
+        "distance": 9.8,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 19.6 km",
+        "lat": 29.342109,
+        "lon": 110.444783,
+        "elevation": 595,
+        "distance": 19.6,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "最高点",
+        "lat": 29.331452,
+        "lon": 110.425266,
+        "elevation": 1105,
+        "distance": 26.5,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "全程最高点，海拔 1105 m；数据取自两步路实测轨迹。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
-        "elevation": 300
+        "elevation": 472
       },
       {
-        "distance": 24,
-        "elevation": 1500
+        "distance": 3.6,
+        "elevation": 851
+      },
+      {
+        "distance": 7.1,
+        "elevation": 1043
+      },
+      {
+        "distance": 10.7,
+        "elevation": 757
+      },
+      {
+        "distance": 14.2,
+        "elevation": 919
+      },
+      {
+        "distance": 17.8,
+        "elevation": 895
+      },
+      {
+        "distance": 21.3,
+        "elevation": 557
+      },
+      {
+        "distance": 24.9,
+        "elevation": 831
+      },
+      {
+        "distance": 28.5,
+        "elevation": 1050
+      },
+      {
+        "distance": 32,
+        "elevation": 729
+      },
+      {
+        "distance": 35.6,
+        "elevation": 530
+      },
+      {
+        "distance": 39.1,
+        "elevation": 476
       }
     ],
     "itinerary": [
@@ -7274,10 +10003,10 @@ Object.assign(window.ROUTEBOOKS, {
     "name": "老君山",
     "credibility": "C",
     "version": 1,
-    "updatedAt": "2026-08-16",
+    "updatedAt": "2026-09-29",
     "sources": [
-      "由现有路线数据自动生成",
-      "轨迹和节点为示例参考线，需人工替换核实"
+      "轨迹、检查点与海拔剖面来自两步路用户上传（2026-09 重建）",
+      "补给、信号、门票与开放情况请出发前与当地核实"
     ],
     "status": {
       "open": null,
@@ -7338,40 +10067,119 @@ Object.assign(window.ROUTEBOOKS, {
     },
     "checkpoints": [
       {
-        "name": "景区",
-        "lat": 33.746,
-        "lon": 111.626,
-        "elevation": 1317,
+        "name": "起点",
+        "lat": 33.741112,
+        "lon": 111.687408,
+        "elevation": 836,
         "distance": 0,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "沿步道或索道上山。"
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "起点，坐标与海拔取自两步路实测轨迹；补给与进山信息以当地为准。"
       },
       {
-        "name": "金顶",
-        "lat": 33.754,
-        "lon": 111.634,
-        "elevation": 2217,
-        "distance": 15,
-        "water": true,
-        "camp": false,
-        "signal": true,
-        "toilet": true,
-        "emergencyExit": true,
-        "note": "看日出后返回。"
+        "name": "途中 3.1 km",
+        "lat": 33.725663,
+        "lon": 111.672165,
+        "elevation": 1302,
+        "distance": 3.1,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 6.3 km",
+        "lat": 33.714995,
+        "lon": 111.652057,
+        "elevation": 1560,
+        "distance": 6.3,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "途中 9.4 km",
+        "lat": 33.720587,
+        "lon": 111.64335,
+        "elevation": 2167,
+        "distance": 9.4,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "里程与海拔取自两步路实测轨迹；补给、信号与扎营条件以实地为准。"
+      },
+      {
+        "name": "终点",
+        "lat": 33.731407,
+        "lon": 111.644973,
+        "elevation": 1829,
+        "distance": 12.5,
+        "water": null,
+        "camp": null,
+        "signal": null,
+        "toilet": null,
+        "emergencyExit": null,
+        "note": "终点，坐标与海拔取自两步路实测轨迹；请提前确认撤出交通。"
       }
     ],
     "elevationProfile": [
       {
         "distance": 0,
+        "elevation": 836
+      },
+      {
+        "distance": 1.1,
+        "elevation": 998
+      },
+      {
+        "distance": 2.3,
+        "elevation": 1252
+      },
+      {
+        "distance": 3.4,
+        "elevation": 1299
+      },
+      {
+        "distance": 4.5,
         "elevation": 1317
       },
       {
-        "distance": 15,
-        "elevation": 2217
+        "distance": 5.7,
+        "elevation": 1453
+      },
+      {
+        "distance": 6.8,
+        "elevation": 1700
+      },
+      {
+        "distance": 8,
+        "elevation": 2069
+      },
+      {
+        "distance": 9.1,
+        "elevation": 2155
+      },
+      {
+        "distance": 10.2,
+        "elevation": 2121
+      },
+      {
+        "distance": 11.4,
+        "elevation": 1969
+      },
+      {
+        "distance": 12.5,
+        "elevation": 1829
       }
     ],
     "itinerary": [
@@ -7426,4 +10234,5 @@ Object.assign(window.ROUTEBOOKS, {
       }
     ]
   }
-});
+}
+);

@@ -561,6 +561,8 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
     }
 
     // ---------- Elevation Profile Generator ----------
+    // 注意：下面是「按路线参数合成」的示意剖面，真实剖面来自路书数据（routebook.elevationProfile）。
+    // 页面已改用真实数据，这里保留仅为参考，不要再接回页面。
     // Inspired by TrailScope & leaflet-elevation: generate synthetic elevation
     // profile from route data when no GPX track is available.
     function generateElevationProfile(route) {
@@ -883,13 +885,14 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
           book.checkpoints.forEach((point) => {
             if (Number.isFinite(point.lat) && Number.isFinite(point.lon)) {
               const mkOpts = {
-                radius: point.emergencyExit ? 6 : 5,
+                radius: point.emergencyExit === true ? 6 : 5,
                 color: "#2a2118",
                 weight: 1,
-                fillColor: point.emergencyExit ? "#c5962e" : trackColor,
+                fillColor: point.emergencyExit === true ? "#c5962e" : trackColor,
                 fillOpacity: 0.9
               };
-              const popup = `<b>${point.name}</b><br/>${point.elevation}m · ${point.distance}km`;
+              const popupElevation = Number.isFinite(point.elevation) ? `${point.elevation}m` : "海拔待核实";
+              const popup = `<b>${point.name}</b><br/>${popupElevation} · ${point.distance}km`;
               L.circleMarker([point.lat, point.lon], mkOpts).bindPopup(popup).addTo(cpWgs);
               const gcj = gcjLatlng(point.lat, point.lon);
               L.circleMarker(gcj, mkOpts).bindPopup(popup).addTo(cpGcj);
@@ -1362,7 +1365,14 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
     }
 
     function renderElevationProfile(profile) {
-      if (!Array.isArray(profile) || profile.length < 2) return "";
+      if (!Array.isArray(profile) || profile.length < 2) {
+        return '<p class="weather-hint">这条路线还没有可用的海拔数据，出发前请核实。</p>';
+      }
+      const usable = profile.filter((point) => Number.isFinite(point.distance) && Number.isFinite(point.elevation));
+      if (usable.length < 2) {
+        return '<p class="weather-hint">这条路线还没有可用的海拔数据，出发前请核实。</p>';
+      }
+      profile = usable;
       const width = 800;
       const height = 220;
       const padding = 26;
@@ -1392,14 +1402,17 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
     }
 
     function renderCheckpointMeta(point) {
+      // 真实轨迹读不出来的信息（补给/扎营/信号/下撤）用 null 表示，显示「待核实」而不是编一个答案
+      const flag = (value, yes, no, unknown) => (value === true ? yes : value === false ? no : unknown);
+      const elevation = Number.isFinite(point.elevation) ? `${point.elevation}m` : "海拔待核实";
       return `
         <div class="checkpoint-meta">
           <span>${point.distance}km</span>
-          <span>${point.elevation}m</span>
-          <span>${point.water ? "💧 补水" : "无水源"}</span>
-          <span>${point.camp ? "⛺ 可扎营" : "不扎营"}</span>
-          <span>${point.signal ? "📶 有信号" : "信号弱"}</span>
-          <span>${point.emergencyExit ? "可下撤" : "无快速下撤点"}</span>
+          <span>${elevation}</span>
+          <span>${flag(point.water, "💧 补水", "无水源", "补水待核实")}</span>
+          <span>${flag(point.camp, "⛺ 可扎营", "不扎营", "扎营待核实")}</span>
+          <span>${flag(point.signal, "📶 有信号", "信号弱", "信号待核实")}</span>
+          <span>${flag(point.emergencyExit, "可下撤", "无快速下撤点", "下撤点待核实")}</span>
         </div>
       `;
     }
@@ -1474,13 +1487,6 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
                 </div>
               </div>
             `).join("")}
-          </div>
-        </section>
-        <section class="guide-section">
-          <h3>⛰️ 海拔剖面</h3>
-          <div class="elevation-wrap">
-            ${renderElevationProfile(book.elevationProfile)}
-            <div class="elevation-legend"><span>横轴：距离</span><span>纵轴：海拔</span></div>
           </div>
         </section>
         <section class="guide-section">
@@ -1590,7 +1596,11 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
           </div>
         </section>
         <section class="guide-section" id="section-elevation">
-          ${renderElevationProfileForRoute(route)}
+          <h3>⛰️ 海拔剖面</h3>
+          <div class="elevation-wrap">
+            ${renderElevationProfile(routebook && routebook.elevationProfile)}
+            <div class="elevation-legend"><span>横轴：距离</span><span>纵轴：海拔</span></div>
+          </div>
         </section>
         <section class="guide-section" id="section-gear">
           <h3>🎒 完整装备清单</h3>
