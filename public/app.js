@@ -2046,11 +2046,18 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       if (first) renderWeather(first);
     }
 
-    function defaultAIServerUrl() {
-      // On deployed site, use Netlify Function at /api/ai
-      if (location.protocol === "http:" || location.protocol === "https:") return `${location.origin}/api/ai`;
-      return "/api/ai";
-    }
+      // AI 代理地址：同域有函数就直接用（Netlify / 本地开发）；
+      // 纯静态托管（EdgeOne Pages、GitHub Pages 等）没有同域函数，回退到仍然可用的代理。
+      // 这个地址可以在「AI 设置」里改，换托管商后不用改代码。
+      const AI_PROXY_FALLBACK = "https://dapper-kitten-989542.netlify.app/api/ai";
+
+      function defaultAIServerUrl() {
+        if (location.protocol !== "http:" && location.protocol !== "https:") return "/api/ai";
+        const host = location.hostname;
+        const sameOriginHasFunction =
+          /(^|\.)netlify\.app$/.test(host) || host === "localhost" || host === "127.0.0.1";
+        return sameOriginHasFunction ? `${location.origin}/api/ai` : AI_PROXY_FALLBACK;
+      }
 
     function getAISettings() {
       return {
