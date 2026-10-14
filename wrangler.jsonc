@@ -1,0 +1,9 @@
+{
+  // Cloudflare Workers / Pages 的部署配置：
+  // 把仓库里的 public/ 作为纯静态资源发布，不需要构建命令，也不需要 Worker 代码。
+  "name": "xiakexing",
+  "compatibility_date": "2025-10-14",
+  "assets": {
+    "directory": "./public"
+  }
+}
