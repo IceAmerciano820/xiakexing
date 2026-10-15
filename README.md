@@ -9,7 +9,7 @@
 ## 在线访问
 
 - **主站（Cloudflare Pages）**：https://xiakexing-pages.pages.dev
-- 备用（Netlify，历史部署）：https://dapper-kitten-989542.netlify.app
+- 备用（Netlify，已停止更新）：https://dapper-kitten-989542.netlify.app —— 仅剩 AI 代理还在服役，待迁到 Cloudflare
 
 深链接可直接分享某条路线，例如 `?route=yubeng`、`?route=qilian`。
 
@@ -21,7 +21,6 @@
 - **实时天气**：Open-Meteo 逐日预报 + 风力/降水提示，并根据天气给出额外装备建议
 - **AI 向导**：DeepSeek 代理推荐路线；模型、服务地址、系统提示词都能在页面「AI 设置」里改；未配置时自动退回本地匹配引擎
 - **一键生成小红书图文**：封面 / 行程 / 地形 / 时机与预算 / 安全，共 5 页，可一次保存或分享
-- **夜间模式**：纸色反转为墨色，对比度与字号按可读性校验过
 - **离线可用**：PWA + Service Worker（缓存版本 `xiake-v16`）
 
 ## 数据（真实优先）
@@ -52,14 +51,14 @@
 ## 目录结构
 
 ```
-public/                     # 发布目录（Cloudflare Pages / Netlify 都用它）
+public/                     # 发布目录（Cloudflare Pages）
   index.html  app.js  styles.css  sw.js  poster.js  manifest.json
   data/routes.js            # 52 条路线主数据（名称/难度/里程/装备/行程…）
   data/routebooks/*.js      # 路书：检查点、季节、预算、服务、海拔剖面
   data/tracks/*.gpx|.geojson# 52 条实测轨迹
   data/china-map.json       # 自建中国地图边界
   images/routes/<id>/*.jpg  # 每条路线 3–5 张实拍图
-netlify/functions/ai.js     # AI 代理（Netlify 版）
+netlify/functions/ai.js     # AI 代理（Netlify 版，待迁到 Cloudflare）
 wrangler.jsonc              # Cloudflare 部署配置（静态资源指向 public）
 dev/                        # 本地工具与素材（不参与发布）
   tools/*.mjs               # 数据流水线脚本，见下
@@ -80,12 +79,11 @@ python -m http.server 8899 --directory public
 ## 部署
 
 ```bash
-# Cloudflare（当前主站，纯静态资源）
-npx wrangler deploy --assets ./public --name xiakexing
-
-# Netlify（历史方式，函数目录 netlify/functions）
-netlify deploy --prod --site <site_id>
+# 唯一发布通道：Cloudflare Pages 项目 xiakexing-pages（直传，非 git 自动构建）
+npx wrangler pages deploy public --project-name xiakexing-pages --branch main
 ```
+
+代码托管在 GitHub（`IceAmerciano820/xiakexing`，生产分支 `mobile-ux-optimization`），推送后需要手动执行上面的命令发布——Pages 项目没有接 Git 自动构建。Netlify 不再作为发布目标。
 
 AI 代理需要环境变量 `DEEPSEEK_API_KEY`（可选 `AI_MODEL`、`AI_API_BASE`）。页面「AI 设置」里也能指定代理地址，所以换托管商不用改代码。
 
@@ -98,7 +96,7 @@ AI 代理需要环境变量 `DEEPSEEK_API_KEY`（可选 `AI_MODEL`、`AI_API_BAS
 | `rebuild-checkpoints.mjs` | 按真实轨迹重建检查点与海拔剖面；缺失信息写成「待核实」 |
 | `list-missing-tracks.mjs` | 列出仍缺实测轨迹的路线 |
 | `minify-china-map.mjs` | 压缩自建中国地图数据（坐标降精度 + 去空白，省 18%） |
-| `bump-font-sizes.mjs` / `list-light-surfaces.mjs` | 字号与夜间模式可读性批处理 |
+| `bump-font-sizes.mjs` | 把 styles.css 里偏小的字号整体上调一档 |
 | `show-book.mjs` / `remove-routes.mjs` | 查看某条路书 / 安全地批量下架路线 |
 
 ## 已知限制与下一步
