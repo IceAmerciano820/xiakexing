@@ -57,33 +57,6 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
       $("#favFilterBtn").textContent = isActive ? "查看全部路线" : "只看收藏";
     }
 
-    // ---------- 夜间模式：户外夜里看手机不刺眼 ----------
-    const THEME_KEY = "xiake_theme";
-
-    function applyTheme(theme) {
-      const value = theme === "night" ? "night" : "day";
-      if (value === "night") document.documentElement.dataset.theme = "night";
-      else delete document.documentElement.dataset.theme;
-      const button = $("#themeToggle");
-      if (button) button.textContent = value === "night" ? "日间" : "夜间";
-      try { localStorage.setItem(THEME_KEY, value); } catch (e) { /* 忽略 */ }
-    }
-
-    function initTheme() {
-      let saved = null;
-      try { saved = localStorage.getItem(THEME_KEY); } catch (e) { /* 忽略 */ }
-      if (!saved) {
-        saved = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "night" : "day";
-      }
-      applyTheme(saved);
-      const button = $("#themeToggle");
-      if (button) {
-        button.addEventListener("click", () => {
-          applyTheme(document.documentElement.dataset.theme === "night" ? "day" : "night");
-        });
-      }
-    }
-
     // 首页三入口：按季节 / 难度 / 地区，点了滚到对应筛选控件（季节会直接预设当季）
     function initQuickEntries() {
       const currentSeason = () => {
@@ -2420,7 +2393,6 @@ const FALLBACK_IMG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
 
     function init() {
       initSelectors();
-      initTheme();
       initQuickEntries();
       bindEvents();
       renderRoutes();
